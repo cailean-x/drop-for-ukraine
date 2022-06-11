@@ -11,14 +11,13 @@ interface Props {
     image: string;
     address: string;
     price: number;
-    numOfGuests: number;
   };
 }
 
 const { Text, Title } = Typography;
 
 export const ListingCard = ({ listing }: Props) => {
-  const { id, title, image, address, price, numOfGuests } = listing;
+  const { id, title, image, address, price } = listing;
 
   return (
     <Link to={`/listing/${id}`}>

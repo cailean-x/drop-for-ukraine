@@ -14,8 +14,8 @@ export const typeDefs = gql`
   }
 
   enum ListingType {
-    APARTMENT
-    HOUSE
+    INDUSTRIAL
+    DWELLING
   }
 
   enum ListingsFilter {
@@ -37,7 +37,6 @@ export const typeDefs = gql`
     bookings(limit: Int!, page: Int!): Bookings
     bookingsIndex: String!
     price: Int!
-    numOfGuests: Int!
   }
 
   type Listings {
@@ -80,7 +79,6 @@ export const typeDefs = gql`
     type: ListingType!
     address: String!
     price: Int!
-    numOfGuests: Int!
   }
 
   input CreateBookingInput {

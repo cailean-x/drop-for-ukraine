@@ -30,7 +30,6 @@ export const LISTING = gql`
       }
       bookingsIndex
       price
-      numOfGuests
     }
   }
 `;

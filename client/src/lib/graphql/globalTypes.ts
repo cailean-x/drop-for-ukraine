@@ -8,8 +8,8 @@
 //==============================================================
 
 export enum ListingType {
-  INDUSTRIAL = "INDUSTRIAL",
   DWELLING = "DWELLING",
+  INDUSTRIAL = "INDUSTRIAL",
 }
 
 export enum ListingsFilter {
@@ -33,7 +33,6 @@ export interface HostListingInput {
   type: ListingType;
   address: string;
   price: number;
-  numOfGuests: number;
 }
 
 export interface LogInInput {

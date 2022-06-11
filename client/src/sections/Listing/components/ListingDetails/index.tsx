@@ -11,8 +11,7 @@ interface Props {
 const { Paragraph, Title } = Typography;
 
 export const ListingDetails = ({ listing }: Props) => {
-  const { title, description, image, type, address, city, numOfGuests, host } =
-    listing;
+  const { title, description, image, type, address, city, host } = listing;
 
   return (
     <div className="listing-details">

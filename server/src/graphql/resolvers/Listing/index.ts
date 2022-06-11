@@ -16,15 +16,20 @@ import {
   HostListingArgs,
 } from "./types";
 
-const verifyHostListingInput = ({ title, description, type, price }: HostListingInput) => {
+const verifyHostListingInput = ({
+  title,
+  description,
+  type,
+  price,
+}: HostListingInput) => {
   if (title.length > 100) {
     throw new Error("listing title must be under 100 characters");
   }
   if (description.length > 5000) {
     throw new Error("listing description must be under 5000 characters");
   }
-  if (type !== ListingType.Apartment && type !== ListingType.House) {
-    throw new Error("listing type must be either an apartment or house");
+  if (type !== ListingType.Industrial && type !== ListingType.Dwelling) {
+    throw new Error("listing type must be either an industrial or dwelling");
   }
   if (price < 0) {
     throw new Error("price must be greater than 0");
@@ -33,7 +38,11 @@ const verifyHostListingInput = ({ title, description, type, price }: HostListing
 
 export const listingResolvers: IResolvers = {
   Query: {
-    listing: async (_root: undefined, { id }: ListingArgs, { db, req }: { db: Database; req: Request }): Promise<Listing> => {
+    listing: async (
+      _root: undefined,
+      { id }: ListingArgs,
+      { db, req }: { db: Database; req: Request }
+    ): Promise<Listing> => {
       try {
         const listing = await db.listings.findOne({ _id: new ObjectId(id) });
         if (!listing) {
@@ -50,7 +59,11 @@ export const listingResolvers: IResolvers = {
         throw new Error(`Failed to query listing: ${error}`);
       }
     },
-    listings: async (_root: undefined, { location, filter, limit, page }: ListingsArgs, { db }: { db: Database }): Promise<ListingsData> => {
+    listings: async (
+      _root: undefined,
+      { location, filter, limit, page }: ListingsArgs,
+      { db }: { db: Database }
+    ): Promise<ListingsData> => {
       try {
         const query: ListingsQuery = {};
         const data: ListingsData = {
@@ -60,8 +73,8 @@ export const listingResolvers: IResolvers = {
         };
 
         if (location) {
-          const { country, admin, city } = await Google.geocode(location);
-
+          const loc = await Google.geocode(location);
+          const { country, admin, city } = loc[0];
           if (city) query.city = city;
           if (admin) query.admin = admin;
           if (country) {
@@ -98,7 +111,11 @@ export const listingResolvers: IResolvers = {
     },
   },
   Mutation: {
-    hostListing: async (_root: undefined, { input }: HostListingArgs, { db, req }: { db: Database; req: Request }): Promise<Listing> => {
+    hostListing: async (
+      _root: undefined,
+      { input }: HostListingArgs,
+      { db, req }: { db: Database; req: Request }
+    ): Promise<Listing> => {
       verifyHostListingInput(input);
 
       let viewer = await authorize(db, req);
@@ -106,7 +123,8 @@ export const listingResolvers: IResolvers = {
         throw new Error("viewer cannot be found");
       }
 
-      const { country, admin, city } = await Google.geocode(input.address);
+      const location = await Google.geocode(input.address);
+      const { country, admin, city } = location[0];
       if (!country || !admin || !city) {
         throw new Error("invalid address input");
       }
@@ -123,11 +141,15 @@ export const listingResolvers: IResolvers = {
         admin,
         city,
         host: viewer._id,
+        geometry: location[1],
       });
 
       const insertedListing: Listing = insertResult.ops[0];
 
-      await db.users.updateOne({ _id: viewer._id }, { $push: { listings: insertedListing._id } });
+      await db.users.updateOne(
+        { _id: viewer._id },
+        { $push: { listings: insertedListing._id } }
+      );
 
       return insertedListing;
     },
@@ -136,7 +158,11 @@ export const listingResolvers: IResolvers = {
     id: (listing: Listing): string => {
       return listing._id.toString();
     },
-    host: async (listing: Listing, _args: {}, { db }: { db: Database }): Promise<User> => {
+    host: async (
+      listing: Listing,
+      _args: {},
+      { db }: { db: Database }
+    ): Promise<User> => {
       const host = await db.users.findOne({ _id: listing.host });
       if (!host) {
         throw new Error("host can't be found");
@@ -146,7 +172,11 @@ export const listingResolvers: IResolvers = {
     bookingsIndex: (listing: Listing): string => {
       return JSON.stringify(listing.bookingsIndex);
     },
-    bookings: async (listing: Listing, { limit, page }: ListingBookingsArgs, { db }: { db: Database }): Promise<ListingBookingsData | null> => {
+    bookings: async (
+      listing: Listing,
+      { limit, page }: ListingBookingsArgs,
+      { db }: { db: Database }
+    ): Promise<ListingBookingsData | null> => {
       try {
         if (!listing.authorized) {
           return null;

@@ -3,7 +3,9 @@ import {
   Client,
   AddressComponent,
   AddressType,
+  LatLngLiteral,
   GeocodingAddressComponentType,
+  AddressGeometry,
 } from "@googlemaps/google-maps-services-js";
 
 const auth = new google.auth.OAuth2(
@@ -72,6 +74,12 @@ export const Google = {
       throw new Error("failed to geocode address");
     }
 
-    return parseAddress(res.data.results[0].address_components);
+    const location = new Array();
+    location.push(
+      parseAddress(res.data.results[0].address_components),
+      res.data.results[0].geometry.location
+    );
+
+    return location;
   },
 };

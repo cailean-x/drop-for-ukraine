@@ -13,7 +13,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652963548/TH_Assets/HelpUkraine25_ib8d19.jpg",
     host: "5d378db94e84753160e08b57",
-    type: ListingType.Apartment,
+    type: ListingType.Industrial,
     address: "Paul-Nevermann-Platz 4, Wildflecken, Bavaria, GE",
     country: "Germany",
     admin: "Bavaria",
@@ -21,7 +21,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 12424,
-    numOfGuests: 3,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b31"),
@@ -32,7 +33,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652963548/TH_Assets/HelpUkraine21_hrtqeq.jpg",
     host: "5d378db94e84753160e08b55",
-    type: ListingType.Apartment,
+    type: ListingType.Industrial,
     address: "Jenaer Strasse 65, Essen, North Rhine-Westphalia, GE",
     country: "Germany",
     admin: "North Rhine-Westphalia",
@@ -40,7 +41,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 15806,
-    numOfGuests: 3,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b32"),
@@ -50,7 +52,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652963548/TH_Assets/HelpUkraine19_tuceed.jpg",
     host: "5d378db94e84753160e08b57",
-    type: ListingType.House,
+    type: ListingType.Dwelling,
     address: "Borstelmannsweg 5, Coburg, Bavaria, GE",
     country: "Germany",
     admin: "Bavaria",
@@ -58,7 +60,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 4055,
-    numOfGuests: 2,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b33"),
@@ -69,7 +72,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652963548/TH_Assets/HelpUkraine16_j52px3.jpg",
     host: "5d378db94e84753160e08b59",
-    type: ListingType.Apartment,
+    type: ListingType.Industrial,
     address: "Park Str. 93, Düsseldorf, North Rhine-Westphalia, GE",
     country: "Germany",
     admin: "North Rhine-Westphalia",
@@ -77,7 +80,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 21292,
-    numOfGuests: 4,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b34"),
@@ -88,7 +92,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652963547/TH_Assets/HelpUkraine15_aqztjz.jpg",
     host: "5d378db94e84753160e08b57",
-    type: ListingType.House,
+    type: ListingType.Dwelling,
     address: "Lietzenburger Straße 82, Luckau, BR, GE",
     country: "Germany",
     admin: "Brandenburg",
@@ -96,7 +100,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 20930,
-    numOfGuests: 5,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b35"),
@@ -106,7 +111,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652963546/TH_Assets/HelpUkraine12_ckq9wh.jpg",
     host: "5d378db94e84753160e08b57",
-    type: ListingType.House,
+    type: ListingType.Dwelling,
     address: "Lietzenburger Straße 82, Luckau, BR, GE",
     country: "Germany",
     admin: "Brandenburg",
@@ -114,7 +119,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 16836,
-    numOfGuests: 2,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b36"),
@@ -124,7 +130,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652963546/TH_Assets/HelpUkraine10_rg858v.jpg",
     host: "5d378db94e84753160e08b57",
-    type: ListingType.House,
+    type: ListingType.Dwelling,
     address: "Chausseestr. 49, Malchin, MV, GE",
     country: "Germany",
     admin: "Mecklenburg-Vorpommern",
@@ -132,7 +138,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 2577,
-    numOfGuests: 1,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b37"),
@@ -142,7 +149,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652963546/TH_Assets/HelpUkraine11_rajcbc.jpg",
     host: "5d378db94e84753160e08b56",
-    type: ListingType.Apartment,
+    type: ListingType.Industrial,
     address: "Wallstrasse 68, Kruft, RP, GE",
     country: "Germany",
     admin: "Rhineland-Palatinate",
@@ -150,7 +157,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 23903,
-    numOfGuests: 4,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b38"),
@@ -161,7 +169,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652963546/TH_Assets/HelpUkraine13_acevc7.jpg",
     host: "5d378db94e84753160e08b56",
-    type: ListingType.Apartment,
+    type: ListingType.Industrial,
     address: "51 boulevard Aristide Briand, Le Grand-Quevilly, Normandy",
     country: "France",
     admin: "Normandy",
@@ -169,7 +177,7 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 21982,
-    numOfGuests: 3,
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b39"),
@@ -179,7 +187,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652963546/TH_Assets/HelpUkraine9_xjz7ip.jpg",
     host: "5d378db94e84753160e08b59",
-    type: ListingType.Apartment,
+    type: ListingType.Industrial,
     address: "44 avenue Jules Ferry, Soissons, Hauts-de-France",
     country: "France",
     admin: "Hauts-de-France",
@@ -187,7 +195,7 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 18126,
-    numOfGuests: 5,
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b3a"),
@@ -197,7 +205,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652963546/TH_Assets/HelpUkraine4_qcflqi.jpg",
     host: "5d378db94e84753160e08b56",
-    type: ListingType.Apartment,
+    type: ListingType.Industrial,
     address: "15 rue Charles Corbeau, Fleury-les-Aubrais, Centre-Val de Loire",
     country: "France",
     admin: "Centre-Val de Loire",
@@ -205,7 +213,7 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 16162,
-    numOfGuests: 4,
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b3b"),
@@ -215,7 +223,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652963546/TH_Assets/HelpUkraine14_spxadt.jpg",
     host: "5d378db94e84753160e08b56",
-    type: ListingType.House,
+    type: ListingType.Dwelling,
     address: "33 avenue du Marechal Juin, Saint-Louis, Grand Est",
     country: "France",
     admin: "Grand Est",
@@ -223,7 +231,7 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 11688,
-    numOfGuests: 5,
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b3c"),
@@ -233,7 +241,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652963545/TH_Assets/HelpUkraine5_abxz3w.jpg",
     host: "5d378db94e84753160e08b57",
-    type: ListingType.House,
+    type: ListingType.Dwelling,
     address: "22 avenue Jean Portalis, Tremblay-en-France, Île-de-France",
     country: "France",
     admin: "Île-de-France",
@@ -241,7 +249,7 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 16843,
-    numOfGuests: 4,
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b3d"),
@@ -252,7 +260,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652963544/TH_Assets/HelpUkraine6_vlhd4x.jpg",
     host: "5d378db94e84753160e08b56",
-    type: ListingType.Apartment,
+    type: ListingType.Industrial,
     address: "85 rue du Président Roosevelt, Sartrouville, France",
     country: "France",
     admin: "Île-de-France",
@@ -260,7 +268,7 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 3078,
-    numOfGuests: 5,
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b3e"),
@@ -270,7 +278,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652963544/TH_Assets/HelpUkraine2_rgtcnx.jpg",
     host: "5d378db94e84753160e08b57",
-    type: ListingType.Apartment,
+    type: ListingType.Industrial,
     address: "98 rue Pierre Motte, Sainte-Anne, Grande-Terre",
     country: "France",
     admin: "Grande-Terre",
@@ -278,7 +286,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 12127,
-    numOfGuests: 2,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b3f"),
@@ -289,7 +298,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652963544/TH_Assets/HelpUkraine2_rgtcnx.jpg",
     host: "5d378db94e84753160e08b58",
-    type: ListingType.House,
+    type: ListingType.Dwelling,
     address: "94 rue Petite Fusterie,Boulogne-sur-Mer, Hauts-de-France",
     country: "France",
     admin: "Hauts-de-France",
@@ -297,7 +306,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 19242,
-    numOfGuests: 2,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b40"),
@@ -307,7 +317,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652975521/TH_Assets/war16_mytq5p.jpg",
     host: "5d378db94e84753160e08b58",
-    type: ListingType.House,
+    type: ListingType.Dwelling,
     address: "75 rue Marie de Médicis, Béziers, Occitanie",
     country: "France",
     admin: "Occitanie",
@@ -315,7 +325,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 18127,
-    numOfGuests: 2,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b41"),
@@ -325,7 +336,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652975520/TH_Assets/war9_nqo6uw.jpg",
     host: "5d378db94e84753160e08b56",
-    type: ListingType.House,
+    type: ListingType.Dwelling,
     address: "96 rue Adolphe Wurtz, Le Puy, Auvergne-Rhône-Alpes",
     country: "France",
     admin: "Auvergne-Rhône-Alpes",
@@ -333,7 +344,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 22707,
-    numOfGuests: 5,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b42"),
@@ -343,7 +355,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652975520/TH_Assets/war10_dntjce.jpg",
     host: "5d378db94e84753160e08b59",
-    type: ListingType.Apartment,
+    type: ListingType.Industrial,
     address: "37 boulevard d'Alsace, Vénissieux, Auvergne-Rhône-Alpes",
     country: "France",
     admin: "Auvergne-Rhône-Alpes",
@@ -351,7 +363,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 11845,
-    numOfGuests: 4,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b43"),
@@ -362,7 +375,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652975520/TH_Assets/war11_ba7oks.jpg",
     host: "5d378db94e84753160e08b56",
-    type: ListingType.Apartment,
+    type: ListingType.Industrial,
     address: "73 rue Sébastopol, Sainte-Geneviève-des-Bois, Île-de-France",
     country: "France",
     admin: "Île-de-France",
@@ -370,7 +383,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 13623,
-    numOfGuests: 4,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b44"),
@@ -380,7 +394,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652975520/TH_Assets/war6_b9vzpr.jpg",
     host: "5d378db94e84753160e08b58",
-    type: ListingType.House,
+    type: ListingType.Dwelling,
     address: "37 rue de la Mare aux Carats, Montpellier, Occitanie",
     country: "France",
     admin: "Occitanie",
@@ -388,7 +402,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 6879,
-    numOfGuests: 3,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b45"),
@@ -398,7 +413,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652975520/TH_Assets/warehous1_tlfbuw.jpg",
     host: "5d378db94e84753160e08b59",
-    type: ListingType.House,
+    type: ListingType.Dwelling,
     address: "84 Quai des Belges, Martigues, Provence-Alpes-Côte d'Azur",
     country: "France",
     admin: "Provence-Alpes-Côte d'Azur",
@@ -406,7 +421,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 14879,
-    numOfGuests: 5,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b46"),
@@ -416,7 +432,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652975520/TH_Assets/war5_wckpyx.jpg",
     host: "5d378db94e84753160e08b59",
-    type: ListingType.House,
+    type: ListingType.Dwelling,
     address: "66 Boulevard de Normandie, Fontenay-sous-Bois, Île-de-France",
     country: "France",
     admin: "Île-de-France",
@@ -424,7 +440,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 2778,
-    numOfGuests: 5,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b47"),
@@ -435,7 +452,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652975519/TH_Assets/war12_b1svvo.jpg",
     host: "5d378db94e84753160e08b57",
-    type: ListingType.Apartment,
+    type: ListingType.Industrial,
     address: "21 rue de Groussay, Rochefort, Nouvelle-Aquitaine",
     country: "France",
     admin: "Nouvelle-Aquitaine",
@@ -443,7 +460,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 17777,
-    numOfGuests: 3,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b48"),
@@ -453,7 +471,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652975520/TH_Assets/war3_sjmccf.jpg",
     host: "5d378db94e84753160e08b57",
-    type: ListingType.Apartment,
+    type: ListingType.Industrial,
     address: "3807 North Bend River Rd, London, United Kingdom",
     country: "United Kingdom",
     admin: "England",
@@ -461,25 +479,27 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 19462,
-    numOfGuests: 1,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b49"),
-    title: "Beautiful apartment in central London",
+    title: "Beautiful Industrial in central London",
     description:
-      "Beautiful and modern apartment situated in central London and minutes away from the London Underground (railway system).",
+      "Beautiful and modern Industrial situated in central London and minutes away from the London Underground (railway system).",
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652975519/TH_Assets/war2_a5ziwp.jpg",
     host: "5d378db94e84753160e08b59",
-    type: ListingType.Apartment,
-    address: "1738 Old House Dr, London, United Kingdom",
+    type: ListingType.Industrial,
+    address: "1738 Old Dwelling Dr, London, United Kingdom",
     country: "United Kingdom",
     admin: "England",
     city: "London",
     bookings: [],
     bookingsIndex: {},
     price: 9425,
-    numOfGuests: 4,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b4a"),
@@ -489,7 +509,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652975519/TH_Assets/war14_cpcvrg.jpg",
     host: "5d378db94e84753160e08b56",
-    type: ListingType.House,
+    type: ListingType.Dwelling,
     address: "82 South Crescent, London, United Kingdom",
     country: "United Kingdom",
     admin: "England",
@@ -497,7 +517,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 1918,
-    numOfGuests: 1,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b4b"),
@@ -507,7 +528,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652975519/TH_Assets/war13_yghgkx.jpg",
     host: "5d378db94e84753160e08b55",
-    type: ListingType.House,
+    type: ListingType.Dwelling,
     address: "200 South Bend River Rd, London, United Kingdom",
     country: "United States",
     admin: "England",
@@ -515,7 +536,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 11349,
-    numOfGuests: 5,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b4c"),
@@ -525,7 +547,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652975519/TH_Assets/jennifer-aniston-e-tornata-a-new-yokr_glkfrr.jpg",
     host: "5d378db94e84753160e08b55",
-    type: ListingType.House,
+    type: ListingType.Dwelling,
     address: "44  Greyfriars Ave, London, United Kingdom",
     country: "United Kingdom",
     admin: "England",
@@ -533,7 +555,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 23483,
-    numOfGuests: 4,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b4d"),
@@ -543,7 +566,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652975519/TH_Assets/war17_gxvj89.jpg",
     host: "5d378db94e84753160e08b57",
-    type: ListingType.House,
+    type: ListingType.Dwelling,
     address: "20 Peachfarm Rd, London, United Kingdom",
     country: "United Kingdom",
     admin: "England",
@@ -551,17 +574,18 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 8721,
-    numOfGuests: 4,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b4e"),
-    title: "Tranquil, spacious condo apartment",
+    title: "Tranquil, spacious condo Industrial",
     description:
-      "Tranquil, spacious condo apartment with a modern look and feel. Apartment accomodates up to 4 guests with 2 beds and 2 baths.",
+      "Tranquil, spacious condo Industrial with a modern look and feel. Industrial accomodates up to 4 guests with 2 beds and 2 baths.",
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652975519/TH_Assets/war15_eoo4ah.jpg",
     host: "5d378db94e84753160e08b59",
-    type: ListingType.Apartment,
+    type: ListingType.Industrial,
     address: "20 Windsor St, London, United Kingdom",
     country: "United Kingdom",
     admin: "England",
@@ -569,7 +593,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 5884,
-    numOfGuests: 1,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b4f"),
@@ -579,7 +604,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652975519/TH_Assets/war18_b4mod0.jpg",
     host: "5d378db94e84753160e08b59",
-    type: ListingType.Apartment,
+    type: ListingType.Industrial,
     address: "15 Whitehorse Av, London, United Kingdom",
     country: "United Kingdom",
     admin: "England",
@@ -587,7 +612,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 19649,
-    numOfGuests: 4,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b50"),
@@ -597,7 +623,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652976644/TH_Assets/war23_avzo4k.jpg",
     host: "5d378db94e84753160e08b56",
-    type: ListingType.Apartment,
+    type: ListingType.Industrial,
     address: "200 Sunnyside Rd, San Fransisco, California",
     country: "United States",
     admin: "California",
@@ -605,17 +631,18 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 22501,
-    numOfGuests: 5,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b51"),
-    title: "Downtown and modern San Fransisco studio apartment",
+    title: "Downtown and modern San Fransisco studio Industrial",
     description:
-      "Downtown, modern, fully furnished, and sleek San Fransisco studio apartment.",
+      "Downtown, modern, fully furnished, and sleek San Fransisco studio Industrial.",
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652976644/TH_Assets/war24_suteot.jpg",
     host: "5d378db94e84753160e08b56",
-    type: ListingType.Apartment,
+    type: ListingType.Industrial,
     address: "102 Parkdale Av, San Fransisco, California",
     country: "United States",
     admin: "California",
@@ -623,17 +650,18 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 4051,
-    numOfGuests: 5,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b52"),
-    title: "Modern apartment steps away from the beach",
+    title: "Modern Industrial steps away from the beach",
     description:
-      "Beautiful modern apartment located a few minutes away from the beach. The perfect location for a relaxing and comfortable vacation in San Fransisco!",
+      "Beautiful modern Industrial located a few minutes away from the beach. The perfect location for a relaxing and comfortable vacation in San Fransisco!",
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652976643/TH_Assets/war21_spzqqz.jpg",
     host: "5d378db94e84753160e08b59",
-    type: ListingType.Apartment,
+    type: ListingType.Industrial,
     address: "2 Bridgewater Rd, San Fransisco, California",
     country: "United States",
     admin: "California",
@@ -641,7 +669,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 9162,
-    numOfGuests: 2,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b53"),
@@ -651,7 +680,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652976643/TH_Assets/war19_ktxvbi.jpg",
     host: "5d378db94e84753160e08b56",
-    type: ListingType.House,
+    type: ListingType.Dwelling,
     address: "100 Punta Nizuc Rd., Cancún, Mexico",
     country: "Mexico",
     admin: "Quintana Roo",
@@ -659,7 +688,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 24842,
-    numOfGuests: 4,
+
+    geometry: [""],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b54"),
@@ -669,7 +699,7 @@ const listings: Listing[] = [
     image:
       "https://res.cloudinary.com/artem-pustovoit/image/upload/v1652976643/TH_Assets/war20_pz9oxy.jpg",
     host: "5d378db94e84753160e08b56",
-    type: ListingType.Apartment,
+    type: ListingType.Industrial,
     address: "100 Punta Nizuc Rd., Cancún, Mexico",
     country: "Mexico",
     admin: "Quintana Roo",
@@ -677,7 +707,8 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 23012,
-    numOfGuests: 1,
+
+    geometry: [""],
   },
 ];
 const users: User[] = [
@@ -687,7 +718,7 @@ const users: User[] = [
     name: "James J.",
     avatar:
       "https://res.cloudinary.com/tiny-house/image/upload/w_1000,ar_1:1,c_fill,g_auto/v1560648533/mock/users/user-profile-1_mawp12.jpg",
-    contact: "james@tinyhouse.com",
+    contact: "james@dropforukraine.com",
     walletId: "acct_************",
     income: 723796,
     bookings: [],
@@ -703,7 +734,7 @@ const users: User[] = [
     name: "Elizabeth A.",
     avatar:
       "https://res.cloudinary.com/tiny-house/image/upload/w_1000,ar_1:1,c_fill,g_auto/v1560649052/mock/users/user-profile-2_arwtdy.jpg",
-    contact: "elizabeth@tinyhouse.com",
+    contact: "elizabeth@dropforukraine.com",
     walletId: "acct_************",
     income: 256144,
     bookings: [],
@@ -728,7 +759,7 @@ const users: User[] = [
     name: "Andrew D.",
     avatar:
       "https://res.cloudinary.com/tiny-house/image/upload/w_1000,ar_1:1,c_fill,g_auto/v1560649280/mock/users/user-profile-3_omxctk.jpg",
-    contact: "andrew@tinyhouse.com",
+    contact: "andrew@dropforukraine.com",
     walletId: "acct_************",
     income: 272359,
     bookings: [],
@@ -751,7 +782,7 @@ const users: User[] = [
     name: "Danielle C.",
     avatar:
       "https://res.cloudinary.com/tiny-house/image/upload/w_1000,ar_1:1,c_fill,g_auto/v1560650165/mock/users/user-profile-4_wxi6om.jpg",
-    contact: "danielle@tinyhouse.com",
+    contact: "danielle@dropforukraine.com",
     walletId: "acct_************",
     income: 465043,
     bookings: [],
@@ -767,7 +798,7 @@ const users: User[] = [
     name: "Sarah K.",
     avatar:
       "https://res.cloudinary.com/tiny-house/image/upload/w_1000,ar_1:1,c_fill,g_auto/v1560650436/mock/users/user-profile-5_tm8hhl.jpg",
-    contact: "sarah@tinyhouse.com",
+    contact: "sarah@dropforukraine.com",
     walletId: "acct_************",
     income: 104347,
     bookings: [],

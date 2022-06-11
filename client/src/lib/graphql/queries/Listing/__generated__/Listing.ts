@@ -50,7 +50,6 @@ export interface Listing_listing {
   bookings: Listing_listing_bookings | null;
   bookingsIndex: string;
   price: number;
-  numOfGuests: number;
 }
 
 export interface Listing {

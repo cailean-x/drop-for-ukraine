@@ -85,7 +85,7 @@ export const ListingCreateBooking = ({
   // };
 
   const viewerIsHost = viewer.id === host.id;
-  const checkInInputDisabled = !viewer.id || viewerIsHost || !host.hasWallet;
+  const checkInInputDisabled = !viewer.id || viewerIsHost;
   const buttonDisabled = !checkInDate;
 
   let buttonMessage = "We look forward to seeing you!";

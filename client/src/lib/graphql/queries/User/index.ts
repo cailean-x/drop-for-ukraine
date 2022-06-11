@@ -19,7 +19,6 @@ export const USER = gql`
             image
             address
             price
-            numOfGuests
           }
           checkIn
         }
@@ -32,7 +31,6 @@ export const USER = gql`
           image
           address
           price
-          numOfGuests
         }
       }
     }

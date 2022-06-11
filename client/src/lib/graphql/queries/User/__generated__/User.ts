@@ -3,8 +3,6 @@
 // @generated
 // This file was automatically generated and should not be edited.
 
-import { ListingType } from "../../../globalTypes";
-
 // ====================================================
 // GraphQL query operation: User
 // ====================================================
@@ -16,8 +14,6 @@ export interface User_user_bookings_result_listing {
   image: string;
   address: string;
   price: number;
-  numOfGuests: number;
-  type: ListingType;
 }
 
 export interface User_user_bookings_result {
@@ -40,8 +36,6 @@ export interface User_user_listings_result {
   image: string;
   address: string;
   price: number;
-  numOfGuests: number;
-  type: ListingType;
 }
 
 export interface User_user_listings {
