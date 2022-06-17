@@ -21,6 +21,22 @@ export interface ConnectStripeInput {
   code: string;
 }
 
+export interface GeometryType {
+  type: string;
+  coordinates: [number, number];
+}
+
+export interface GeometryProps {
+  phoneFormatted: string;
+  phone: string;
+  address: string;
+  city: string;
+  country: string;
+  crossStreet: string;
+  postalCode: number;
+  state: string;
+}
+
 export interface CreateBookingInput {
   id: string;
   checkIn: string;
@@ -33,6 +49,12 @@ export interface HostListingInput {
   type: ListingType;
   address: string;
   price: number;
+}
+
+export interface ListingOnMapInput {
+  type: string;
+  geometry: GeometryType;
+  properties: GeometryProps;
 }
 
 export interface LogInInput {

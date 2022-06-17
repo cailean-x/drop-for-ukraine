@@ -141,7 +141,7 @@ export const listingResolvers: IResolvers = {
         admin,
         city,
         host: viewer._id,
-        geometry: location[1],
+        geometry: [],
       });
 
       const insertedListing: Listing = insertResult.ops[0];

@@ -48,7 +48,7 @@ export interface Listing {
   price: number;
 
   authorized?: boolean;
-  geometry: string[];
+  geometry: number[];
 }
 
 export interface User {

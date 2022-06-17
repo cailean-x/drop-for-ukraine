@@ -37,6 +37,7 @@ export const typeDefs = gql`
     bookings(limit: Int!, page: Int!): Bookings
     bookingsIndex: String!
     price: Int!
+    geometry: [Float!]!
   }
 
   type Listings {

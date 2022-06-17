@@ -5,6 +5,7 @@ import { Listing as ListingData } from "../../../../lib/graphql/queries/Listing/
 import { displayErrorMessage, formatListingPrice } from "../../../../lib/utils";
 import { Viewer } from "../../../../lib/types";
 import { BookingsIndex } from "./types";
+import { MapboxMap } from "../../../Home/components";
 
 const { Paragraph, Text, Title } = Typography;
 
@@ -16,6 +17,7 @@ interface Props {
   checkInDate: Moment | null;
   setCheckInDate: (checkInDate: Moment | null) => void;
   setModalVisible: (modalVisible: boolean) => void;
+  geometry: ListingData["listing"]["geometry"];
 }
 
 export const ListingCreateBooking = ({
@@ -26,6 +28,7 @@ export const ListingCreateBooking = ({
   checkInDate,
   setCheckInDate,
   setModalVisible,
+  geometry,
 }: Props) => {
   const bookingsIndexJSON: BookingsIndex = JSON.parse(bookingsIndex);
 
@@ -184,6 +187,9 @@ export const ListingCreateBooking = ({
         <Text type="secondary" mark>
           {buttonMessage}
         </Text>
+        <Divider />
+
+        {MapboxMap([2.349014, 48.864716])}
       </Card>
     </div>
   );

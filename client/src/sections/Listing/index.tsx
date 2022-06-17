@@ -90,7 +90,7 @@ export const Listing = ({ viewer }: Props) => {
       setBookingsPage={setBookingsPage}
     />
   ) : null;
-
+  console.log(listing!.geometry);
   const listingCreateBookingElement = listing ? (
     <ListingCreateBooking
       viewer={viewer}
@@ -100,6 +100,7 @@ export const Listing = ({ viewer }: Props) => {
       checkInDate={checkInDate}
       setCheckInDate={setCheckInDate}
       setModalVisible={setModalVisible}
+      geometry={listing.geometry}
     />
   ) : null;
 

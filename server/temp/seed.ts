@@ -22,7 +22,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 12424,
 
-    geometry: [""],
+    geometry: [9.936326, 53.552695],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b31"),
@@ -42,7 +42,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 15806,
 
-    geometry: [""],
+    geometry: [7.001896, 51.45497],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b32"),
@@ -61,7 +61,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 4055,
 
-    geometry: [""],
+    geometry: [10.960752, 50.262952],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b33"),
@@ -81,7 +81,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 21292,
 
-    geometry: [""],
+    geometry: [6.7757, 51.226028],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b34"),
@@ -101,7 +101,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 20930,
 
-    geometry: [""],
+    geometry: [13.322209, 52.500347],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b35"),
@@ -120,7 +120,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 16836,
 
-    geometry: [""],
+    geometry: [12.888853, 53.092067],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b36"),
@@ -139,7 +139,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 2577,
 
-    geometry: [""],
+    geometry: [13.376877, 52.535199],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b37"),
@@ -158,7 +158,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 23903,
 
-    geometry: [""],
+    geometry: [13.409699, 52.512446],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b38"),
@@ -177,7 +177,7 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 21982,
-    geometry: [""],
+    geometry: [1.062626, 49.402763],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b39"),
@@ -195,7 +195,7 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 18126,
-    geometry: [""],
+    geometry: [3.339975, 49.379786],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b3a"),
@@ -213,7 +213,7 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 16162,
-    geometry: [""],
+    geometry: [1.930858, 47.940293],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b3b"),
@@ -231,7 +231,7 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 11688,
-    geometry: [""],
+    geometry: [2.127009, 48.787708],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b3c"),
@@ -249,7 +249,7 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 16843,
-    geometry: [""],
+    geometry: [2.535554, 48.965111],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b3d"),
@@ -268,7 +268,7 @@ const listings: Listing[] = [
     bookings: [],
     bookingsIndex: {},
     price: 3078,
-    geometry: [""],
+    geometry: [4.991223, 47.257019],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b3e"),
@@ -287,7 +287,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 12127,
 
-    geometry: [""],
+    geometry: [3.181052, 45.779412],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b3f"),
@@ -307,7 +307,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 19242,
 
-    geometry: [""],
+    geometry: [3.181052, 45.779412],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b40"),
@@ -326,7 +326,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 18127,
 
-    geometry: [""],
+    geometry: [5.877401, 45.598268],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b41"),
@@ -345,7 +345,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 22707,
 
-    geometry: [""],
+    geometry: [4.801591, 43.947398],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b42"),
@@ -364,7 +364,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 11845,
 
-    geometry: [""],
+    geometry: [3.127023, 43.347672],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b43"),
@@ -384,7 +384,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 13623,
 
-    geometry: [""],
+    geometry: [],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b44"),
@@ -403,7 +403,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 6879,
 
-    geometry: [""],
+    geometry: [],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b45"),
@@ -422,7 +422,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 14879,
 
-    geometry: [""],
+    geometry: [],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b46"),
@@ -441,7 +441,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 2778,
 
-    geometry: [""],
+    geometry: [],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b47"),
@@ -461,7 +461,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 17777,
 
-    geometry: [""],
+    geometry: [],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b48"),
@@ -480,7 +480,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 19462,
 
-    geometry: [""],
+    geometry: [],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b49"),
@@ -499,7 +499,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 9425,
 
-    geometry: [""],
+    geometry: [],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b4a"),
@@ -518,7 +518,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 1918,
 
-    geometry: [""],
+    geometry: [],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b4b"),
@@ -537,7 +537,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 11349,
 
-    geometry: [""],
+    geometry: [],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b4c"),
@@ -556,7 +556,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 23483,
 
-    geometry: [""],
+    geometry: [],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b4d"),
@@ -575,7 +575,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 8721,
 
-    geometry: [""],
+    geometry: [],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b4e"),
@@ -594,7 +594,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 5884,
 
-    geometry: [""],
+    geometry: [],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b4f"),
@@ -613,7 +613,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 19649,
 
-    geometry: [""],
+    geometry: [],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b50"),
@@ -632,7 +632,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 22501,
 
-    geometry: [""],
+    geometry: [],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b51"),
@@ -651,7 +651,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 4051,
 
-    geometry: [""],
+    geometry: [],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b52"),
@@ -670,7 +670,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 9162,
 
-    geometry: [""],
+    geometry: [],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b53"),
@@ -689,7 +689,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 24842,
 
-    geometry: [""],
+    geometry: [],
   },
   {
     _id: new ObjectId("5d378db94e84753160e08b54"),
@@ -708,7 +708,7 @@ const listings: Listing[] = [
     bookingsIndex: {},
     price: 23012,
 
-    geometry: [""],
+    geometry: [],
   },
 ];
 const users: User[] = [

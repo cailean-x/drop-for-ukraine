@@ -15,8 +15,7 @@ import { HomeHero, HomeListings, HomeListingsSkeleton } from "./components";
 import mapBackground from "./assets/map-background.jpg";
 import romeImage from "./assets/rome.jpg";
 import smallTownImage from "./assets/small-town.jpg";
-import mapboxgl from "mapbox-gl";
-import MapboxMap from "./components/MapBox";
+import { MapboxMap } from "./components/MapBox";
 
 const { Content } = Layout;
 const { Paragraph, Title } = Typography;
@@ -97,22 +96,14 @@ export const Home = () => {
 
       {renderListingsSection()}
 
-      <div className="home__listings-img-cover">
-        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.js"></script>
-        <link
-          href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css"
-          rel="stylesheet"
-        />
-      </div>
+      <div className="home__listings-img-cover"></div>
       <div className="home__listings">
         <Title level={4} className="home__listings-title">
           Collecting Points Map
         </Title>
-        {/* <div className="map">
-          <MapboxMap />
-        </div> */}
       </div>
-      <div id="map" className="map"></div>
+      {MapboxMap([2.349014, 48.864716])}
+
       <div className="home__listings">
         <Title level={4} className="home__listings-title">
           Where are you from?
