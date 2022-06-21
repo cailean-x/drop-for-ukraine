@@ -6,6 +6,9 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import MapFilters, { Filters } from './MapFilters';
 import data from './data';
 
+// eslint-disable-next-line import/no-webpack-loader-syntax
+(mapboxgl as any).workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
+
 interface Props {
   type: 'main' | 'item' | 'marker';
   data?: typeof data;

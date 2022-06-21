@@ -57,6 +57,7 @@
   "proxy": "http://localhost:9000",
   "devDependencies": {
     "@types/dompurify": "^2.3.3",
-    "@types/jsdom": "^16.2.14"
+    "@types/jsdom": "^16.2.14",
+    "worker-loader": "^3.0.8"
   }
 }
