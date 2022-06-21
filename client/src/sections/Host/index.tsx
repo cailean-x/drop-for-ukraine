@@ -27,6 +27,8 @@ import {
 } from "../../lib/graphql/mutations/HostListing/__generated__/HostListing";
 import { HOST_LISTING } from "../../lib/graphql/mutations";
 import { useScrollToTop } from "../../lib/hooks";
+import MapboxMap from "../Home/components/MapBox";
+import mapboxgl from "mapbox-gl";
 
 interface Props {
   viewer: Viewer;
@@ -39,6 +41,7 @@ const { Item } = Form;
 export const Host = ({ viewer, form }: Props & FormComponentProps) => {
   const [imageLoading, setImageLoading] = useState(false);
   const [imageBase64Value, setImageBase64Value] = useState<string | null>(null);
+  const [marker, setMarker] = useState<mapboxgl.LngLatLike | null>([14.10, 48.31]);
   const [hostListing, { loading, data }] = useMutation<
     HostListingData,
     HostListingVariables
@@ -102,7 +105,7 @@ export const Host = ({ viewer, form }: Props & FormComponentProps) => {
   if (!viewer.id) {
     return (
       <Content className="host-content">
-        <div className="host__form-header">
+        <div className="host__form-header"> 
           {/* <Title level={3} className="host__form-title">
             You'll have to be signed in and connected with Stripe to host a
             listing!
@@ -287,6 +290,10 @@ export const Host = ({ viewer, form }: Props & FormComponentProps) => {
               name="zip"
             />
           )}
+        </Item>
+
+        <Item label="Address position">
+          <MapboxMap type="marker" markerPos={marker} onMarkerPosChange={e => setMarker(e)}/>
         </Item>
 
         <Item
