@@ -5,7 +5,7 @@ import { Listing as ListingData } from "../../../../lib/graphql/queries/Listing/
 import { displayErrorMessage, formatListingPrice } from "../../../../lib/utils";
 import { Viewer } from "../../../../lib/types";
 import { BookingsIndex } from "./types";
-import { MapboxMap } from "../../../Home/components";
+import MapboxMap from "../../../Home/components/MapBox";
 
 const { Paragraph, Text, Title } = Typography;
 
@@ -189,7 +189,9 @@ export const ListingCreateBooking = ({
         </Text>
         <Divider />
 
-        {MapboxMap([2.349014, 48.864716])}
+        <div className="map">
+          <MapboxMap />
+        </div>
       </Card>
     </div>
   );
