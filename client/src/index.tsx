@@ -96,7 +96,7 @@ const App = () => {
         <Layout id="app">
           {logInErrorBannerElement}
           <Affix offsetTop={0} className="app__affix-header">
-            <AppHeader viewer={viewer} setViewer={setViewer} />
+            <div><AppHeader viewer={viewer} setViewer={setViewer} /></div>
           </Affix>
           <Switch>
             <Route exact path="/">

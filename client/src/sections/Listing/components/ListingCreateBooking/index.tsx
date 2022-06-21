@@ -120,7 +120,7 @@ export const ListingCreateBooking = ({
               format={"YYYY/MM/DD"}
               showToday={false}
               disabled={checkInInputDisabled}
-              disabledDate={disabledDate}
+              disabledDate={disabledDate as any}
               onChange={(dateValue) => setCheckInDate(dateValue)}
               renderExtraFooter={() => {
                 return (
