@@ -12,7 +12,7 @@ const data = [
     "city": "Wildflecken",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 12424,
+    "capacity": 12424,
     "geometry": {
       "lat": 50.3771589,
       "lng": 9.9128607
@@ -36,7 +36,7 @@ const data = [
     "city": "Essen",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 15806,
+    "capacity": 15806,
     "geometry": {
       "lat": 51.4556432,
       "lng": 7.0115552
@@ -60,7 +60,7 @@ const data = [
     "city": "Coburg",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 4055,
+    "capacity": 4055,
     "geometry": {
       "lat": 50.2612094,
       "lng": 10.962695
@@ -84,7 +84,7 @@ const data = [
     "city": "Düsseldorf",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 21292,
+    "capacity": 21292,
     "geometry": {
       "lat": 51.2380173,
       "lng": 6.7861411
@@ -108,7 +108,7 @@ const data = [
     "city": "Luckau",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 20930,
+    "capacity": 20930,
     "geometry": {
       "lat": 52.5002005,
       "lng": 13.3231378
@@ -132,7 +132,7 @@ const data = [
     "city": "Luckau",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 16836,
+    "capacity": 16836,
     "geometry": {
       "lat": 52.5002005,
       "lng": 13.3231378
@@ -156,7 +156,7 @@ const data = [
     "city": "Malchin",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 2577,
+    "capacity": 2577,
     "geometry": {
       "lat": 53.7387148,
       "lng": 12.7666597
@@ -180,7 +180,7 @@ const data = [
     "city": "Kruft",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 23903,
+    "capacity": 23903,
     "geometry": {
       "lat": 50.38533229999999,
       "lng": 7.336551300000001
@@ -204,7 +204,7 @@ const data = [
     "city": "Le Grand-Quevilly",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 21982,
+    "capacity": 21982,
     "geometry": {
       "lat": 49.403007,
       "lng": 1.062068
@@ -228,7 +228,7 @@ const data = [
     "city": "Soissons",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 18126,
+    "capacity": 18126,
     "geometry": {
       "lat": 49.3810958,
       "lng": 3.3376922
@@ -252,7 +252,7 @@ const data = [
     "city": "Fleury-les-Aubrais",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 16162,
+    "capacity": 16162,
     "geometry": {
       "lat": 47.9394893,
       "lng": 1.9281253
@@ -276,7 +276,7 @@ const data = [
     "city": "Saint-Louis",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 11688,
+    "capacity": 11688,
     "geometry": {
       "lat": 48.6789855,
       "lng": 6.1724385
@@ -300,7 +300,7 @@ const data = [
     "city": "Tremblay-en-France",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 16843,
+    "capacity": 16843,
     "geometry": {
       "lat": 48.8981868,
       "lng": 2.5615759
@@ -324,7 +324,7 @@ const data = [
     "city": "Sartrouville",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 3078,
+    "capacity": 3078,
     "geometry": {
       "lat": 48.9447367,
       "lng": 2.169729
@@ -348,7 +348,7 @@ const data = [
     "city": "Sainte-Anne",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 12127,
+    "capacity": 12127,
     "geometry": {
       "lat": 16.2245858,
       "lng": -61.38540889999999
@@ -372,7 +372,7 @@ const data = [
     "city": "Boulogne-sur-Mer",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 19242,
+    "capacity": 19242,
     "geometry": {
       "lat": 50.70015009999999,
       "lng": 1.5943819
@@ -396,7 +396,7 @@ const data = [
     "city": "Béziers",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 18127,
+    "capacity": 18127,
     "geometry": {
       "lat": 43.3504002,
       "lng": 3.243632
@@ -420,7 +420,7 @@ const data = [
     "city": "Le Puy",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 22707,
+    "capacity": 22707,
     "geometry": {
       "lat": 45.042768,
       "lng": 3.882936
@@ -444,7 +444,7 @@ const data = [
     "city": "Vénissieux",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 11845,
+    "capacity": 11845,
     "geometry": {
       "lat": 45.71901219999999,
       "lng": 4.9151606
@@ -468,7 +468,7 @@ const data = [
     "city": "Sainte-Geneviève-des-Bois",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 13623,
+    "capacity": 13623,
     "geometry": {
       "lat": 48.64084159999999,
       "lng": 2.325921300000001
@@ -492,7 +492,7 @@ const data = [
     "city": "Montpellier",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 6879,
+    "capacity": 6879,
     "geometry": {
       "lat": 43.610769,
       "lng": 3.876716
@@ -516,7 +516,7 @@ const data = [
     "city": "Martigues",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 14879,
+    "capacity": 14879,
     "geometry": {
       "lat": 43.402302,
       "lng": 5.0571684
@@ -540,7 +540,7 @@ const data = [
     "city": "Fontenay-sous-Bois",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 2778,
+    "capacity": 2778,
     "geometry": {
       "lat": 48.851542,
       "lng": 2.475907
@@ -564,7 +564,7 @@ const data = [
     "city": "Rochefort",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 17777,
+    "capacity": 17777,
     "geometry": {
       "lat": 45.936698,
       "lng": -0.9616969999999999
@@ -588,7 +588,7 @@ const data = [
     "city": "London",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 19462,
+    "capacity": 19462,
     "geometry": {
       "lat": 51.5207539,
       "lng": 0.0971382
@@ -612,7 +612,7 @@ const data = [
     "city": "London",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 9425,
+    "capacity": 9425,
     "geometry": {
       "lat": 51.5072178,
       "lng": -0.1275862
@@ -636,7 +636,7 @@ const data = [
     "city": "London",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 1918,
+    "capacity": 1918,
     "geometry": {
       "lat": 51.5193358,
       "lng": -0.1322881
@@ -660,7 +660,7 @@ const data = [
     "city": "London",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 11349,
+    "capacity": 11349,
     "geometry": {
       "lat": 51.5207539,
       "lng": 0.0971382
@@ -684,7 +684,7 @@ const data = [
     "city": "London",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 23483,
+    "capacity": 23483,
     "geometry": {
       "lat": 51.4317283,
       "lng": -0.0693592
@@ -708,7 +708,7 @@ const data = [
     "city": "London",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 8721,
+    "capacity": 8721,
     "geometry": {
       "lat": 51.6304448,
       "lng": -0.0926259
@@ -732,7 +732,7 @@ const data = [
     "city": "London",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 5884,
+    "capacity": 5884,
     "geometry": {
       "lat": 51.5368295,
       "lng": -0.09654259999999999
@@ -756,7 +756,7 @@ const data = [
     "city": "London",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 19649,
+    "capacity": 19649,
     "geometry": {
       "lat": 51.3981503,
       "lng": -0.0918479
@@ -780,7 +780,7 @@ const data = [
     "city": "San Francisco",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 22501,
+    "capacity": 22501,
     "geometry": {
       "lat": 37.7315065,
       "lng": -122.4488971
@@ -804,7 +804,7 @@ const data = [
     "city": "San Francisco",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 4051,
+    "capacity": 4051,
     "geometry": {
       "lat": 37.7749295,
       "lng": -122.4194155
@@ -828,7 +828,7 @@ const data = [
     "city": "San Francisco",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 9162,
+    "capacity": 9162,
     "geometry": {
       "lat": 37.7749295,
       "lng": -122.4194155
@@ -852,7 +852,7 @@ const data = [
     "city": "Cancún",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 24842,
+    "capacity": 24842,
     "geometry": {
       "lat": 21.1299397,
       "lng": -86.7500005
@@ -876,7 +876,7 @@ const data = [
     "city": "Cancún",
     "bookings": [],
     "bookingsIndex": {},
-    "price": 23012,
+    "capacity": 23012,
     "geometry": {
       "lat": 21.1299397,
       "lng": -86.7500005

@@ -79,7 +79,7 @@ const MapboxMap: React.FC<Props> = ({ type, data, markerPos, onMarkerPosChange }
                 "type": "Point",
                 "coordinates": [d.geometry.lng, d.geometry.lat],
               },
-              "properties": ['_id', 'image', 'title', 'country', 'admin', 'city', 'address', 'price', 'type']
+              "properties": ['_id', 'image', 'title', 'country', 'admin', 'city', 'address', 'capacity', 'type']
                 .reduce((acc, item) => {
                   acc[item] = (d as any)[item];
                   return acc;
