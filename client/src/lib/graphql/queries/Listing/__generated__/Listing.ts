@@ -50,7 +50,10 @@ export interface Listing_listing {
   bookings: Listing_listing_bookings | null;
   bookingsIndex: string;
   price: number;
-  geometry: number[];
+  geometry: {
+    lat: number;
+    lng: number;
+  };
 }
 
 export interface Listing {

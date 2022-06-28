@@ -23,6 +23,16 @@ export const typeDefs = gql`
     PRICE_HIGH_TO_LOW
   }
 
+  type Geometry {
+    lat: Float!
+    lng: Float!
+  }
+
+  input GeometryInput {
+    lat: Float!
+    lng: Float!
+  }
+
   type Listing {
     id: ID!
     title: String!
@@ -37,7 +47,7 @@ export const typeDefs = gql`
     bookings(limit: Int!, page: Int!): Bookings
     bookingsIndex: String!
     price: Int!
-    geometry: [Float!]!
+    geometry: Geometry!
   }
 
   type Listings {
@@ -80,6 +90,7 @@ export const typeDefs = gql`
     type: ListingType!
     address: String!
     price: Int!
+    geometry: GeometryInput
   }
 
   input CreateBookingInput {

@@ -125,7 +125,8 @@ export const listingResolvers: IResolvers = {
 
       const location = await Google.geocode(input.address);
       const { country, admin, city } = location[0];
-      if (!country || !admin || !city) {
+
+      if (!country || !admin || !city || !input.geometry) {
         throw new Error("invalid address input");
       }
 
@@ -141,7 +142,7 @@ export const listingResolvers: IResolvers = {
         admin,
         city,
         host: viewer._id,
-        geometry: [],
+        geometry: input.geometry,
       });
 
       const insertedListing: Listing = insertResult.ops[0];

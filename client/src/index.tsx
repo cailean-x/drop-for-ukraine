@@ -8,7 +8,7 @@ import { Affix, Spin, Layout } from "antd";
 import {
   AppHeader,
   Home,
-  WrappedHost as Host,
+  Host,
   Listing,
   Listings,
   Login,

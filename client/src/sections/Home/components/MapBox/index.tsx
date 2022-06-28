@@ -12,7 +12,7 @@ import data from './data';
 interface Props {
   type: 'main' | 'item' | 'marker';
   data?: typeof data;
-  markerPos?: mapboxgl.LngLatLike | null;
+  markerPos?: Pick<mapboxgl.LngLat, 'lng' | 'lat'> | null;
   onMarkerPosChange?: (pos: mapboxgl.LngLat) => void;
 }
 
@@ -54,11 +54,16 @@ const MapboxMap: React.FC<Props> = ({ type, data, markerPos, onMarkerPosChange }
   }, []);
 
   useEffect(() => {
-    if (map && marker && markerPos) {
+    if (map && marker) {
       const pos = marker.getLngLat();
       if (JSON.stringify(pos) !== JSON.stringify(markerPos)) {
-        marker.setLngLat(markerPos);
-        map.flyTo({ center: markerPos });
+        if (markerPos) {
+          marker.setLngLat(markerPos);
+          marker.addTo(map);
+          map.flyTo({ center: markerPos });
+        } else {
+          marker.remove();
+        }
       }
     }
   }, [map, markerPos]); // eslint-disable-line

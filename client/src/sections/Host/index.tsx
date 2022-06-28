@@ -1,6 +1,7 @@
-import React, { useState, FormEvent } from "react";
+import React, { useState, FormEvent, useEffect, useRef, useCallback, useMemo } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import { Link, Redirect } from "react-router-dom";
+import debounce from 'lodash.debounce';
 import {
   Layout,
   Typography,
@@ -27,21 +28,25 @@ import {
 } from "../../lib/graphql/mutations/HostListing/__generated__/HostListing";
 import { HOST_LISTING } from "../../lib/graphql/mutations";
 import { useScrollToTop } from "../../lib/hooks";
+import { geocode } from "../../lib/utils";
+import { ReactState } from "../../lib/types";
 import MapboxMap from "../Home/components/MapBox";
 import mapboxgl from "mapbox-gl";
 
 interface Props {
   viewer: Viewer;
+  markerState: ReactState<Pick<mapboxgl.LngLat, 'lng' | 'lat'> | null>;
+  onAddressChange?: (address: string) => void;
 }
 
 const { Content } = Layout;
 const { Title, Text } = Typography;
 const { Item } = Form;
 
-export const Host = ({ viewer, form }: Props & FormComponentProps) => {
+export const HostForm = ({ viewer, form, markerState }: Omit<Props, "onAddressChange"> & FormComponentProps) => {
   const [imageLoading, setImageLoading] = useState(false);
   const [imageBase64Value, setImageBase64Value] = useState<string | null>(null);
-  const [marker, setMarker] = useState<mapboxgl.LngLatLike | null>([14.10, 48.31]);
+  const [marker, setMarker] = useMemo(() => markerState, [markerState]);
   const [hostListing, { loading, data }] = useMutation<
     HostListingData,
     HostListingVariables
@@ -88,6 +93,7 @@ export const Host = ({ viewer, form }: Props & FormComponentProps) => {
         address: fullAddress,
         image: imageBase64Value,
         price: values.price * 100,
+        geometry: marker,
       };
 
       delete input.city;
@@ -385,6 +391,41 @@ const getBase64Value = (
   };
 };
 
-export const WrappedHost = Form.create<Props & FormComponentProps>({
+export const WrappedHostForm = Form.create<Props & FormComponentProps>({
   name: "host_form",
-})(Host);
+  onFieldsChange: (props) => {
+    const { onAddressChange } = props;
+    const { address, city, state, zip } =  props.form.getFieldsValue();
+    if (address && city && state && zip && onAddressChange) {
+      const fullAddress = `${address}, ${city}, ${state}, ${zip}`;
+      onAddressChange(fullAddress);
+    }
+  }
+})(HostForm);
+
+export const Host: React.FC<Omit<Props, "markerState" | "onAddressChange"> & Omit<FormComponentProps, "form">> = (props) => {
+  const [marker, setMarker] = useState<Pick<mapboxgl.LngLat, 'lng' | 'lat'> | null>(null);
+  const [address, setAddress] = useState("");
+
+  const updateMarker = useMemo(() => (
+    debounce(async (address: string) => {
+      if (address) {
+        const g = await geocode(address);
+        const location = g.results[0] ? g.results[0].geometry.location : null;
+        setMarker(location);
+      }
+    }, 1000)
+  ), []);
+
+  useEffect(() => {
+    return () => {
+      updateMarker.cancel();
+    }
+  }, []);
+
+  useEffect(() => {
+    updateMarker(address);
+  }, [address]);
+
+  return <WrappedHostForm {...props} onAddressChange={a => setAddress(a)} markerState={[marker, setMarker]} />
+}

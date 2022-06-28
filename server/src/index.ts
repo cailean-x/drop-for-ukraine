@@ -23,8 +23,10 @@ const mount = async (app: Application) => {
     res.json({ msg: "This is CORS-enabled for all origins!" });
   });
 
-  app.use(express.static(`${__dirname}/client`));
-  app.get("/*", (_req, res) => res.sendFile(`${__dirname}/client/index.html`));
+  if (process.env.NODE_ENV !== "development") {
+    app.use(express.static(`${__dirname}/client`));
+    app.get("/*", (_req, res) => res.sendFile(`${__dirname}/client/index.html`));
+  }
 
   const server = new ApolloServer({
     typeDefs,
