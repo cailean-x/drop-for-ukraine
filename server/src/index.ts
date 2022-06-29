@@ -7,17 +7,18 @@ import { ApolloServer } from "apollo-server-express";
 import { connectDatabase } from "./database";
 import { typeDefs, resolvers } from "./graphql";
 import cors from "cors";
+import map from "/map";
 
 const mount = async (app: Application) => {
   console.log(`[app] : http://localhost:${process.env.PORT}`);
   const db = await connectDatabase();
 
   app.use(express.json({ limit: "2mb" }));
-  app.use(express.urlencoded({ limit: "50mb", parameterLimit: 500000000 }));
+  app.use(express.urlencoded({ limit: "50mb", parameterLimit: 500000000, extended: true }));
   app.use(cookieParser(process.env.SECRET));
   app.use(compression());
-
   app.use(cors());
+  app.use("/map", map);
 
   app.get("/products/:id", function (req, res, next) {
     res.json({ msg: "This is CORS-enabled for all origins!" });

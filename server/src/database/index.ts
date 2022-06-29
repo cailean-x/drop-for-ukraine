@@ -7,7 +7,7 @@ const cluster = process.env.DB_CLUSTER;
 const url = `mongodb+srv://${user}:${userPassword}@${cluster}.mongodb.net/test?retryWrites=true&w=majority`;
 
 export async function connectDatabase(): Promise<Database> {
-  const client = await MongoClient.connect(url);
+  const client = await MongoClient.connect(url, { useUnifiedTopology: true });
 
   const db = client.db("main");
 

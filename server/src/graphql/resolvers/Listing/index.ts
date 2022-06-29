@@ -4,6 +4,7 @@ import { ObjectId } from "mongodb";
 import { Cloudinary, Google } from "../../../lib/api";
 import { Database, Listing, ListingType, User } from "../../../lib/types";
 import { authorize } from "../../../lib/utils";
+import MapListing from "/map/models/listing";
 import {
   ListingArgs,
   ListingBookingsArgs,
@@ -146,6 +147,8 @@ export const listingResolvers: IResolvers = {
       });
 
       const insertedListing: Listing = insertResult.ops[0];
+
+      await MapListing.insert(insertedListing);
 
       await db.users.updateOne(
         { _id: viewer._id },
