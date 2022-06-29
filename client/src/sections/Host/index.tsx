@@ -29,13 +29,12 @@ import {
 import { HOST_LISTING } from "../../lib/graphql/mutations";
 import { useScrollToTop } from "../../lib/hooks";
 import { geocode } from "../../lib/utils";
-import { ReactState } from "../../lib/types";
 import MapboxMap from "../Home/components/MapBox";
 import mapboxgl from "mapbox-gl";
 
 interface Props {
   viewer: Viewer;
-  markerState: ReactState<Pick<mapboxgl.LngLat, 'lng' | 'lat'> | null>;
+  markerState: Common.ReactState<Pick<mapboxgl.LngLat, 'lng' | 'lat'> | null>;
   onAddressChange?: (address: string) => void;
 }
 

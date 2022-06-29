@@ -1,65 +1,65 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Select, Slider } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
-import "mapbox-gl/dist/mapbox-gl.css";
-
-export interface Filters {
-  country: string;
-  type: string;
-  capacity: number[];
-}
-
+import { getFilters } from "lib/utils/map";
 interface FiltersProps {
-  onChange: (filters: Filters) => void;
-  countries: string[];
-  types: string[];
-  capacity: { min: number; max: number };
+  onChange: (filters: Map.Filter) => void;
 }
 
-const MapFilters: React.FC<FiltersProps & FormComponentProps<Filters>> = ({ form, countries, types, capacity }) => {
-  return (
+const MapFilters: React.FC<FiltersProps & FormComponentProps<Map.Filter>> = ({ form, onChange }) => {
+  const [filters, setFilters] = useState<Map.Response.Filter | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      const filters = await getFilters();
+      setFilters(filters);
+      onChange({ country: '', type: '', capacity: [filters.capacity.min, filters.capacity.max] });
+    })();
+  }, []);
+
+  return (filters && (
     <Form layout="vertical" >
       <Form.Item label="Country">
-      {form.getFieldDecorator('country', { initialValue: countries[0] })(
+      {form.getFieldDecorator('country', { initialValue: '' })(
         <Select
           placeholder="Choose a country"
           onChange={value => form.setFieldsValue({ country: value })}
         >
-          {countries.map(value => (
+          {['', ...filters.countries].map(value => (
             <Select.Option key={value} value={value}>{value ? value : 'All'}</Select.Option>
           ))}
         </Select>
       )}
       </Form.Item>
       <Form.Item label="Type">
-        {form.getFieldDecorator('type', { initialValue: types[0] })(
+        {form.getFieldDecorator('type', { initialValue: '' })(
           <Select
             placeholder="Choose a type"
             onChange={value => form.setFieldsValue({ type: value })}
           >
-            {types.map(value => (
+            {['', ...filters.types].map(value => (
               <Select.Option key={value} value={value}>{value ? value : 'All'}</Select.Option>
             ))}
           </Select>
         )}
       </Form.Item>
       <Form.Item label="Capacity">
-        {form.getFieldDecorator('capacity', { initialValue: [capacity.min, capacity.max] })(
+        {form.getFieldDecorator('capacity', { initialValue: [filters.capacity.min, filters.capacity.max] })(
           <Slider
             range
-            min={capacity.min}
-            max={capacity.max}
+            min={filters.capacity.min}
+            max={filters.capacity.max}
             onChange={value => form.setFieldsValue({ capacity: value })}
           />
         )}
       </Form.Item>
     </Form>
-  );
+  ));
 }
 
-const MapFiltersWrapper = Form.create<FiltersProps & FormComponentProps<Filters>>({ 
+const MapFiltersWrapper = Form.create<FiltersProps & FormComponentProps<Map.Filter>>({ 
   name: "map_filters", 
-  onValuesChange: props => props.onChange(props.form.getFieldsValue() as Filters)
+  onValuesChange: props => props.onChange(props.form.getFieldsValue() as Map.Filter)
 })(MapFilters);
 
-export default MapFiltersWrapper;
+export default React.memo(MapFiltersWrapper);

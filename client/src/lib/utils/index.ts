@@ -1,5 +1,4 @@
 import { message, notification } from "antd";
-import { GeocodeResult } from "../types";
 
 export const iconColor = "#1890ff";
 
@@ -26,7 +25,7 @@ export const displayErrorMessage = (error: string) => {
   return message.error(error);
 };
 
-export const geocode = async (address: string): Promise<GeocodeResult> => {
+export const geocode = async (address: string): Promise<Common.GeocodeResult> => {
   const URL = "https://maps.googleapis.com/maps/api/geocode/json";
   const KEY = "AIzaSyABmFXFGmv-solwrlfLSBJbVT0KlH3IqEU";
   const result = await fetch(`${URL}?address=${encodeURIComponent(address)}&key=${KEY}`);
