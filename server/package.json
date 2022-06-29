@@ -19,7 +19,8 @@
     "lodash.merge": "^4.6.2",
     "mongodb": "^3.7.3",
     "pg": "^8.7.3",
-    "stripe": "^8.63.0"
+    "stripe": "^8.63.0",
+    "dotenv": "^16.0.1"
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.0",
@@ -33,7 +34,6 @@
     "@types/pg": "^8.6.5",
     "@typescript-eslint/eslint-plugin": "^5.30.0",
     "@typescript-eslint/parser": "^5.30.0",
-    "dotenv": "^16.0.1",
     "eslint": "^8.18.0",
     "nodemon": "^2.0.18",
     "ts-node": "^10.8.1",
