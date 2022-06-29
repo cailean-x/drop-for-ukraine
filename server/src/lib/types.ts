@@ -46,12 +46,8 @@ export interface Listing {
   bookings: ObjectId[];
   bookingsIndex: BookingsIndex;
   price: number;
-
   authorized?: boolean;
-  geometry: {
-    lat: number;
-    lng: number;
-  };
+  geometry: [number, number];
 }
 
 export interface User {

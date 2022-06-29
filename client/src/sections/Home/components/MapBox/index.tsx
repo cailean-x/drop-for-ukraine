@@ -5,7 +5,6 @@ import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import MapFilters from "./Filters";
 import Sidebar from "./Sidebar";
-import data from "./data";
 import { getListingIds } from "lib/utils/map";
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
@@ -13,12 +12,11 @@ import { getListingIds } from "lib/utils/map";
 
 interface Props {
   type: "main" | "item" | "marker";
-  data?: typeof data;
   markerPos?: Pick<mapboxgl.LngLat, "lng" | "lat"> | null;
   onMarkerPosChange?: (pos: mapboxgl.LngLat) => void;
 }
 
-const MapboxMap: React.FC<Props> = ({ type, data, markerPos, onMarkerPosChange }) => {
+const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
   const history = useHistory();
   const [map, setMap] = useState<mapboxgl.Map>();
   const [styleLoaded, setStyleLoaded] = useState(false);
@@ -64,10 +62,7 @@ const MapboxMap: React.FC<Props> = ({ type, data, markerPos, onMarkerPosChange }
     if (!mapNode.current) return;
 
     const center = (() => {
-      if (type === "item" && data && data[0]) {
-        return [data[0].geometry.lng, data[0].geometry.lat] as mapboxgl.LngLatLike;
-      }
-      if (type === "marker" && markerPos) {
+      if (["marker", "item"].includes(type) && markerPos) {
         return markerPos;
       }
       return [14.10, 48.31] as mapboxgl.LngLatLike;
@@ -97,7 +92,7 @@ const MapboxMap: React.FC<Props> = ({ type, data, markerPos, onMarkerPosChange }
     map.on("style.load", () => {
 
       const popup = new mapboxgl.Popup({ closeButton: false, closeOnClick: false, maxWidth: "300px" });
-      const marker = new mapboxgl.Marker({ draggable: true }).setLngLat(markerPos ? markerPos : [0, 0]);
+      const marker = new mapboxgl.Marker({ draggable: type === 'marker' }).setLngLat(markerPos ? markerPos : [0, 0]);
 
       if (type === "main") {
 
@@ -180,7 +175,7 @@ const MapboxMap: React.FC<Props> = ({ type, data, markerPos, onMarkerPosChange }
 
       }
 
-      if (type === "marker") {
+      if (["marker", "item"].includes(type)) {
         setMarker(marker);
         marker.addTo(map);
         marker.on("dragend", () => onMarkerPosChange && onMarkerPosChange(marker.getLngLat()));

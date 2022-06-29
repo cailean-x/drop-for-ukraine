@@ -148,7 +148,10 @@ export const listingResolvers: IResolvers = {
 
       const insertedListing: Listing = insertResult.ops[0];
 
-      await MapListing.insert(insertedListing);
+      const mapListing = JSON.parse(JSON.stringify(insertedListing)) as Map.MapListing;
+      const [lng, lat] = mapListing.geometry as any;
+      mapListing.geometry = { lng, lat };
+      await MapListing.insert(mapListing);
 
       await db.users.updateOne(
         { _id: viewer._id },
@@ -205,6 +208,9 @@ export const listingResolvers: IResolvers = {
       } catch (error) {
         throw new Error(`Failed to query listing bookings: ${error}`);
       }
+    },
+    geometry: (listing: Listing)  => {
+      return listing.geometry;
     },
   },
 };

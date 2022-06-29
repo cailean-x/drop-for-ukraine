@@ -34,7 +34,7 @@ class Listing {
     }
   }
 
-  async insert(listing: IListing) {
+  async insert(listing: Map.MapListing) {
     let client: PoolClient | null = null;
     try {
       client = await db.connect();

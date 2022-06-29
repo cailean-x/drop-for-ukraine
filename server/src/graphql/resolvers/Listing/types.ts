@@ -45,10 +45,7 @@ export interface HostListingInput {
   type: ListingType;
   address: string;
   price: number;
-  geometry?: {
-    lat: number;
-    lng: number;
-  }
+  geometry?: [number, number]
 }
 
 export interface HostListingArgs {

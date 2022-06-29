@@ -92,7 +92,7 @@ export const HostForm = ({ viewer, form, markerState }: Omit<Props, "onAddressCh
         address: fullAddress,
         image: imageBase64Value,
         price: values.price * 100,
-        geometry: marker,
+        geometry: marker ? [marker.lng, marker.lat] : null,
       };
 
       delete input.city;

@@ -19,7 +19,7 @@ router.get("/", async (
 })
 
 router.post("/", async (
-  req: Request<any, Map.Request.Body.ListingPost>,
+  req: Request<any, any, Map.Request.Body.ListingPost>,
   res: Response, 
   next,
 ) => {

@@ -90,7 +90,6 @@ export const Listing = ({ viewer }: Props) => {
       setBookingsPage={setBookingsPage}
     />
   ) : null;
-  console.log(listing!.geometry);
   const listingCreateBookingElement = listing ? (
     <ListingCreateBooking
       viewer={viewer}

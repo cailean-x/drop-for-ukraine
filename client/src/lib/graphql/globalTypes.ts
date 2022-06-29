@@ -26,11 +26,7 @@ export interface CreateBookingInput {
   checkIn: string;
 }
 
-export interface GeometryInput {
-  lat: number;
-  lng: number;
-}
-
+export type GeometryInput = [number, number];
 export interface HostListingInput {
   title: string;
   description: string;

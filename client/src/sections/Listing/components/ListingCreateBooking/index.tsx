@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Button, Card, DatePicker, Divider, Tooltip, Typography } from "antd";
 import moment, { Moment } from "moment";
 import { useParams } from 'react-router-dom';
@@ -7,7 +7,6 @@ import { displayErrorMessage, formatListingPrice } from "../../../../lib/utils";
 import { Viewer } from "../../../../lib/types";
 import { BookingsIndex } from "./types";
 import MapboxMap from "../../../Home/components/MapBox";
-import mapData from "../../../Home/components/MapBox/data";
 
 const { Paragraph, Text, Title } = Typography;
 
@@ -34,6 +33,8 @@ export const ListingCreateBooking = ({
 }: Props) => {
   const bookingsIndexJSON: BookingsIndex = JSON.parse(bookingsIndex);
   const params = useParams();
+
+  const marker = useMemo(() => (geometry[0] ? { lng: geometry[0], lat: geometry[1] } : null), [geometry]);
 
   // const dateIsBooked = (currentDate: Moment) => {
   //   const year = moment(currentDate).year();
@@ -192,7 +193,7 @@ export const ListingCreateBooking = ({
         </Text>
         <Divider />
 
-        <MapboxMap type="item" data={mapData.filter(d => d._id === (params as any).id)}/>
+        <MapboxMap type="item" markerPos={marker} />
       </Card>
     </div>
   );

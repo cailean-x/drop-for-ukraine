@@ -2,6 +2,13 @@ declare module Map {
 
   type IListing = import("/lib/types").Listing;
 
+  interface MapListing  extends Omit<IListing, "geometry"> {
+    geometry: {
+      lat: number;
+      lng: number;
+    }
+  }
+
   interface MapBounds {
     _sw: { lng: number; lat: number; };
     _ne: { lng: number; lat: number; };
@@ -35,7 +42,7 @@ declare module Map {
 
     namespace Body {
 
-      type ListingPost = IListing[];
+      type ListingPost = MapListing;
 
     }
 
@@ -44,7 +51,7 @@ declare module Map {
   namespace Response {
     
     type TileGet = Buffer;
-    type ListingGet = IListing[];
+    type ListingGet = MapListing[];
     type ListingIdsGet = number[];
 
     interface FilterGet {
@@ -58,7 +65,7 @@ declare module Map {
   namespace Result {
 
     interface Listing {
-      fields_json: IListing[];
+      fields_json: MapListing[];
     }
 
     interface ListingId {

@@ -16,7 +16,6 @@ import mapBackground from "./assets/map-background.jpg";
 import romeImage from "./assets/rome.jpg";
 import smallTownImage from "./assets/small-town.jpg";
 import MapboxMap from "./components/MapBox";
-import mapData from "./components/MapBox/data";
 
 const { Content } = Layout;
 const { Paragraph, Title } = Typography;
@@ -103,7 +102,7 @@ export const Home = () => {
           Collecting Points Map
         </Title>
       </div>
-      <MapboxMap type="main" data={mapData} />
+      <MapboxMap type="main" />
       <div className="home__listings">
         <Title level={4} className="home__listings-title">
           Where are you from?
