@@ -1,11 +1,21 @@
 {
+  "ts-node": {
+    "files": true
+  },
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es6",
     "module": "commonjs",
-    "rootDir": "./src",
+    "allowJs": true,
+    "rootDir": "src",
     "outDir": "../helpukraine-deploy/src",
     "esModuleInterop": true,
-    "strict": true
+    "strict": true,
+    "paths": {
+      "/*": ["./src/*"]
+    },
+    "typeRoots": ["./types"]
   },
-  "exclude": ["temp"]
+  "exclude": ["temp", "node_modules"],
+  "include": ["src"]
 }
