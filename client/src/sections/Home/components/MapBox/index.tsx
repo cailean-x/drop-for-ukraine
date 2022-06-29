@@ -1,10 +1,10 @@
 ﻿import React, { useEffect, useRef, useState, useMemo } from "react";
-import { Card, Button, Popover } from "antd";
 import { useHistory } from "react-router-dom";
 import debounce from 'lodash.debounce';
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
-import MapFilters from "./MapFilters";
+import MapFilters from "./Filters";
+import Sidebar from "./Sidebar";
 import data from "./data";
 import { getListingIds } from "lib/utils/map";
 
@@ -25,11 +25,8 @@ const MapboxMap: React.FC<Props> = ({ type, data, markerPos, onMarkerPosChange }
   const [activeItem, setActiveItem] = useState<string | null>();
   const [activeIds, setActiveIds] = useState<number[]>([]);
   const [marker, setMarker] = useState<mapboxgl.Marker | null>(null);
-  const [sidebarWidth, setSidebarWidth] = useState("0");
-  const [visible, setVisible] = useState(false);
   const activeItemRef = useRef(activeItem);
   const mapNode = useRef<HTMLDivElement>(null);
-  const sidebarNode = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (map && styleLoaded && type === "main") {
@@ -47,18 +44,6 @@ const MapboxMap: React.FC<Props> = ({ type, data, markerPos, onMarkerPosChange }
   ), []);
 
   useEffect(() => { activeItemRef.current = activeItem }, [activeItem]);
-
-  useEffect(() => {
-    if (!sidebarNode.current) return;
-    const handler = () => {
-      setSidebarWidth(getComputedStyle(sidebarNode.current!).width!);
-    }
-    handler();
-    window.addEventListener("resize", handler);
-    return () => {
-      window.removeEventListener("resize", handler);
-    }
-  }, []);
 
   useEffect(() => {
     if (map && marker) {
@@ -209,29 +194,9 @@ const MapboxMap: React.FC<Props> = ({ type, data, markerPos, onMarkerPosChange }
     <div className="map-container">
       <div ref={mapNode} className="map" />
       {type === "main" && (
-        <>
-          <div className="map-filters-open">
-          <Popover content={<span>Show filters</span>} placement="right">
-            <Button type="default" icon="filter" onClick={() => setVisible(true)}></Button>
-          </Popover>
-          </div>
-          <div
-            ref={sidebarNode}
-            className="map-filters"
-            style={{ left: visible ? "0" : "-" + sidebarWidth }}
-          >
-            <Card 
-              title="Filters"
-              className="map-filters-inner"
-              bordered={false}
-              extra={
-                <Button type="default" icon="close" onClick={() => setVisible(false)}></Button>
-              }
-            >
-              <MapFilters onChange={onFiltersChange} />
-            </Card>
-          </div>
-        </>
+        <Sidebar>
+          <MapFilters onChange={onFiltersChange} />
+        </Sidebar>
       )}
     </div>
   );
