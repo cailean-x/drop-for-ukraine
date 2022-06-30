@@ -21,7 +21,7 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
   const [map, setMap] = useState<mapboxgl.Map>();
   const [styleLoaded, setStyleLoaded] = useState(false);
   const [activeItem, setActiveItem] = useState<string | null>();
-  const [activeIds, setActiveIds] = useState<number[]>([]);
+  const [activeIds, setActiveIds] = useState<number[] | null>(null);
   const [marker, setMarker] = useState<mapboxgl.Marker | null>(null);
   const activeItemRef = useRef(activeItem);
   const mapNode = useRef<HTMLDivElement>(null);
@@ -30,7 +30,7 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
     if (map && styleLoaded && type === "main") {
       const layer = { source: 'drops-source-highlight', sourceLayer: 'provider' };
       map.removeFeatureState(layer);
-      activeIds.forEach(id => map.setFeatureState({ ...layer, id }, { filtered: true }));
+      if (activeIds) activeIds.forEach(id => map.setFeatureState({ ...layer, id }, { filtered: true }));
     }
   }, [map, styleLoaded, activeIds]);
 

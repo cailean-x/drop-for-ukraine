@@ -51,8 +51,8 @@ declare module Map {
   namespace Response {
     
     type TileGet = Buffer;
-    type ListingGet = MapListing[];
-    type ListingIdsGet = number[];
+    type ListingGet = MapListing[] | null;
+    type ListingIdsGet = number[] | null;
 
     interface FilterGet {
       countries: string[];

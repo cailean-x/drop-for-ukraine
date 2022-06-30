@@ -9,6 +9,6 @@ export const getListingIds = async (filters: Map.Request.Filter) => {
   const f = Object.fromEntries(Object.entries(filters).map(transform));
   const search = new URLSearchParams(f);
   const result = await fetch(`map/listing/ids?${search}`);
-  const data = await result.json() as number[];
+  const data = await result.json() as number[] | null;
   return data;
 }
