@@ -1,5 +1,19 @@
 declare module Map {
 
+  type IListing = import("lib/graphql/queries/Listing/__generated__/Listing").Listing_listing;
+
+  interface MapListing  extends Omit<IListing, "geometry" | "price" | "admin" | "host"> {
+    capacity: number;
+    state: string;
+    user_object_id: string;
+    object_id: string;
+    country: string;
+    geometry: {
+      lat: number;
+      lng: number;
+    }
+  }
+
   interface Filter {
     country: string;
     type: string;

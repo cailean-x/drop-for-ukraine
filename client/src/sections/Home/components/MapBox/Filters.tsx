@@ -18,7 +18,7 @@ const MapFilters: React.FC<FiltersProps & FormComponentProps<Map.Filter>> = ({ f
   }, []);
 
   return (filters && (
-    <Form layout="vertical" >
+    <Form layout="vertical" className="map-filters-form">
       <Form.Item label="Country">
       {form.getFieldDecorator('country', { initialValue: '' })(
         <Select

@@ -4,8 +4,9 @@ import debounce from 'lodash.debounce';
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import MapFilters from "./Filters";
+import Results from "./Results";
 import Sidebar from "./Sidebar";
-import { getListingIds } from "lib/utils/map";
+import { getListingIds, getListings } from "lib/utils/map";
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 (mapboxgl as any).workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
@@ -18,10 +19,11 @@ interface Props {
 
 const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
   const history = useHistory();
-  const [map, setMap] = useState<mapboxgl.Map>();
+  const [map, setMap] = useState<mapboxgl.Map | null>(null);
   const [styleLoaded, setStyleLoaded] = useState(false);
   const [activeItem, setActiveItem] = useState<string | null>();
   const [activeIds, setActiveIds] = useState<number[] | null>(null);
+  const [results, setResults] = useState<Map.MapListing[] | null>(null);
   const [marker, setMarker] = useState<mapboxgl.Marker | null>(null);
   const activeItemRef = useRef(activeItem);
   const mapNode = useRef<HTMLDivElement>(null);
@@ -38,6 +40,8 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
     debounce(async (filters: Map.Filter) => {
       const ids = await getListingIds(filters);
       setActiveIds(ids);
+      const results = await getListings(filters);
+      setResults(results)
     }, 200)
   ), []);
 
@@ -77,7 +81,7 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
       center,
     });
 
-    mapboxMap.addControl(new mapboxgl.NavigationControl());
+    mapboxMap.addControl(new mapboxgl.NavigationControl(), "bottom-right");
     setMap(mapboxMap);
     (window as any).map = mapboxMap;
 
@@ -189,9 +193,10 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
     <div className="map-container">
       <div ref={mapNode} className="map" />
       {type === "main" && (
-        <Sidebar>
-          <MapFilters onChange={onFiltersChange} />
-        </Sidebar>
+        <Sidebar
+          filters={<MapFilters onChange={onFiltersChange} />}
+          results={<Results map={map} results={results} />}
+        />
       )}
     </div>
   );

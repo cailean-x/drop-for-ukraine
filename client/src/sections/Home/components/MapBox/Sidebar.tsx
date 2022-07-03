@@ -1,11 +1,12 @@
-import React, { useEffect, useRef, useState} from "react";
-import { Card, Button, Popover } from "antd";
+import React, { useEffect, useRef, useState } from "react";
+import { Button, Popover, Tabs } from "antd";
 
 interface Props {
-  children?: React.ReactNode;
+  filters?: React.ReactNode;
+  results?: React.ReactNode;
 }
 
-const MapSideber: React.FC<Props> = ({ children }) => {
+const MapSideber: React.FC<Props> = ({ filters, results }) => {
   const [sidebarWidth, setSidebarWidth] = useState("0");
   const [visible, setVisible] = useState(false);
   const sidebarNode = useRef<HTMLDivElement>(null);
@@ -32,16 +33,20 @@ const MapSideber: React.FC<Props> = ({ children }) => {
         className="map-filters"
         style={{ left: visible ? "0" : "-" + sidebarWidth }}
       >
-        <Card 
-          title="Filters"
-          className="map-filters-inner"
-          bordered={false}
-          extra={
-            <Button type="default" icon="close" onClick={() => setVisible(false)}></Button>
-          }
-        >
-          {children}
-        </Card>
+        <div className="map-filters-inner">
+          <Tabs
+            className="sidebar-tabs"
+            tabBarGutter={5}
+            tabBarExtraContent={<Button type="default" icon="close"onClick={() => setVisible(false)}></Button>}
+          >
+            <Tabs.TabPane tab="Filters" key="1">
+              {filters}
+            </Tabs.TabPane>
+            <Tabs.TabPane tab="Results" key="2">
+              {results}
+            </Tabs.TabPane>
+          </Tabs>
+        </div>
       </div>
     </>
   );

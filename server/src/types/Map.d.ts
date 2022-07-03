@@ -2,7 +2,12 @@ declare module Map {
 
   type IListing = import("/lib/types").Listing;
 
-  interface MapListing  extends Omit<IListing, "geometry"> {
+  interface MapListing  extends Omit<IListing, "geometry" | "price" | "admin" | "host"> {
+    capacity: number;
+    state: string;
+    user_object_id: string;
+    object_id: string;
+    country: string;
     geometry: {
       lat: number;
       lng: number;
