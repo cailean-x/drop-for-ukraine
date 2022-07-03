@@ -56,7 +56,7 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
       map.removeFeatureState(layer);
       if (activeIds) activeIds.forEach(id => map.setFeatureState({ ...layer, id }, { filtered: true }));
     }
-  }, [map, styleLoaded, activeIds]);
+  }, [map, styleLoaded, activeIds]); // eslint-disable-line
 
   useEffect(() => {
     if (map && marker) {

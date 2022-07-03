@@ -15,7 +15,7 @@ const MapFilters: React.FC<FiltersProps & FormComponentProps<Map.Filter>> = ({ f
       setFilters(filters);
       onChange({ country: '', type: '', capacity: [filters.capacity.min, filters.capacity.max] });
     })();
-  }, []);
+  }, []); // eslint-disable-line
 
   return (filters && (
     <Form layout="vertical" className="map-filters-form">

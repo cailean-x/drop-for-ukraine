@@ -422,11 +422,11 @@ export const Host: React.FC<Omit<Props, "markerState" | "onAddressChange"> & Omi
     return () => {
       updateMarker.cancel();
     }
-  }, []);
+  }, [updateMarker]);
 
   useEffect(() => {
     updateMarker(address);
-  }, [address]);
+  }, [address, updateMarker]);
 
   return <WrappedHostForm {...props} onAddressChange={a => setAddress(a)} markerState={[marker, setMarker]} />
 }
