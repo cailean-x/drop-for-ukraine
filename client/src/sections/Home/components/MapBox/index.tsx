@@ -6,6 +6,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import MapFilters from "./Filters";
 import Results from "./Results";
 import Sidebar from "./Sidebar";
+import BoundsFilter from "./BoundsFilter";
 import { getListingIds, getListings } from "lib/utils/map";
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
@@ -25,8 +26,26 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
   const [activeIds, setActiveIds] = useState<number[] | null>(null);
   const [results, setResults] = useState<Map.MapListing[] | null>(null);
   const [marker, setMarker] = useState<mapboxgl.Marker | null>(null);
+  const [filterBounds, setFilterBounds] = useState(false);
   const activeItemRef = useRef(activeItem);
+  const filtersRef = useRef<Map.Filter | null>();
+  const filterBoundsRef = useRef(false);
   const mapNode = useRef<HTMLDivElement>(null);
+
+  useEffect(() => { activeItemRef.current = activeItem }, [activeItem]);
+  useEffect(() => { filterBoundsRef.current = filterBounds }, [filterBounds]);
+
+  const onFiltersChange = useMemo(() => (
+    debounce(async (filters: Map.Filter) => {
+      const b = filtersRef.current && filtersRef.current.bounds ? filtersRef.current.bounds : null;
+      const bounds = b && filterBoundsRef.current ? b : null;
+      const ids = await getListingIds({ ...filters, bounds });
+      setActiveIds(ids);
+      const results = await getListings({ ...filters, bounds });
+      setResults(results)
+      filtersRef.current = { ...filtersRef.current, ...filters };
+    }, 200)
+  ), []);
 
   useEffect(() => {
     if (map && styleLoaded && type === "main") {
@@ -35,17 +54,6 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
       if (activeIds) activeIds.forEach(id => map.setFeatureState({ ...layer, id }, { filtered: true }));
     }
   }, [map, styleLoaded, activeIds]);
-
-  const onFiltersChange = useMemo(() => (
-    debounce(async (filters: Map.Filter) => {
-      const ids = await getListingIds(filters);
-      setActiveIds(ids);
-      const results = await getListings(filters);
-      setResults(results)
-    }, 200)
-  ), []);
-
-  useEffect(() => { activeItemRef.current = activeItem }, [activeItem]);
 
   useEffect(() => {
     if (map && marker) {
@@ -99,6 +107,13 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
       const marker = new mapboxgl.Marker({ draggable: type === 'marker' }).setLngLat(markerPos ? markerPos : [0, 0]);
 
       if (type === "main") {
+
+        const mapMoveHandler = () => {
+          filtersRef.current = { ...filtersRef.current, bounds: map.getBounds() as any };
+          if (filterBoundsRef.current) {
+            onFiltersChange(filtersRef.current);
+          }
+        }
 
         map.addSource("drops-source", {
           type: "vector",
@@ -177,6 +192,9 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
           }
         });
 
+        map.on("zoomend", mapMoveHandler);
+        map.on('moveend', mapMoveHandler);
+
       }
 
       if (["marker", "item"].includes(type)) {
@@ -193,10 +211,13 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
     <div className="map-container">
       <div ref={mapNode} className="map" />
       {type === "main" && (
-        <Sidebar
-          filters={<MapFilters onChange={onFiltersChange} />}
-          results={<Results map={map} results={results} />}
-        />
+        <>
+          <Sidebar
+            filters={<MapFilters onChange={onFiltersChange} />}
+            results={<Results map={map} results={results} />}
+          />
+          <BoundsFilter filterBoundsState={[filterBounds, setFilterBounds]} />
+        </>
       )}
     </div>
   );

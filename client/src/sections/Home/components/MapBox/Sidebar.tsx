@@ -24,9 +24,9 @@ const MapSideber: React.FC<Props> = ({ filters, results }) => {
   return (
     <>
       <div className="map-filters-open">
-      <Popover content={<span>Show filters</span>} placement="right">
-        <Button type="default" icon="filter" onClick={() => setVisible(true)}></Button>
-      </Popover>
+        <Popover content={<span>Show filters</span>} placement="right">
+          <Button type="default" icon="filter" onClick={() => setVisible(true)}></Button>
+        </Popover>
       </div>
       <div
         ref={sidebarNode}

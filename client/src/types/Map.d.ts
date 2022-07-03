@@ -15,9 +15,10 @@ declare module Map {
   }
 
   interface Filter {
-    country: string;
-    type: string;
-    capacity: [number, number];
+    country?: string;
+    type?: string;
+    capacity?: [number, number];
+    bounds?: MapBounds | null;
   }
 
   interface MapBounds {
@@ -31,7 +32,7 @@ declare module Map {
       country?: string;
       type?: string;
       capacity?: [number, number];
-      bounds?: MapBounds;
+      bounds?: MapBounds | null;
     }
 
   }
