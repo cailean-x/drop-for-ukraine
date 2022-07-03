@@ -26,6 +26,18 @@ declare module Map {
     _ne: { lng: number; lat: number; };
   }
 
+  interface DropsLayerProperties {
+    object_id: string;
+    title: string;
+    address: string;
+    city: string;
+    country: string;
+    state: string;
+    capacity: number;
+    image: string;
+    type: string;
+  }
+
   namespace Request {
 
     interface Filter {

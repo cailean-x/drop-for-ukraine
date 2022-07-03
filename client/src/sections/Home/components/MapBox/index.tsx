@@ -1,4 +1,5 @@
 ﻿import React, { useEffect, useRef, useState, useMemo } from "react";
+import ReactDOM from "react-dom"
 import { useHistory } from "react-router-dom";
 import debounce from 'lodash.debounce';
 import mapboxgl from "mapbox-gl";
@@ -7,7 +8,9 @@ import MapFilters from "./Filters";
 import Results from "./Results";
 import Sidebar from "./Sidebar";
 import BoundsFilter from "./BoundsFilter";
+import MapboxPopup from "./Popup";
 import { getListingIds, getListings } from "lib/utils/map";
+
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 (mapboxgl as any).workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
@@ -161,21 +164,13 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
           const feature = e.features && e.features[0];
           if (feature) {
             const coords = (feature.geometry as any).coordinates;
-            const props = feature.properties || {};
-  
-            const description = Object.keys(props).filter(p => p !== "object_id").reduce((acc, key) => {
-              if (key === "image") {
-                acc += `<div><image src=${props[key]}></div>`;
-              } else {
-                acc += `<div><strong>${key}</strong>: ${props[key]}</div>`;
-              }
-              return acc;
-            }, "");
-  
-            setActiveItem(props.object_id);
-            popup.setLngLat(coords).setHTML(description).addTo(map);
+            const props = (feature.properties || {}) as Map.DropsLayerProperties;
+            const popupNode = document.createElement("div");
+            ReactDOM.render(<MapboxPopup properties={props}/>, popupNode);
+            popup.setLngLat(coords).setDOMContent(popupNode).addTo(map);
             map.setFeatureState({ source: "drops-source", sourceLayer: "provider", id: feature.id }, { hovered: true });
             map.getCanvas().style.cursor = "pointer";
+            setActiveItem(props.object_id);
           }
         });
   
@@ -222,6 +217,5 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
     </div>
   );
 }
-
 
 export default MapboxMap;
