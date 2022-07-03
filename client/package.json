@@ -4,6 +4,9 @@
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^3.0.0",
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@react-google-maps/api": "^2.12.0",
     "@types/graphql": "^14.2.3",
     "@types/jest": "24.0.16",
@@ -23,6 +26,8 @@
     "mapbox-gl": "^2.8.2",
     "moment": "^2.24.0",
     "node-sass": "^7.0.1",
+    "overlayscrollbars": "^1.13.2",
+    "overlayscrollbars-react": "^0.3.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-map-gl": "^7.0.15",
@@ -60,6 +65,7 @@
     "@types/dompurify": "^2.3.3",
     "@types/jsdom": "^16.2.14",
     "@types/lodash.debounce": "^4.0.7",
+    "@types/overlayscrollbars": "^1.12.1",
     "worker-loader": "^3.0.8"
   }
 }
