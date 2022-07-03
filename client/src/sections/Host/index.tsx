@@ -307,6 +307,7 @@ export const HostForm = ({ viewer, form, markerState }: Omit<Props, "onAddressCh
         >
           <div className="host__form-image-upload">
             {getFieldDecorator("image", {
+              valuePropName: "upload",
               rules: [
                 {
                   required: true,
@@ -318,9 +319,10 @@ export const HostForm = ({ viewer, form, markerState }: Omit<Props, "onAddressCh
                 name="image"
                 listType="picture-card"
                 showUploadList={false}
-                action="http://www.mocky.io/v2/5cc8019d300000980a055e76"
                 beforeUpload={beforeImageUpload}
                 onChange={handleImageUpload}
+                customRequest={({ file, onSuccess }) => setTimeout(() => onSuccess({}, file), 0)}
+                
               >
                 {imageBase64Value ? (
                   <img src={imageBase64Value} alt="listing" />
