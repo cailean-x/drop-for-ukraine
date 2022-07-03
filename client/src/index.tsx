@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ApolloClient from "apollo-boost";
 import { ApolloProvider, useMutation } from "@apollo/react-hooks";
 import { StripeProvider, Elements } from "react-stripe-elements";
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import { Affix, Spin, Layout } from "antd";
 import {
   AppHeader,
@@ -134,7 +135,12 @@ const App = () => {
 
 render(
   <ApolloProvider client={client}>
-    <App />
+    <OverlayScrollbarsComponent
+      options={{ scrollbars: { autoHide: 'scroll' } }}
+      className="body-scrollbars"
+    >
+      <App />
+    </OverlayScrollbarsComponent>
   </ApolloProvider>,
   document.getElementById("root")
 );
