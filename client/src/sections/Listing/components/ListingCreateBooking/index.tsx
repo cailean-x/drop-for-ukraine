@@ -1,11 +1,8 @@
 import React, { useMemo } from "react";
-import { Button, Card, DatePicker, Divider, Tooltip, Typography } from "antd";
+import { Button, Card, DatePicker, Divider, Typography } from "antd";
 import moment, { Moment } from "moment";
-import { useParams } from 'react-router-dom';
 import { Listing as ListingData } from "../../../../lib/graphql/queries/Listing/__generated__/Listing";
-import { displayErrorMessage, formatListingPrice } from "../../../../lib/utils";
 import { Viewer } from "../../../../lib/types";
-import { BookingsIndex } from "./types";
 import MapboxMap from "../../../Home/components/MapBox";
 
 const { Paragraph, Text, Title } = Typography;
@@ -24,15 +21,11 @@ interface Props {
 export const ListingCreateBooking = ({
   viewer,
   host,
-  price,
-  bookingsIndex,
   checkInDate,
   setCheckInDate,
   setModalVisible,
   geometry,
 }: Props) => {
-  const bookingsIndexJSON: BookingsIndex = JSON.parse(bookingsIndex);
-  const params = useParams();
 
   const marker = useMemo(() => (geometry[0] ? { lng: geometry[0], lat: geometry[1] } : null), [geometry]);
 
@@ -113,7 +106,7 @@ export const ListingCreateBooking = ({
           <Paragraph>
             <Title level={2} className="listing-booking__card-title">
               {/* {formatListingPrice(price)} */}
-              <span>📅</span>
+              <span role="img" aria-label="img">📅</span>
             </Title>
           </Paragraph>
           <Divider />

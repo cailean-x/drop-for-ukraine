@@ -1,11 +1,6 @@
 import React from "react";
 import { useMutation } from "@apollo/react-hooks";
-import {
-  CardElement,
-  injectStripe,
-  ReactStripeElements,
-} from "react-stripe-elements";
-import { Button, Divider, Icon, Modal, Typography } from "antd";
+import { Button, Icon, Modal, Typography } from "antd";
 import moment, { Moment } from "moment";
 import { CREATE_BOOKING } from "../../../../lib/graphql/mutations";
 import {
@@ -13,7 +8,6 @@ import {
   CreateBookingVariables,
 } from "../../../../lib/graphql/mutations/CreateBooking/__generated__/CreateBooking";
 import {
-  formatListingPrice,
   displaySuccessNotification,
   displayErrorMessage,
 } from "../../../../lib/utils";
@@ -59,7 +53,6 @@ export const ListingCreateBookingModal = ({
   });
 
   // const daysBooked = checkOutDate.diff(checkInDate, "days") + 1;
-  const listingPrice = price;
 
   const handleCreateBooking = async () => {
     // if (!stripe) {

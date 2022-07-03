@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Avatar, Divider, Icon, Tag, Typography } from "antd";
 import { Listing as ListingData } from "../../../../lib/graphql/queries/Listing/__generated__/Listing";
 import { iconColor } from "../../../../lib/utils";
-import MapboxMap from "../../../Home/components/MapBox";
 
 interface Props {
   listing: ListingData["listing"];

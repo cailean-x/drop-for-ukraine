@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, Icon, Tag, Typography } from "antd";
-import { iconColor, formatListingPrice } from "../../utils";
-import { ListingType } from "../../graphql/globalTypes";
+import { Card, Typography } from "antd";
+import { formatListingPrice } from "../../utils";
 
 interface Props {
   listing: {

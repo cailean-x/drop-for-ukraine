@@ -23,12 +23,6 @@ import {
   LogIn as LogInData,
   LogInVariables,
 } from "./lib/graphql/mutations/LogIn/__generated__/LogIn";
-import {
-  GoogleMap,
-  useLoadScript,
-  Marker,
-  InfoWindow,
-} from "@react-google-maps/api";
 import { Viewer } from "./lib/types";
 import * as serviceWorker from "./serviceWorker";
 import "./styles/index.css";
