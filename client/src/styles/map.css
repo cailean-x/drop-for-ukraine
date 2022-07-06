@@ -52,22 +52,27 @@
 
 .mapboxgl-popup-tip {
 	opacity: 0.9;
+  position: relative;
 }
 
 .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
 	border-top-color: #f4f6f9 !important;
+  top: -1px;
 }
 
 .mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
 	border-bottom-color: #f4f6f9 !important;
+  bottom: -1px;
 }
 
 .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
 	border-right-color: #f4f6f9 !important;
+  right: -1px;
 }
 
 .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
 	border-left-color: #f4f6f9 !important;
+  left: -1px;
 }
 
 .map-filters {
