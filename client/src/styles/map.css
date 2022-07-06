@@ -46,7 +46,7 @@
   border-radius: 20px;
 }
 
-.mapboxgl-popup {
+.mapboxgl-popup, .mapboxgl-popup .result-item {
   width: 300px;
 }
 
