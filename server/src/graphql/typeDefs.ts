@@ -83,6 +83,10 @@ export const typeDefs = gql`
     geometry: [Float!]
   }
 
+  input DeleteListingInput {
+    id: ID!
+  }
+
   input CreateBookingInput {
     id: ID!
     checkIn: String!
@@ -106,6 +110,7 @@ export const typeDefs = gql`
     connectStripe(input: ConnectStripeInput!): Viewer!
     disconnectStripe: Viewer!
     hostListing(input: HostListingInput!): Listing!
+    deleteListing(input: DeleteListingInput!): String!
     createBooking(input: CreateBookingInput!): Booking!
   }
 `;

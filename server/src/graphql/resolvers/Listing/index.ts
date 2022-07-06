@@ -15,6 +15,7 @@ import {
   ListingsQuery,
   HostListingInput,
   HostListingArgs,
+  DeleteListingArgs,
 } from "./types";
 
 const verifyHostListingInput = ({
@@ -159,6 +160,47 @@ export const listingResolvers: IResolvers = {
       );
 
       return insertedListing;
+    },
+    deleteListing: async (
+      _root: undefined,
+      { input }: DeleteListingArgs,
+      { db, req }: { db: Database; req: Request }
+    ): Promise<string> => {
+
+      let viewer = await authorize(db, req);
+
+      if (!viewer) {
+        throw new Error("viewer cannot be found");
+      }
+
+      const listing = await db.listings.findOne({ _id: new ObjectId(input.id) });
+
+      if (!listing) {
+        throw new Error("Listing does not exist");
+      }
+
+      if (listing.host !== viewer._id)  {
+        throw new Error("You can only delete your own listing");
+      }
+
+      const deletedListing = await db.listings.deleteOne({ _id: new ObjectId(input.id) });
+
+      if (!deletedListing.result.ok) {
+        throw new Error("Some error occurred while deleting the listing");
+      }
+
+      try {
+        await MapListing.delete(input.id);
+      } catch {
+        throw new Error("Some error occurred while deleting the listing");
+      }
+
+      await db.users.updateOne(
+        { _id: viewer._id },
+        { $pull: { listings: input.id } }
+      );
+
+      return input.id;
     },
   },
   Listing: {

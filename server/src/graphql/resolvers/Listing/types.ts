@@ -48,6 +48,13 @@ export interface HostListingInput {
   geometry?: [number, number]
 }
 
+export interface DeleteListingInput {
+  id: string;
+}
+
 export interface HostListingArgs {
   input: HostListingInput;
+}
+export interface DeleteListingArgs {
+  input: DeleteListingInput;
 }

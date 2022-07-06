@@ -92,6 +92,7 @@ export const Listing = ({ viewer }: Props) => {
   ) : null;
   const listingCreateBookingElement = listing ? (
     <ListingCreateBooking
+      id={listing.id}
       viewer={viewer}
       host={listing.host}
       price={listing.price}

@@ -343,10 +343,13 @@ gets 2/3 of the page. You can adjust this to your personal liking. */
 .listing-bookings__stars {
   font-size: 13px;
 }
-.listing-booking {
+.listing-booking, .listing-delete-btn {
   max-width: 400px;
   margin: 0 auto;
   display: block;
+}
+.listing-delete-btn {
+  margin-bottom: 20px;
 }
 @media (max-width: 62em) {
   .listing-booking {

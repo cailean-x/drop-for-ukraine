@@ -26,7 +26,10 @@ export interface CreateBookingInput {
   checkIn: string;
 }
 
-export type GeometryInput = [number, number];
+export interface DeleteListingInput {
+  id: string;
+}
+
 export interface HostListingInput {
   title: string;
   description: string;
@@ -34,7 +37,7 @@ export interface HostListingInput {
   type: ListingType;
   address: string;
   price: number;
-  geometry?: GeometryInput | null;
+  geometry?: number[] | null;
 }
 
 export interface LogInInput {
