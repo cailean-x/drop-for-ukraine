@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Form, Select, Slider } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
-import { getFilters, getFilterCities } from "lib/utils/map";
+import { getFilters, getFilterCities } from "lib/api/map";
 
 interface FiltersProps {
   onChange: (filters: Map.Filter) => void;

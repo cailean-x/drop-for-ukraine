@@ -9,8 +9,9 @@ import Results from "./Results";
 import Sidebar from "./Sidebar";
 import BoundsFilter from "./BoundsFilter";
 import MapboxPopup from "./Popup";
-import { getListingIds, getListings } from "lib/utils/map";
-
+import { getListingIds, getListings } from "lib/api/map";
+import drops from "sections/Home/components/MapBox/layers/drops";
+import highlight from "sections/Home/components/MapBox/layers/highlight";
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 (mapboxgl as any).workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
@@ -58,7 +59,7 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
 
   useEffect(() => {
     if (map && styleLoaded && type === "main") {
-      const layer = { source: 'drops-source-highlight', sourceLayer: 'provider' };
+      const layer = { source: highlight.sourceId, sourceLayer: 'provider' };
       map.removeFeatureState(layer);
       if (activeIds) activeIds.forEach(id => map.setFeatureState({ ...layer, id }, { filtered: true }));
     }
@@ -124,47 +125,10 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
           }
         }
 
-        map.addSource("drops-source", {
-          type: "vector",
-          tiles: [`/map/tile/{z}/{x}/{y}?fields=object_id,image,title,country,state,city,address,capacity,type`]
-        });
-
-        map.addSource("drops-source-highlight", {
-          type: "vector",
-          tiles: [`/map/tile/{z}/{x}/{y}`]
-        });
-
-        map.addLayer({
-          "id": "drops-layer-highlight",
-          "type": "circle",
-          "source": "drops-source-highlight",
-          "source-layer": "provider",
-          "paint": {
-            "circle-radius": ["interpolate", ["linear"], ["zoom"], 1, 12, 16, 40],
-            "circle-color": "#40a9ff",
-            "circle-opacity": [
-              "case",
-              ["boolean", ["feature-state", "filtered"], false], 0.3, 0
-            ]
-          },
-        });
-
-        map.addLayer({
-          "id": "drops-layer",
-          "type": "circle",
-          "source": "drops-source",
-          "source-layer": "provider",
-          "paint": {
-            "circle-stroke-width": 2,
-            "circle-stroke-color": "#fff",
-            "circle-radius": ["interpolate", ["linear"], ["zoom"], 1, 5, 16, 20],
-            "circle-opacity": ["interpolate", ["linear"], ["zoom"], 1, 0.7, 16, 1],
-            "circle-color": [
-              "case",
-              ["boolean", ["feature-state", "hovered"], false], "green", "#40a9ff"
-            ]
-          },
-        });
+        map.addSource(drops.sourceId, drops.source);
+        map.addSource(highlight.sourceId, highlight.source);
+        map.addLayer(highlight.layer);
+        map.addLayer(drops.layer);
 
         map.on("mouseenter", "drops-layer", e => {
           const feature = e.features && e.features[0];
@@ -174,7 +138,7 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
             const popupNode = document.createElement("div");
             ReactDOM.render(<MapboxPopup properties={props}/>, popupNode);
             popup.setLngLat(coords).setDOMContent(popupNode).addTo(map);
-            map.setFeatureState({ source: "drops-source", sourceLayer: "provider", id: feature.id }, { hovered: true });
+            map.setFeatureState({ source: drops.sourceId, sourceLayer: "provider", id: feature.id }, { hovered: true });
             map.getCanvas().style.cursor = "pointer";
             setActiveItem(props.object_id);
           }
@@ -183,7 +147,7 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
         map.on("mouseleave", "drops-layer", () => {
           setActiveItem(null);
           popup.remove();
-          map.removeFeatureState({ source: "drops-source", sourceLayer: "provider" });
+          map.removeFeatureState({ source: drops.sourceId, sourceLayer: "provider" });
           map.getCanvas().style.cursor = "";
         });
   

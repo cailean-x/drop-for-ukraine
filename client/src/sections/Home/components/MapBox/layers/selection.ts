@@ -1,5 +1,3 @@
-import mapboxgl from "mapbox-gl";
-
 const selection = (feature: mapboxgl.MapboxGeoJSONFeature): mapboxgl.AnyLayer => ({
   id: "drops-layer-selected",
   source: {
@@ -24,3 +22,4 @@ const selection = (feature: mapboxgl.MapboxGeoJSONFeature): mapboxgl.AnyLayer =>
 });
 
 export default selection;
+export const selectionId = "drops-layer-selected";

@@ -4,8 +4,9 @@ import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot, faTableCellsLarge } from "@fortawesome/free-solid-svg-icons";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
-import selection from "sections/Home/components/MapBox/layers/selection";
-import { isLayerExist } from "utils/map";
+import selection, { selectionId } from "sections/Home/components/MapBox/layers/selection";
+import drops from "sections/Home/components/MapBox/layers/drops";
+import { isLayerExist } from "lib/utils/map";
 
 interface Props {
   results: Map.MapListing[] | null;
@@ -17,11 +18,11 @@ const MapResults: React.FC<Props> = ({ results, map }) => {
 
   const onHover = (id: number | string) => {
     if (map) {
-      if (isLayerExist(map, "drops-layer-selected")) {
-        map.removeLayer("drops-layer-selected");
-        map.removeSource("drops-layer-selected");
+      if (isLayerExist(map, selectionId)) {
+        map.removeLayer(selectionId);
+        map.removeSource(selectionId);
       }
-      const features = map.queryRenderedFeatures({ layers: ["drops-layer"] } as any);
+      const features = map.queryRenderedFeatures({ layers: [drops.id] } as any);
       const feature = features.filter(f => f.id === id)[0] as any;
       if (feature) {
         map.addLayer(selection(feature));
@@ -31,9 +32,9 @@ const MapResults: React.FC<Props> = ({ results, map }) => {
 
   const onLeave = () => {
     if (map) {
-      if (isLayerExist(map, "drops-layer-selected")) {
-        map.removeLayer("drops-layer-selected");
-        map.removeSource("drops-layer-selected");
+      if (isLayerExist(map, selectionId)) {
+        map.removeLayer(selectionId);
+        map.removeSource(selectionId);
       }
     }
   }

@@ -24,10 +24,3 @@ export const displaySuccessNotification = (
 export const displayErrorMessage = (error: string) => {
   return message.error(error);
 };
-
-export const geocode = async (address: string): Promise<Common.GeocodeResult> => {
-  const URL = "https://maps.googleapis.com/maps/api/geocode/json";
-  const KEY = process.env.REACT_APP_GOOGLEMAPS_API_KEY;
-  const result = await fetch(`${URL}?address=${encodeURIComponent(address)}&key=${KEY}`);
-  return result.json();
-}

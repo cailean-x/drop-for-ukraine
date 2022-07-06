@@ -39,6 +39,13 @@ declare module Map {
     type: string;
   }
 
+  interface Layer {
+    id: string;
+    sourceId: string;
+    source: mapboxgl.AnySourceData;
+    layer: mapboxgl. AnyLayer;
+  }
+
   namespace Request {
 
     interface Filter {

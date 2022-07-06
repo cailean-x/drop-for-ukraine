@@ -28,7 +28,7 @@ import {
 } from "../../lib/graphql/mutations/HostListing/__generated__/HostListing";
 import { HOST_LISTING } from "../../lib/graphql/mutations";
 import { useScrollToTop } from "../../lib/hooks";
-import { geocode } from "../../lib/utils";
+import { geocode } from "lib/api/map";
 import MapboxMap from "../Home/components/MapBox";
 import mapboxgl from "mapbox-gl";
 
