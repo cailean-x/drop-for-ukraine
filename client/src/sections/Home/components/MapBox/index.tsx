@@ -51,6 +51,12 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
   ), []);
 
   useEffect(() => {
+    if (filtersRef.current) {
+      onFiltersChange(filtersRef.current);
+    }
+  }, [onFiltersChange, filterBounds]);
+
+  useEffect(() => {
     if (map && styleLoaded && type === "main") {
       const layer = { source: 'drops-source-highlight', sourceLayer: 'provider' };
       map.removeFeatureState(layer);
