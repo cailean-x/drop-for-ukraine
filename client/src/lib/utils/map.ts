@@ -4,9 +4,16 @@ export const getFilters = async () => {
   return data;
 }
 
+export const getFilterCities = async (country: string) => {
+  const search = new URLSearchParams({ country });
+  const result = await fetch(`map/filter/city?${search}`);
+  const data = await result.json() as string [] | null;
+  return data;
+}
+
 export const getListingIds = async (filters: Map.Request.Filter) => {
   const transform = ([k, v]: any) => typeof v === 'object' ? [k,JSON.stringify(v)] : [k,v];
-  const f = Object.fromEntries(Object.entries(filters).map(transform));
+  const f = Object.fromEntries(Object.entries(filters).filter(([_, v]) => v != null && v !== '').map(transform));
   const search = new URLSearchParams(f);
   const result = await fetch(`map/listing/ids?${search}`);
   const data = await result.json() as number[] | null;
@@ -15,7 +22,7 @@ export const getListingIds = async (filters: Map.Request.Filter) => {
 
 export const getListings = async (filters: Map.Request.Filter) => {
   const transform = ([k, v]: any) => typeof v === 'object' ? [k,JSON.stringify(v)] : [k,v];
-  const f = Object.fromEntries(Object.entries(filters).map(transform));
+  const f = Object.fromEntries(Object.entries(filters).filter(([_, v]) => v != null && v !== '').map(transform));
   const search = new URLSearchParams(f);
   const result = await fetch(`map/listing?${search}`);
   const data = await result.json() as Map.MapListing[] | null;

@@ -21,6 +21,7 @@ declare module Map {
 
   interface Filters {
     country?: string;
+    city?: string;
     type?: string;
     capacity?: [number, number];
     bounds?: MapBounds;
@@ -36,11 +37,16 @@ declare module Map {
 
       interface ListingGet {
         country?: string;
+        city?: string;
         type?: string;
         capacity?: string;
         bounds?: string;
         limit?: string;
         offset?: string;
+      }
+
+      interface FilterCityGet {
+        country: string;
       }
 
     }
@@ -58,6 +64,7 @@ declare module Map {
     type TileGet = Buffer;
     type ListingGet = MapListing[] | null;
     type ListingIdsGet = number[] | null;
+    type FilterCityGet = string[] | null;
 
     interface FilterGet {
       countries: string[];
@@ -91,6 +98,10 @@ declare module Map {
 
     interface FilterCapacity {
       fields_json: { min_value: number; max_value: number };
+    }
+    
+    interface FilterCity {
+      fields_json: { id: string; name: string; count: number }[];
     }
 
   }

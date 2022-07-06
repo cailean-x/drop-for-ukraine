@@ -1,19 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { Form, Select, Slider } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
-import { getFilters } from "lib/utils/map";
+import { getFilters, getFilterCities } from "lib/utils/map";
 interface FiltersProps {
   onChange: (filters: Map.Filter) => void;
 }
 
 const MapFilters: React.FC<FiltersProps & FormComponentProps<Map.Filter>> = ({ form, onChange }) => {
   const [filters, setFilters] = useState<Map.Response.Filter | null>(null);
+  const [cities, setCities] = useState<string[] | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      const country = form.getFieldValue('country');
+      const city = form.getFieldValue('city');
+      if (country) {
+        const cities = await getFilterCities(country);
+        setCities(cities);
+      } else {
+        setCities([]);
+      }
+      if (city) form.setFieldsValue({ city: '' });
+    })();
+  }, [form.getFieldValue('country')]);
 
   useEffect(() => {
     (async () => {
       const filters = await getFilters();
       setFilters(filters);
-      onChange({ country: '', type: '', capacity: [filters.capacity.min, filters.capacity.max] });
+      onChange({ country: '', city: '', type: '', capacity: [filters.capacity.min, filters.capacity.max] });
     })();
   }, []); // eslint-disable-line
 
@@ -31,6 +46,20 @@ const MapFilters: React.FC<FiltersProps & FormComponentProps<Map.Filter>> = ({ f
         </Select>
       )}
       </Form.Item>
+      {cities && cities.length > 0 && (
+        <Form.Item label="City">
+        {form.getFieldDecorator('city', { initialValue: '' })(
+          <Select
+            placeholder="Choose a city"
+            onChange={value => form.setFieldsValue({ city: value })}
+          >
+            {['', ...cities].map(value => (
+              <Select.Option key={value} value={value}>{value ? value : 'All'}</Select.Option>
+            ))}
+          </Select>
+        )}
+        </Form.Item>
+      )}
       <Form.Item label="Type">
         {form.getFieldDecorator('type', { initialValue: '' })(
           <Select

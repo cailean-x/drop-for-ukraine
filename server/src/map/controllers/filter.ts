@@ -16,4 +16,18 @@ router.get("/", async (
   }
 })
 
+router.get("/city", async ( 
+  req: Request<any, any, any, Map.Request.Query.FilterCityGet>,
+  res: Response<Map.Response.FilterCityGet>, 
+  next,
+) => {
+  try {
+    const { country } = req.query;
+    const cities = await Filter.getCities(country);
+    return res.status(200).json(cities);
+  } catch (error) {
+    next(error);
+  }
+})
+
 export default router;

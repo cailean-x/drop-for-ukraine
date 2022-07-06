@@ -20,6 +20,20 @@ class Filter {
     }
   }
   
+  async getCities(country: string) {
+    let client: PoolClient | null = null;
+    try {
+      client = await db.connect();
+      const cities = await client.query<Map.Result.FilterCity>(
+        `SELECT fields_json FROM common._get_filter_values_city($1::json);`,
+        [JSON.stringify({ country })]
+      );
+      return cities.rows[0].fields_json.map(i => i.name);
+    } finally {
+      client?.release();
+    }
+  }
+  
 }
 
 export default new Filter();

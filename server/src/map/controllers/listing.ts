@@ -9,8 +9,8 @@ router.get("/", async (
   next,
 ) => {
   try {
-    const { country, type, capacity, bounds, limit, offset } = req.query;
-    const filter = { country, type, capacity: JSON.parse(capacity ?? 'null'), bounds: JSON.parse(bounds ?? 'null') };
+    const { country, city, type, capacity, bounds, limit, offset } = req.query;
+    const filter = { country, city, type, capacity: JSON.parse(capacity ?? 'null'), bounds: JSON.parse(bounds ?? 'null') };
     const listings = await Listing.getByFilter(filter, limit ? +limit : null, offset ? +offset : null);
     return res.status(200).json(listings);
   } catch (error) {
@@ -51,8 +51,8 @@ router.get("/ids", async (
   next,
 ) => {
   try {
-    const { country, type, capacity, bounds, limit, offset } = req.query;
-    const filter = { country, type, capacity: JSON.parse(capacity ?? 'null'), bounds: JSON.parse(bounds ?? 'null') };
+    const { country, city, type, capacity, bounds, limit, offset } = req.query;
+    const filter = { country, city, type, capacity: JSON.parse(capacity ?? 'null'), bounds: JSON.parse(bounds ?? 'null') };
     const ids = await Listing.getIdsByFilter(filter, limit ? +limit : null, offset ? +offset : null);
     return res.status(200).json(ids);
   } catch (error) {
