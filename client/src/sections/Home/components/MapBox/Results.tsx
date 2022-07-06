@@ -37,30 +37,34 @@ const MapResults: React.FC<Props> = ({ results, map }) => {
       className="scrollview"
     >
       <div className="scrollview-body">
-        {results && results.map(result => (
-          <div
-            key={result.id}
-            className="result-item"
-            onMouseEnter={() => onHover(result.id)}
-            onMouseLeave={onLeave}
-            onClick={() => onClick(result.object_id)}
-          >
-            <div className="result-img"><img src={result.image} alt="" /></div>
-            <div className="result-body">
-              <div className="result-body-item title">{result.title}</div>
-              <div className="result-body-item">
-                <div className="icon"><FontAwesomeIcon icon={faTableCellsLarge} /></div>
-                <div>{result.capacity} <span>m<sup>2</sup></span></div>
-              </div>
-              <div className="result-body-item">
-                <div className="icon"><FontAwesomeIcon icon={faLocationDot} /></div>
-                <div>
-                  {[result.city, result.country, result.address.split(",")[0]].join(", ")}
+        {results && results.length > 0 ? (
+          results.map(result => (
+            <div
+              key={result.id}
+              className="result-item"
+              onMouseEnter={() => onHover(result.id)}
+              onMouseLeave={onLeave}
+              onClick={() => onClick(result.object_id)}
+            >
+              <div className="result-img"><img src={result.image} alt="" /></div>
+              <div className="result-body">
+                <div className="result-body-item title">{result.title}</div>
+                <div className="result-body-item">
+                  <div className="icon"><FontAwesomeIcon icon={faTableCellsLarge} /></div>
+                  <div>{result.capacity} <span>m<sup>2</sup></span></div>
+                </div>
+                <div className="result-body-item">
+                  <div className="icon"><FontAwesomeIcon icon={faLocationDot} /></div>
+                  <div>
+                    {[result.city, result.country, result.address.split(",")[0]].join(", ")}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          )
+        )) : (
+          <div>No results</div>
+        )}
       </div>
     </OverlayScrollbarsComponent>
   );
