@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Form, Select, Slider } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
 import { getFilters, getFilterCities } from "lib/utils/map";
@@ -9,10 +9,10 @@ interface FiltersProps {
 const MapFilters: React.FC<FiltersProps & FormComponentProps<Map.Filter>> = ({ form, onChange }) => {
   const [filters, setFilters] = useState<Map.Response.Filter | null>(null);
   const [cities, setCities] = useState<string[] | null>(null);
+  const country = useMemo(() => form.getFieldValue('country'), [form]);
 
   useEffect(() => {
     (async () => {
-      const country = form.getFieldValue('country');
       const city = form.getFieldValue('city');
       if (country) {
         const cities = await getFilterCities(country);
@@ -22,7 +22,7 @@ const MapFilters: React.FC<FiltersProps & FormComponentProps<Map.Filter>> = ({ f
       }
       if (city) form.setFieldsValue({ city: '' });
     })();
-  }, [form.getFieldValue('country')]);
+  }, [form, country]);
 
   useEffect(() => {
     (async () => {
