@@ -1,9 +1,11 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationDot, faTableCellsLarge } from '@fortawesome/free-solid-svg-icons';
-import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 import mapboxgl from "mapbox-gl";
+import { useHistory } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLocationDot, faTableCellsLarge } from "@fortawesome/free-solid-svg-icons";
+import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
+import selection from "sections/Home/components/MapBox/layers/selection";
+import { isLayerExist } from "utils/map";
 
 interface Props {
   results: Map.MapListing[] | null;
@@ -15,13 +17,24 @@ const MapResults: React.FC<Props> = ({ results, map }) => {
 
   const onHover = (id: number | string) => {
     if (map) {
-      map.setFeatureState({ source: "drops-source", sourceLayer: "provider", id }, { hovered: true });
+      if (isLayerExist(map, "drops-layer-selected")) {
+        map.removeLayer("drops-layer-selected");
+        map.removeSource("drops-layer-selected");
+      }
+      const features = map.queryRenderedFeatures({ layers: ["drops-layer"] } as any);
+      const feature = features.filter(f => f.id === id)[0] as any;
+      if (feature) {
+        map.addLayer(selection(feature));
+      }
     }
   }
 
   const onLeave = () => {
     if (map) {
-      map.removeFeatureState({ source: "drops-source", sourceLayer: "provider" });
+      if (isLayerExist(map, "drops-layer-selected")) {
+        map.removeLayer("drops-layer-selected");
+        map.removeSource("drops-layer-selected");
+      }
     }
   }
 
@@ -33,7 +46,7 @@ const MapResults: React.FC<Props> = ({ results, map }) => {
 
   return (
     <OverlayScrollbarsComponent
-      options={{ scrollbars: { autoHide: 'scroll' } }}
+      options={{ scrollbars: { autoHide: "scroll" } }}
       className="scrollview"
     >
       <div className="scrollview-body">
