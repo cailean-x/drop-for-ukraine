@@ -23,7 +23,7 @@ const MapFilters: React.FC<FiltersProps & FormComponentProps<Map.Filter>> = ({ f
       }
       if (city) form.setFieldsValue({ city: '' });
     })();
-  }, [form, country]);
+  }, [country]); // eslint-disable-line
 
   useEffect(() => {
     (async () => {
