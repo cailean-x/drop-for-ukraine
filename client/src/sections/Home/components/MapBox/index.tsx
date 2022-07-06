@@ -107,7 +107,7 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
     map.on("style.load", () => {
 
       const popup = new mapboxgl.Popup({ closeButton: false, closeOnClick: false, maxWidth: "300px" });
-      const marker = new mapboxgl.Marker({ draggable: type === 'marker' }).setLngLat(markerPos ? markerPos : [0, 0]);
+      const marker = new mapboxgl.Marker({ draggable: type === 'marker', color: "#40a9ff" }).setLngLat(markerPos ? markerPos : [0, 0]);
 
       if (type === "main") {
 
@@ -135,10 +135,10 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
           "source-layer": "provider",
           "paint": {
             "circle-radius": ["interpolate", ["linear"], ["zoom"], 1, 12, 16, 40],
-            "circle-color": "blue",
+            "circle-color": "#40a9ff",
             "circle-opacity": [
               "case",
-              ["boolean", ["feature-state", "filtered"], false], 0.1, 0
+              ["boolean", ["feature-state", "filtered"], false], 0.3, 0
             ]
           },
         });
@@ -155,7 +155,7 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
             "circle-opacity": ["interpolate", ["linear"], ["zoom"], 1, 0.7, 16, 1],
             "circle-color": [
               "case",
-              ["boolean", ["feature-state", "hovered"], false], "green", "blue"
+              ["boolean", ["feature-state", "hovered"], false], "green", "#40a9ff"
             ]
           },
         });
