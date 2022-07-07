@@ -25,6 +25,13 @@ declare module Map {
     type?: string;
     capacity?: [number, number];
     bounds?: MapBounds;
+    center?: [number, number];
+    radius?: number;
+  }
+
+  interface Limit {
+    limit?: number;
+    offset?: number;
   }
 
   namespace Request {
@@ -41,6 +48,8 @@ declare module Map {
         type?: string;
         capacity?: string;
         bounds?: string;
+        center?: [number, number];
+        radius?: number;
         limit?: string;
         offset?: string;
       }

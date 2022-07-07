@@ -1,5 +1,6 @@
 import { Router, Request, Response } from "express";
 import Listing from "/map/models/listing";
+import { transformFilters, transformLimits } from "/utils/map";
 
 const router = Router({ mergeParams: true });
 
@@ -9,9 +10,9 @@ router.get("/", async (
   next,
 ) => {
   try {
-    const { country, city, type, capacity, bounds, limit, offset } = req.query;
-    const filter = { country, city, type, capacity: JSON.parse(capacity ?? 'null'), bounds: JSON.parse(bounds ?? 'null') };
-    const listings = await Listing.getByFilter(filter, limit ? +limit : null, offset ? +offset : null);
+    const filter = transformFilters(req.query);
+    const limit = transformLimits(req.query);
+    const listings = await Listing.getByFilter(filter, limit.limit, limit.offset);
     return res.status(200).json(listings);
   } catch (error) {
     next(error);
@@ -51,9 +52,9 @@ router.get("/ids", async (
   next,
 ) => {
   try {
-    const { country, city, type, capacity, bounds, limit, offset } = req.query;
-    const filter = { country, city, type, capacity: JSON.parse(capacity ?? 'null'), bounds: JSON.parse(bounds ?? 'null') };
-    const ids = await Listing.getIdsByFilter(filter, limit ? +limit : null, offset ? +offset : null);
+    const filter = transformFilters(req.query);
+    const limit = transformLimits(req.query);
+    const ids = await Listing.getIdsByFilter(filter, limit.limit, limit.offset);
     return res.status(200).json(ids);
   } catch (error) {
     next(error);

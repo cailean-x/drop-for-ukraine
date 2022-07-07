@@ -207,3 +207,7 @@
   color: #757575;
   margin-right: 10px;
 }
+
+.map .mapboxgl-ctrl-geocoder {
+  display: none;
+}

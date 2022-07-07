@@ -12,6 +12,8 @@ import MapboxPopup from "./Popup";
 import { getListingIds, getListings } from "lib/api/map";
 import drops from "sections/Home/components/MapBox/layers/drops";
 import highlight from "sections/Home/components/MapBox/layers/highlight";
+import { renderAreaRadius } from "sections/Home/components/MapBox/layers/area";
+import { transformFilters } from "lib/utils/map";
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 (mapboxgl as any).workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
@@ -41,15 +43,17 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
 
   const onFiltersChange = useMemo(() => (
     debounce(async (filters: Map.Filter) => {
-      const b = filtersRef.current && filtersRef.current.bounds ? filtersRef.current.bounds : null;
-      const bounds = b && filterBoundsRef.current ? b : null;
-      const ids = await getListingIds({ ...filters, bounds });
-      setActiveIds(ids);
-      const results = await getListings({ ...filters, bounds });
-      setResults(results)
-      filtersRef.current = { ...filtersRef.current, ...filters };
+      if (map) {
+        renderAreaRadius(map, filters.center, filters.radius);
+        const f = transformFilters({ ...filtersRef.current, ...filters }, filterBoundsRef.current);
+        const ids = await getListingIds(f);
+        setActiveIds(ids);
+        const results = await getListings(f);
+        setResults(results);
+        filtersRef.current = { ...filtersRef.current, ...filters };
+      }
     }, 200)
-  ), []);
+  ), [map]);
 
   useEffect(() => {
     if (filtersRef.current) {
@@ -178,7 +182,7 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
       {type === "main" && (
         <>
           <Sidebar
-            filters={<MapFilters onChange={onFiltersChange} />}
+            filters={<MapFilters map={map} onChange={onFiltersChange} filterBounds={filterBounds} />}
             results={<Results map={map} results={results} />}
           />
           <BoundsFilter filterBoundsState={[filterBounds, setFilterBounds]} />

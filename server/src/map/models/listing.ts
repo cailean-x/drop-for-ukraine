@@ -5,13 +5,12 @@ import db from "/database/map";
 class Listing {
   
   async getByFilter(filters: Map.Filters, limit: number | null = 100, offset: number | null = 0) {
-    const f = Object.fromEntries(Object.entries(filters).filter(([_, v]) => v != null));
     let client: PoolClient | null = null;
     try {
       client = await db.connect();
       const result = await client.query<Map.Result.Listing>(
         `SELECT fields_json FROM common._get_data($1::json, '', $2::int, $3::int)`, 
-        [JSON.stringify(f), limit, offset]
+        [JSON.stringify(filters), limit, offset]
       );
       return result.rows[0].fields_json;
     } finally {
@@ -20,13 +19,12 @@ class Listing {
   }
   
   async getIdsByFilter(filters: Map.Filters, limit: number | null = 100, offset: number | null = 0) {
-    const f = Object.fromEntries(Object.entries(filters).filter(([_, v]) => v != null));
     let client: PoolClient | null = null;
     try {
       client = await db.connect();
       const result = await client.query<Map.Result.ListingId>(
         `SELECT fields_json FROM common._get_data_id($1::json, '', $2::int, $3::int)`, 
-        [JSON.stringify(f), limit, offset]
+        [JSON.stringify(filters), limit, offset]
       );
       return result.rows[0].fields_json;
     } finally {

@@ -20,6 +20,8 @@ declare module Map {
     type?: string;
     capacity?: [number, number];
     bounds?: MapBounds | null;
+    center?: [number, number] | null;
+    radius?: number;
   }
 
   interface MapBounds {
@@ -46,16 +48,37 @@ declare module Map {
     layer: mapboxgl. AnyLayer;
   }
 
-  namespace Request {
+  interface AddressFilterItem {
+    text: string;
+    value: string;
+  }
 
-    interface Filter {
-      country?: string;
-      city?: string;
-      type?: string;
-      capacity?: [number, number];
-      bounds?: MapBounds | null;
-    }
+  interface AddressFilterValue {
+    center: [number, number];
+    query: string;
+    text: string;
+  }
 
+  interface GeocodeResult {
+    status: string;
+    results: {
+      geometry: {
+        location: {
+          lat: number;
+          lng: number;
+        },
+        bounds: {
+          northeast: {
+            lat: number;
+            lng: number;
+          },
+          southwest: {
+            lat: number;
+            lng: number;
+          }
+        }
+      }
+    }[];
   }
 
   namespace Response {
