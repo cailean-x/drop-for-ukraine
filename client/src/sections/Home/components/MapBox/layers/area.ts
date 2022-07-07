@@ -33,7 +33,7 @@ export const renderAreaRadius = (() => {
         data: circle,
       },
       paint: {
-        'fill-color': '#89a9ed',
+        'fill-color': '#40a9ff',
         'fill-opacity': 0.2,
         'fill-outline-color': 'rgba(253, 178, 109, 0)'
       }
@@ -47,8 +47,9 @@ export const renderAreaRadius = (() => {
           data: line
         },
         paint: {
-            'line-color': 'rgba(253, 178, 109, 0)',
-            'line-width': 2
+            'line-color': '#40a9ff',
+            'line-width': 3,
+            'line-opacity': 0.3,
         }
     }, drops.id);
 

@@ -17,7 +17,7 @@ const AddressFilter: React.FC<Props> = ({ map, country, city, disabled = false, 
   const [center, setCenter] = useState<number[] | null>(null);
   const [geocoder, setGeocoder] = useState<MapboxGeocoder | null>(null);
   const [dataSource, setDataSource] = useState<Map.AddressFilterItem[]>();
-  const defaultBounds = useMemo(() => [-63.842, 30.144, 57.458, 75.900], []);
+  const defaultBounds = useMemo(() => [-19.199, 36.825, 52.159, 64.131], []);
   const geocoderRef = useRef(geocoder);
 
   useEffect(() => { geocoderRef.current = geocoder }, [geocoder]);
