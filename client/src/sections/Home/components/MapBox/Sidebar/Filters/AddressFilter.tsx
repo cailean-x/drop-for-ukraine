@@ -32,11 +32,10 @@ const AddressFilter: React.FC<Props> = ({ map, country, city, disabled = false, 
       if (!map || !geocoderRef.current) return;
       if (country || city) {
         const address = `${city ? city + ', ' : ''}${country}`;
-        const [g, territory] = await Promise.all([geocode(address), getTerritory(address)]);
-        const result = g.results[0];
-        if (addressRef.current.country || addressRef.current.city) {
-          renderTerritory(map, territory);
-          if (result) {
+        await Promise.all([async () => {
+          const g = await geocode(address);
+          const result = g.results[0];
+          if (result && geocoderRef.current && (addressRef.current.country || addressRef.current.city)) {
             const b = result.geometry.viewport;
             const countryInfo = result.address_components.find(c => c.types.includes("country"));
             const bounds = [b.southwest.lng, b.southwest.lat, b.northeast.lng, b.northeast.lat];
@@ -46,7 +45,12 @@ const AddressFilter: React.FC<Props> = ({ map, country, city, disabled = false, 
               geocoderRef.current.setCountries(countryInfo.short_name.toLocaleLowerCase());
             }
           }
-        }
+        }, async () => {
+          const territory = await getTerritory(address);
+          if (addressRef.current.country || addressRef.current.city) {
+            renderTerritory(map, territory);
+          }
+        }].map(f => f()));
       } else {
         geocoderRef.current.setBbox(defaultBounds as any);
         geocoderRef.current.setCountries("");
