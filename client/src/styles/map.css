@@ -134,6 +134,10 @@
   padding: 15px;
 }
 
+.map-filters-form .ant-form-item {
+  margin-bottom: 15px;
+}
+
 .result-item {
   border-radius: 8px;
   border: 1px solid #e5e5e5;

@@ -3,6 +3,7 @@ import { Form, Select, Slider } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
 import { getFilters, getFilterCities } from "lib/api/map";
 import AddressFilter from "sections/Home/components/MapBox/Sidebar/Filters/AddressFilter";
+import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 
 interface FiltersProps {
   map: mapboxgl.Map | null;
@@ -38,8 +39,10 @@ const MapFilters: React.FC<FiltersProps & FormComponentProps<Map.Filter>> = ({ m
   }, []); // eslint-disable-line
 
   return (
-    <>
-      {/* <div ref={geocoderNode} style={{ display: "none" }}></div> */}
+    <OverlayScrollbarsComponent
+      options={{ scrollbars: { autoHide: "scroll" } }}
+      className="scrollview"
+    >
       {filters && (
         <Form layout="vertical" className="map-filters-form">
           <Form.Item label="Country">
@@ -115,7 +118,7 @@ const MapFilters: React.FC<FiltersProps & FormComponentProps<Map.Filter>> = ({ m
           </Form.Item>
         </Form>
       )}
-    </>
+    </OverlayScrollbarsComponent>
   );
 }
 
