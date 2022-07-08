@@ -103,7 +103,7 @@ const MapFilters: React.FC<FiltersProps & FormComponentProps<Map.Filter>> = ({ m
               />
             )}
           </Form.Item>
-          <Form.Item label="Distance (mile)">
+          <Form.Item label="Distance (km)">
             {form.getFieldDecorator('radius', { initialValue: 25 })(
               <Slider
                 min={1}

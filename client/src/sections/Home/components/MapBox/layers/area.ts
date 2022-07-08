@@ -22,7 +22,7 @@ export const renderAreaRadius = (() => {
       return;
     };
   
-    const circle = turfCircle(center, radius, { steps: 50, units: "miles" });
+    const circle = turfCircle(center, radius, { steps: 50, units: "kilometers" });
     const line = lineString(circle.geometry.coordinates.flat());
   
     map.addLayer({
