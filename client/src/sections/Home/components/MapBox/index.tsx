@@ -14,17 +14,19 @@ import drops from "sections/Home/components/MapBox/layers/drops";
 import highlight from "sections/Home/components/MapBox/layers/highlight";
 import { renderAreaRadius } from "sections/Home/components/MapBox/layers/area";
 import { transformFilters } from "lib/utils/map";
+import { geocode } from "lib/api/map";
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 (mapboxgl as any).workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 
 interface Props {
-  type: "main" | "item" | "marker";
+  type: "main" | "item" | "items" | "marker";
   markerPos?: Pick<mapboxgl.LngLat, "lng" | "lat"> | null;
+  itemsFilter?: Map.ItemsFilter; 
   onMarkerPosChange?: (pos: mapboxgl.LngLat) => void;
 }
 
-const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
+const MapboxMap: React.FC<Props> = ({ type, markerPos, itemsFilter, onMarkerPosChange }) => {
   const history = useHistory();
   const [map, setMap] = useState<mapboxgl.Map | null>(null);
   const [styleLoaded, setStyleLoaded] = useState(false);
@@ -44,16 +46,22 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
   const onFiltersChange = useMemo(() => (
     debounce(async (filters: Map.Filter) => {
       if (map) {
+        filtersRef.current = { ...filtersRef.current, ...filters };
         renderAreaRadius(map, filters.center, filters.radius);
-        const f = transformFilters({ ...filtersRef.current, ...filters }, filterBoundsRef.current);
+        const f = transformFilters(filtersRef.current, filterBoundsRef.current);
         const ids = await getListingIds(f);
         setActiveIds(ids);
         const results = await getListings(f);
         setResults(results);
-        filtersRef.current = { ...filtersRef.current, ...filters };
       }
     }, 200)
   ), [map]);
+
+  useEffect(() => {
+    if (!map || !itemsFilter || type !== "items") return;
+    const { country, city } = itemsFilter;
+    onFiltersChange({ country, city });
+  }, [map, itemsFilter, onFiltersChange]); // eslint-disable-line
 
   useEffect(() => {
     if (filtersRef.current) {
@@ -62,10 +70,36 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
   }, [onFiltersChange, filterBounds]);
 
   useEffect(() => {
-    if (map && styleLoaded && type === "main") {
+    if (map && styleLoaded && (type === "main" || type === "items")) {
       const layer = { source: highlight.sourceId, sourceLayer: 'provider' };
       map.removeFeatureState(layer);
-      if (activeIds) activeIds.forEach(id => map.setFeatureState({ ...layer, id }, { filtered: true }));
+      if (activeIds) {
+        map.setLayoutProperty(drops.id, "visibility", "visible");
+        map.setLayoutProperty(highlight.id, "visibility", "visible");
+        activeIds.forEach(id => map.setFeatureState({ ...layer, id }, { filtered: true }));
+        if (type === "items") {
+          const filters = activeIds.map(id => ['==', ['id'], id]);
+          map.setFilter(drops.id, ['any', ...filters]);
+        }
+      } else if (type === 'items') {
+        map.setLayoutProperty(drops.id, "visibility", "none");
+        map.setLayoutProperty(highlight.id, "visibility", "none");
+      }
+      (async () => {
+        if (type === "items" && filtersRef.current) {
+          const { country, city } = filtersRef.current;
+          if (country || city) {
+            const address = `${city ? city + ', ' : ''}${country}`;
+            const g = await geocode(address);
+            const result = g.results[0];
+            if (result) {
+              const b = result.geometry.viewport;
+              const bounds = [b.southwest.lng, b.southwest.lat, b.northeast.lng, b.northeast.lat];
+              map.fitBounds(bounds as any);
+            }
+          }
+        }
+      })();
     }
   }, [map, styleLoaded, activeIds]); // eslint-disable-line
 
@@ -121,7 +155,7 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
       const marker = new mapboxgl.Marker({ draggable: type === 'marker', color: "#40a9ff" })
       if (markerPos) marker.setLngLat(markerPos);
 
-      if (type === "main") {
+      if (type === "main" || type === "items") {
 
         const mapMoveHandler = () => {
           filtersRef.current = { ...filtersRef.current, bounds: map.getBounds() as any };
@@ -162,8 +196,10 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, onMarkerPosChange }) => {
           }
         });
 
-        map.on("zoomend", mapMoveHandler);
-        map.on('moveend', mapMoveHandler);
+        if (type === "main") {
+          map.on("zoomend", mapMoveHandler);
+          map.on('moveend', mapMoveHandler);
+        }
 
       }
 

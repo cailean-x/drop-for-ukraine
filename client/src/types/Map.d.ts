@@ -15,13 +15,18 @@ declare module Map {
   }
 
   interface Filter {
-    country?: string;
-    city?: string;
+    country?: string | null;
+    city?: string | null;
     type?: string;
     capacity?: [number, number];
     bounds?: MapBounds | null;
     center?: [number, number] | null;
     radius?: number;
+  }
+
+  interface ItemsFilter {
+    country?: string | null;
+    city?: string | null;
   }
 
   interface MapBounds {

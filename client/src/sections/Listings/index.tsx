@@ -15,6 +15,7 @@ import {
   ListingsPagination,
   ListingsSkeleton,
 } from "./components";
+import MapboxMap from "sections/Home/components/MapBox";
 
 interface MatchParams {
   location: string;
@@ -123,6 +124,9 @@ export const Listings = () => {
     <Content className="listings">
       {listingsRegionElement}
       {listingsSectionElement}
+      {data && data.listings && (
+        <MapboxMap type="items" itemsFilter={{ country: data.listings.country, city: data.listings.city }} />
+      )}
     </Content>
   );
 };
