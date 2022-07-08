@@ -75,7 +75,7 @@ export const Listings = () => {
     listings && listings.result.length ? (
       <div>
         <Affix offsetTop={64}>
-          <>
+          <div>
             <ListingsPagination
               total={listings.total}
               page={page}
@@ -83,7 +83,7 @@ export const Listings = () => {
               setPage={setPage}
             />
             <ListingsFilters filter={filter} setFilter={setFilter} />
-          </>
+          </div>
         </Affix>
         <List
           grid={{
