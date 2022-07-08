@@ -3,6 +3,8 @@ import { AutoComplete } from 'antd';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { geocode } from "lib/api/map";
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+import { renderTerritory } from "sections/Home/components/MapBox/layers/territory";
+import { getTerritory } from "lib/api/map";
 
 interface Props {
   map: mapboxgl.Map | null;
@@ -19,8 +21,10 @@ const AddressFilter: React.FC<Props> = ({ map, country, city, disabled = false, 
   const [dataSource, setDataSource] = useState<Map.AddressFilterItem[]>();
   const defaultBounds = useMemo(() => [-19.199, 36.825, 52.159, 64.131], []);
   const geocoderRef = useRef(geocoder);
+  const addressRef = useRef({ country, city });
 
   useEffect(() => { geocoderRef.current = geocoder }, [geocoder]);
+  useEffect(() => { addressRef.current = { country, city } }, [country, city]);
   useEffect(() => { onChange(center) }, [center]); // eslint-disable-line
 
   useEffect(() => {
@@ -28,16 +32,26 @@ const AddressFilter: React.FC<Props> = ({ map, country, city, disabled = false, 
       if (!map || !geocoderRef.current) return;
       if (country || city) {
         const address = `${city ? city + ', ' : ''}${country}`;
-        const g = await geocode(address);
-        if (g.results[0]) {
-          const b = g.results[0].geometry.bounds;
-          const bounds = [b.southwest.lng, b.southwest.lat, b.northeast.lng, b.northeast.lat];
-          geocoderRef.current.setBbox(bounds as any);
-          map.fitBounds(bounds as any);
+        const [g, territory] = await Promise.all([geocode(address), getTerritory(address)]);
+        const result = g.results[0];
+        if (addressRef.current.country || addressRef.current.city) {
+          renderTerritory(map, territory);
+          if (result) {
+            const b = result.geometry.viewport;
+            const countryInfo = result.address_components.find(c => c.types.includes("country"));
+            const bounds = [b.southwest.lng, b.southwest.lat, b.northeast.lng, b.northeast.lat];
+            geocoderRef.current.setBbox(bounds as any);
+            map.fitBounds(bounds as any);
+            if (countryInfo) {
+              geocoderRef.current.setCountries(countryInfo.short_name.toLocaleLowerCase());
+            }
+          }
         }
       } else {
         geocoderRef.current.setBbox(defaultBounds as any);
+        geocoderRef.current.setCountries("");
         map.fitBounds(defaultBounds as any);
+        renderTerritory(map);
       }
       setValue("");
       setCenter(null);
@@ -92,6 +106,7 @@ const AddressFilter: React.FC<Props> = ({ map, country, city, disabled = false, 
         setDataSource(results);
       }
     });
+    (window as any).geocoder = geocoder;
     map.addControl(geocoder);
     setGeocoder(geocoder);
   }, [map, defaultBounds]);

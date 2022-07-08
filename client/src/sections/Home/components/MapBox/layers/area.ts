@@ -1,7 +1,7 @@
 import mapboxgl from 'mapbox-gl';
 import { lineString } from '@turf/helpers';
 import turfCircle from '@turf/circle';
-import drops from "sections/Home/components/MapBox/layers/drops";
+import highlight from "sections/Home/components/MapBox/layers/highlight";
 
 export const renderAreaRadius = (() => {
   let lastState = "";
@@ -37,7 +37,7 @@ export const renderAreaRadius = (() => {
         'fill-opacity': 0.2,
         'fill-outline-color': 'rgba(253, 178, 109, 0)'
       }
-    }, drops.id);
+    }, highlight.id);
   
     map.addLayer({
       id: 'area-radius-stroke',
@@ -51,7 +51,7 @@ export const renderAreaRadius = (() => {
         'line-width': 3,
         'line-opacity': 0.3,
       }
-    }, drops.id);
+    }, highlight.id);
 
     const bounds = new mapboxgl.LngLatBounds();
     line.geometry.coordinates.forEach(c => bounds.extend(c as [number, number]));

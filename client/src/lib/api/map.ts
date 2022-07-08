@@ -31,3 +31,12 @@ export const geocode = async (address: string): Promise<Map.GeocodeResult> => {
   const result = await fetch(`${URL}?address=${encodeURIComponent(address)}&key=${KEY}`);
   return result.json();
 }
+
+export const getTerritory = async (address: string): Promise<Required<mapboxgl.GeoJSONSourceOptions>["data"] | null> => {
+  const URL = "https://nominatim.openstreetmap.org/search.php";
+  const query = encodeURIComponent(address);
+  const result = await fetch(`${URL}?q=${query}&polygon_geojson=1&limit=2&polygon_threshold=0&format=jsonv2`);
+  const data = await result.json() as Map.TerritoryResult;
+  const polygonItem = data.find((d: any) => ["Polygon", "MultiPolygon"].includes(d.geojson.type));
+  return polygonItem ? polygonItem.geojson : null;
+}

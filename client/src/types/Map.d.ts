@@ -62,11 +62,15 @@ declare module Map {
   interface GeocodeResult {
     status: string;
     results: {
+      place_id: string;
+      types: string[];
+      formatted_address: string;
       geometry: {
+        location_type: string;
         location: {
           lat: number;
           lng: number;
-        },
+        };
         bounds: {
           northeast: {
             lat: number;
@@ -76,10 +80,36 @@ declare module Map {
             lat: number;
             lng: number;
           }
-        }
+        };
+        viewport: {
+          northeast: {
+            lat: number;
+            lng: number;
+          },
+          southwest: {
+            lat: number;
+            lng: number;
+          }
+        };
       }
+      address_components: {
+        long_name: string;
+        short_name: string;
+        types: string[];
+      }[];
     }[];
   }
+
+  type TerritoryResult = {
+    display_name: string;
+    category: string;
+    importance: number;
+    lat: number;
+    lon: string;
+    place_id: number;
+    type: string;
+    geojson: Required<mapboxgl.GeoJSONSourceOptions>["data"];
+  }[];
 
   namespace Response {
 
