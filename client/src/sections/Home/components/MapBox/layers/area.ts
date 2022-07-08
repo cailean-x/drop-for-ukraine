@@ -11,10 +11,10 @@ export const renderAreaRadius = (() => {
     if (center && lastState === state) return;
   
     if (map.getSource('area-radius-fill')) {
-        map.removeLayer('area-radius-fill');
-        map.removeLayer('area-radius-stroke');
-        map.removeSource('area-radius-fill');
-        map.removeSource('area-radius-stroke');
+      map.removeLayer('area-radius-fill');
+      map.removeLayer('area-radius-stroke');
+      map.removeSource('area-radius-fill');
+      map.removeSource('area-radius-stroke');
     }
   
     if (!center) {
@@ -40,17 +40,17 @@ export const renderAreaRadius = (() => {
     }, drops.id);
   
     map.addLayer({
-        id: 'area-radius-stroke',
-        type: 'line',
-        source: {
-          type: 'geojson',
-          data: line
-        },
-        paint: {
-            'line-color': '#40a9ff',
-            'line-width': 3,
-            'line-opacity': 0.3,
-        }
+      id: 'area-radius-stroke',
+      type: 'line',
+      source: {
+        type: 'geojson',
+        data: line
+      },
+      paint: {
+        'line-color': '#40a9ff',
+        'line-width': 3,
+        'line-opacity': 0.3,
+      }
     }, drops.id);
 
     const bounds = new mapboxgl.LngLatBounds();
