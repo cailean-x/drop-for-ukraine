@@ -9,6 +9,8 @@ export const LISTINGS = gql`
   ) {
     listings(location: $location, filter: $filter, limit: $limit, page: $page) {
       region
+      country
+      city
       total
       result {
         id

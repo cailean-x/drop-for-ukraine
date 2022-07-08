@@ -28,6 +28,8 @@ export interface ListingsArgs {
 
 export interface ListingsData {
   region: string | null;
+  country: string | null;
+  city: string | null;
   total: number;
   result: Listing[];
 }

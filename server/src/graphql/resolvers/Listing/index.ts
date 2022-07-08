@@ -70,6 +70,8 @@ export const listingResolvers: IResolvers = {
         const query: ListingsQuery = {};
         const data: ListingsData = {
           region: null,
+          country: null,
+          city: null,
           total: 0,
           result: [],
         };
@@ -88,6 +90,8 @@ export const listingResolvers: IResolvers = {
           const cityText = city ? `${city}, ` : "";
           const adminText = admin ? `${admin}, ` : "";
           data.region = `${cityText}${adminText}${country}`;
+          data.country = country;
+          data.city = city;
         }
 
         let cursor = await db.listings.find(query);

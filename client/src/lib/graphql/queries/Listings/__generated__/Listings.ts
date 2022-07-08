@@ -21,6 +21,8 @@ export interface Listings_listings_result {
 export interface Listings_listings {
   __typename: "Listings";
   region: string | null;
+  country: string | null;
+  city: string | null;
   total: number;
   result: Listings_listings_result[];
 }
