@@ -153,7 +153,6 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, itemsFilter, onMarkerPosC
 
       const popup = new mapboxgl.Popup({ closeButton: false, closeOnClick: false, maxWidth: "300px" });
       const marker = new mapboxgl.Marker({ draggable: type === 'marker', color: "#40a9ff" })
-      if (markerPos) marker.setLngLat(markerPos);
 
       if (type === "main" || type === "items") {
 
@@ -203,10 +202,13 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, itemsFilter, onMarkerPosC
 
       }
 
-      if (markerPos && ["marker", "item"].includes(type)) {
+      if (["marker", "item"].includes(type)) {
         setMarker(marker);
-        marker.addTo(map);
         marker.on("dragend", () => onMarkerPosChange && onMarkerPosChange(marker.getLngLat()));
+        if (markerPos) {
+          marker.setLngLat(markerPos);
+          marker.addTo(map);
+        }
       }
       
       setStyleLoaded(true);
