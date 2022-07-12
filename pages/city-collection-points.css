@@ -1,0 +1,400 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mulish:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Mulish', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+    font-family: 'Rubik', sans-serif;
+}
+
+.container {
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.top__bttn {
+    width: 100%;
+    background-color: #000;
+}
+
+.top__bttn-text {
+    margin: 0 auto;
+    color: #fff;
+    font-size: 16px;
+    display: block;
+    max-width: 370px;
+    font-weight: 400;
+    line-height: 1em;
+    padding: 12px 0 12px 0;
+    position: relative;
+}
+
+.top__bttn-text::before {
+    content: "";
+    background-image: url(./imgs/🇺🇦.svg);
+    background-size: 100% 100%;
+    display: block;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto 0 auto -20px;
+    position: absolute;
+}
+
+header {
+    width: 100%;
+    margin-top: 20px;
+}
+
+header::after {
+    content: '';
+    background-color: #F2F2F2;
+    height: 2px;
+    display: block;
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 30px;
+    align-items: center;
+}
+
+.header__buttons {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header-logo {
+    max-height: 54px;
+    max-width: 107px;
+}
+
+.language {
+    font-size: 15px;
+    font-weight: 400;
+    color: #757575;
+    position: relative;
+}
+
+.language::before {
+    content: "";
+    background-image: url(./imgs/world-map.svg);
+    background-size: 100% 100%;
+    display: block;
+    width: 16px;
+    height: 16px;
+    max-height: 16px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto 0 auto -20px;
+}
+
+.language::after {
+    content: "";
+    background-image: url(./imgs/vector-arrow.svg);
+    background-size: 100% 100%;
+    display: block;
+    width: 11px;
+    height: 6px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto 0 auto 25px;
+}
+
+.collection__button {
+    width: 100%;
+    max-width: 215px;
+    max-height: 40px;
+    border-radius: 100px;
+    background-color: #4095DA;
+    margin-left: 15px;
+}
+
+.collection__button:hover {
+    background-color: #000;
+    transition: 0.3s linear;
+}
+
+.collection__button-link {
+    width: 100%;
+}
+
+.collection__button-text {
+    padding: 10px 20px 10px 40px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+}
+
+.collection__button-text::before {
+    content: "";
+    background-image: url(./imgs/plus-icon.svg);
+    background-size: 100% 100%;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto 0 15px 20px;
+}
+
+.sing-in__button-link {
+    color: #4095DA;
+}
+
+.sing-in__button-link:hover {
+    color: #000;
+    text-decoration: underline;
+    transition: 0.5s ease;
+}
+
+.sing-in__button-text {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.breadcrumb {
+    margin: 30px 0;
+    list-style: none;
+    background-color: #fff;
+}
+
+
+/* Display list items side by side */
+
+.breadcrumb li {
+    display: inline;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+
+/* Add a slash symbol (/) before/behind each list item */
+
+.breadcrumb li+li:before {
+    padding: 15px;
+    color: #757575;
+    content: ">";
+}
+
+
+/* Add a color to all links inside the list */
+
+.breadcrumb li a {
+    text-decoration: none;
+    color: #757575;
+}
+
+.breadcrumb li {
+    display: inline;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+
+/* Add a color on mouse-over */
+
+.breadcrumb li a:hover {
+    color: #4095DA;
+    text-decoration: underline;
+    transition: 0.3s ease;
+}
+
+.map__container-title {
+    margin-top: 30px;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.filter__container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter,
+.sort {
+    display: flex;
+    justify-content: space-between;
+    max-width: 300px;
+    align-items: center;
+}
+
+.sort-list,
+.filter-list {
+    margin-left: 40px;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.collection__cards__container {
+    margin-top: 60px;
+}
+
+.collection__cards__container-title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.add {
+    background: linear-gradient(116.89deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 63.43%), url(./imgs/img.place.png) no-repeat;
+    box-shadow: 0px 1px 24px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6px);
+    /* Note: backdrop-filter has minimal browser support */
+    border-radius: 10px;
+    background-size: 100% 100%;
+}
+
+.bttn-add {
+    width: 100%;
+    height: 100%;
+    max-width: 60px;
+    max-height: 60px;
+    margin: 0 auto;
+}
+
+.collection__cards__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-row-gap: 20px;
+    grid-column-gap: 22px;
+}
+
+.collection__cards__item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-width: 270px;
+    height: 318px;
+    position: relative;
+    border: 1px solid #F2F2F2;
+}
+
+.collection__cards__wrapper {
+    margin: auto;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.cards-icon {
+    position: absolute;
+    top: 80px;
+    left: 20px;
+}
+
+.count-info {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    padding-right: 10px;
+    background-color: #FFFFFFB2;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.count__info-text {
+    margin-left: 10px;
+}
+
+.collection__cards__text__wrapper {
+    margin-top: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.person-icon {
+    margin-left: -15px;
+}
+
+.cards__item-title {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.cards__item-text {
+    font-size: 14px;
+    font-weight: 400;
+    color: #757575;
+    padding: 10px 0 10px 0;
+}
+
+.collection-points {
+    font-size: 15px;
+    font-weight: 400;
+    color: #757575;
+    text-align: center;
+    margin-top: 30px;
+}
+
+footer {
+    width: 100%;
+}
+
+.footer-title {
+    text-align: center;
+    padding: 50px 0 30px 0;
+    color: #757575;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.square {
+    position: relative;
+    margin-left: 25px;
+}
+
+.square::before {
+    content: "";
+    background-image: url(./imgs/vector\ icon.square.svg);
+    background-size: 100% 100%;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto 0 14px -25px;
+}
+
+.location {
+    position: relative;
+    margin-left: 25px;
+    padding-top: 0;
+}
+
+.location::before {
+    content: "";
+    background-image: url(./imgs/vector\ icon.marker.svg);
+    background-size: 100% 100%;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: 10px 0 14px -25px;
+}

@@ -310,12 +310,191 @@
                         </div>
                     </div>
                 </div>
-        </div>
+                <div class="reviews">
+                    <div class="reviews__container">
+                        <h5 class="reviews-title">Reviews</h5>
+                        <div class="reviews__area">
+                            <div class="rating-area">
+                                <input type="radio" id="star-5" name="rating" value="5">
+                                <label for="star-5" title="Оценка «5»"></label>
+                                <input type="radio" id="star-4" name="rating" value="4">
+                                <label for="star-4" title="Оценка «4»"></label>
+                                <input type="radio" id="star-3" name="rating" value="3">
+                                <label for="star-3" title="Оценка «3»"></label>
+                                <input type="radio" id="star-2" name="rating" value="2">
+                                <label for="star-2" title="Оценка «2»"></label>
+                                <input type="radio" id="star-1" name="rating" value="1">
+                                <label for="star-1" title="Оценка «1»"></label>
+                            </div>
+                            <div class="rating__result">
+                                <span class="avg-result">
+                                    4.9/5
+                            </span>
+                            </div>
+                            <div class="reviews__counter">
+                                <span>(154)reviews</span>
+                            </div>
+                        </div>
+                        <div class="reviews__comments">
+                            <div class="reviews__comments__item">
+                                <div class="reviews__comments-comment">
+                                    <div class="user__info">
+                                        <div class="user-avatar">
+                                            <img src="./imgs/shape circle.svg" alt="">
+                                        </div>
+                                        <span>by</span>
+                                        <div class="username">Maks Wasilewski</div>
+                                    </div>
+                                    <span class="posted-time">2 hours ago</span>
+                                </div>
+                                <div class="user-text">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit duis vulputate vitae pharetra. Egestas a consectetur.</p>
+                                </div>
+                            </div>
+                            <div class="reviews__comments__item">
+                                <div class="reviews__comments-comment">
+                                    <div class="user__info">
+                                        <div class="user-avatar">
+                                            <img src="./imgs/avatar2.svg" alt="">
+                                        </div>
+                                        <span>by</span>
+                                        <div class="username">Roksana Wozniak</div>
+                                    </div>
+                                    <span class="posted-time">12 hours ago</span>
+                                </div>
+                                <div class="user-text">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit duis vulputate vitae pharetra. Egestas a consectetur.</p>
+                                </div>
+                                <div class="reviews__comments__item">
+                                    <div class="reviews__comments-comment">
+                                        <div class="user__info">
+                                            <div class="user-avatar">
+                                                <img src="./imgs/avatar3.svg" alt="">
+                                            </div>
+                                            <span>by</span>
+                                            <div class="username">Maks Wasilewski</div>
+                                        </div>
+                                        <span class="posted-time">2 hours ago</span>
+                                    </div>
+                                    <div class="user-text">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Elit duis vulputate vitae pharetra. Egestas a consectetur.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pages__swiper">
+                                <a href="#"><i class="arrow left"></i></a>
+                                <div class="pages__counter">
+                                    <span>of 53</span>
+                                </div>
+                                <a href="#"> <i class="arrow right"></i></a>
+
+                            </div>
+                            <div class="comment__area">
+                                <h5 class="comment-title">Leave a comment</h5>
+                                <textarea name="comment" cols="60" rows="8" placeholder="Type your text here" class="comment-field"></textarea></p>
+                                <p><input type="submit" value="Send comment" class="send-bttn"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="map__container">
+                        <h4 class="map__container-title">Location</h4>
+                        <div class="map">
+                            <!---место для карты --->
+                        </div>
+
+                    </div>
+                    <div class="message__to-singin">
+                        <img src="./imgs/icon.!.svg" alt="" class="warning-icon">
+                        <p class="message-text">To reserve a date, <a href="#" class="sing-in">sing in</a></p>
+                    </div>
+                    <div class="date__container">
+                        <h4 class="date__container-title">When do you plan to come?</h4>
+                        <p class="date__container-text">Reserve a date is easy - just click on the date in the calendar, and then the "Reserve date" button will activate. By clicking on the button, you will receive an email with a code confirming the booking. Enter the code in the field
+                            that appears. </p>
+                        <div class="date__calendar">
+                            <div class="top__date__wrapper">
+                                <div class="date__calendar-month">
+                                    <i class="arrow left"></i>
+                                    <select name="month" id="Month" class="select">
+                                        <option value="January">January</option>
+                                        <option value="February ">February </option>
+                                        <option value="March">March </option>
+                                        <option value="April">April</option>
+                                        <option value="May">May</option>
+                                        <option value="June">June</option>
+                                        <option value="July">July</option>
+                                        <option value="August">August</option>
+                                        <option value="SEPTEMBER">September</option>
+                                        <option value="October">October</option>
+                                        <option value="November">November</option>
+                                        <option value="December">December</option>
+                                    </select><br>
+                                    <i class="arrow right"></i>
+                                </div>
+                                <div class="date__calendar__btn">
+                                    <a href="#">
+                                        <p class="date__calendar__btn-text">Reserve date</p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="day__bar">
+                                <p class="day__bar-text">Mon</p>
+                                <p class="day__bar-text">Tue</p>
+                                <p class="day__bar-text">Wed</p>
+                                <p class="day__bar-text">Thu</p>
+                                <p class="day__bar-text">Fri</p>
+                                <p class="day__bar-text">Sat</p>
+                                <p class="day__bar-text">Sun</p>
+                            </div>
+                            <div class="date__container__grid">
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+                                <div class="grid_item"></div>
+
+                            </div>
+                        </div>
     </main>
 
     <footer class="footer">
+        <p class="footer-title">© 2022. DropForUkraine</p>
     </footer>
-
 </body>
 
 </html>
