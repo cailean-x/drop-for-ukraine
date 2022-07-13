@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Заголовок моей страницы</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="null.css">
+    <link rel="stylesheet" href="profile-page.css">
+
+</head>
+
+<body>
+    <div class="top__bttn">
+        <a href="#" class="donation-link">
+            <p class="top__bttn-text">Support Ukraine - donate to buy a Bayraktar dron</p>
+        </a>
+    </div>
+    <header class="header">
+        <div class="container">
+            <div class="header__container">
+                <div class="header-logo"><img src="./imgs/header-logo.svg" alt=""></div>
+                <div class="header__buttons">
+                    <div class="language__button">
+                        <a href="#" class="language">EN</a>
+                    </div>
+                    <div class="profile__container">
+                        <p class="nickname">Will</p>
+                        <img src="./imgs/avatar.svg" alt="" class="avatar">
+                        <i class="arrow-down" id="arrow"></i>
+                    </div>
+                    <div class="profile__window" id="profile">
+                        <img src="./imgs/avatar-window.svg" alt="" class="avatar-window">
+                        <h4 class="nickname-profile">Will Waters</h4>
+                        <p class="contact">Contact: will.waters@gmail.com </p>
+                        <h4 class="details">Additional Details</h4>
+                        <p>Interested in major help?</p>
+                        <p> Contact the DropForUkraine team!</p>
+                        <a href="" class="profile-bttn">Talk to us</a>
+                        <a href="" class="logout">Log out</a>
+                        <p class="description">DropForUkraine is a nonprofit organization</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Profile</a></li>
+            </ul>
+            <div class="hero__container">
+                <h1 class="hero__container-title">My profile</h1>
+                <h4 class="hero__container-subtitle">My listings</h4>
+                <p class="hero__container-description">This section displays the listings that you have placed and made available for booking.</p>
+                <div class="hero__container__listings">
+                    <div class="collection__cards__container">
+                        <div class="collection__cards__grid">
+                            <div class="collection__cards__item">
+                                <div class="collection__cards__img__wrapper">
+                                    <img src="./imgs/listing-place.png" alt="">
+                                </div>
+                                <div class="collection__cards__text__wrapper">
+                                    <div class="count-info">
+                                        <img src="./imgs/Ellipse 63.svg" alt=""><img src="./imgs/Vector (6).svg" class="person-icon">
+                                        <p class="count__info-text">32</p>
+                                    </div>
+                                    <img src="./imgs/listing-avatar.svg" alt="" class="cards-icon">
+                                    <div class="dot" id="dot"></div>
+                                    <div class="edit__container" id="edit">
+                                        <a href="#" class="edit">Edit</a>
+                                        <a href="#" class="delete">Delete</a>
+                                    </div>
+                                    <h3 class="cards__item-title">FACRO accepts humanitarian aid for Ukraine</h3>
+                                    <p class="cards__item-text square">1,050 m2</p>
+                                    <p class="cards__item-text location">Warsaw, Poland, Partyzantow 98A</p>
+                                    <a href="#" class="cards__item-bttn">View calendar</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bookings__container">
+                        <h3 class="bookings__container-title">My bookings</h3>
+                        <p class="bookings__container-description">This section highlights the bookings you've made at various collection points.</p>
+                        <div class="booked__items">
+                            <p>You haven't made any bookings!</p>
+                        </div>
+                    </div>
+                </div>
+
+    </main>
+
+
+
+    <footer class="footer">
+        <p class="footer-title">© 2022. DropForUkraine</p>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
