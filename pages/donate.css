@@ -1,0 +1,149 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Mulish', sans-serif;
+    font-family: 'PT Sans', sans-serif;
+    font-family: 'Rubik', sans-serif;
+    z-index: 1;
+    background-color: #000;
+}
+
+.container {
+    width: 100%;
+    max-width: 1170px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+header {
+    width: 100%;
+    margin-top: 20px;
+    position: absolute;
+}
+
+.header__container {
+    display: flex;
+    justify-content: center;
+}
+
+.header__logo {
+    max-height: 54px;
+    max-width: 107px;
+}
+
+.hero__container {
+    background-image: url(./imgs/420\ 1.png);
+    background-size: 100% 100%;
+    z-index: 10;
+    width: 100%;
+    max-width: 1170px;
+    height: 650px;
+    margin: 0 auto;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.hero-title {
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 64px;
+    color: #FFFFFF;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.donation__bar {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.counter {
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 36px;
+    color: #FFFFFF;
+}
+
+.text__wrap {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 20px;
+}
+
+.donation__amount {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 24px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chart {
+    justify-content: flex-start;
+    border-radius: 100px;
+    align-items: center;
+    position: relative;
+    padding: 0 5px;
+    display: flex;
+    height: 40px;
+    width: 500px;
+    background: rgba(64, 149, 218, 0.1);
+    border: 1px solid #4095DA;
+    border-radius: 100px
+}
+
+.chart span {
+    /* You can modify the value below to change the distance between the percentage number and the bar */
+    margin-left: 5px;
+    color: #fff;
+    font-weight: bolder;
+}
+
+.bar {
+    /* You can modify the total time used for the animation here */
+    animation: load 3s normal forwards;
+    /* 
+    Add a little spice by having a shadow below the bar.
+    Feel free to comment out this line below to have an even LITE version :D 
+    */
+    margin-left: -5px;
+    border-radius: 100px;
+    background: #4095DA;
+    height: 40px;
+    width: 0;
+}
+
+@keyframes load {
+    0% {
+        width: 0;
+    }
+    100% {
+        /* You need to change the percentage below to match the value in the corresponding <span> */
+        width: 24%;
+    }
+}
+
+.donate-bttn {
+    margin: 30px auto 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 50px;
+    width: 154px;
+    height: 55px;
+    background: #4095DA;
+    border-radius: 100px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 15px;
+}

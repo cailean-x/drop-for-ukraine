@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Заголовок моей страницы</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="null.css">
+    <link rel="stylesheet" href="profile-page-2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <div class="top__bttn">
+        <a href="#" class="donation-link">
+            <p class="top__bttn-text">Support Ukraine - donate to buy a Bayraktar dron</p>
+        </a>
+    </div>
+    <header class="header">
+        <div class="container">
+            <div class="header__container">
+                <div class="header-logo"><img src="./imgs/header-logo.svg" alt=""></div>
+                <div class="header__buttons">
+                    <div class="notifications">
+                        <img src="./imgs/vector icon.notification.svg" alt="">
+                    </div>
+                    <div class="language__button">
+                        <a href="#" class="language">EN</a>
+                    </div>
+                    <div class="profile__container">
+                        <p class="nickname">Will</p>
+                        <img src="./imgs/avatar.svg" alt="" class="avatar">
+                        <i class="arrow-down" id="arrow"></i>
+                    </div>
+                    <div class="profile__window" id="profile">
+                        <img src="./imgs/avatar-window.svg" alt="" class="avatar-window">
+                        <h4 class="nickname-profile">Will Waters</h4>
+                        <p class="contact">Contact: will.waters@gmail.com </p>
+                        <h4 class="details">Additional Details</h4>
+                        <p>Interested in major help?</p>
+                        <p> Contact the DropForUkraine team!</p>
+                        <a href="" class="profile-bttn">Talk to us</a>
+                        <a href="" class="logout">Log out</a>
+                        <p class="description">DropForUkraine is a nonprofit organization</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Profile</a></li>
+            </ul>
+            <div class="hero__container">
+                <h1 class="hero__container-title">My profile</h1>
+                <h4 class="hero__container-subtitle">My listings</h4>
+                <p class="hero__container-description">This section displays the listings that you have placed and made available for booking.</p>
+                <div class="hero__container__listings">
+                    <div class="collection__cards__container">
+                        <div class="booked__items">
+                            <p>You haven't made any bookings!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="savings__container">
+                    <h3 class="savings__container-title">Savings list</h3>
+                    <p class="savings__container-subtitle">This section displays ads that you have added to your saved.</p>
+                    <div class="savings__container__grid">
+                        <div class="booked__items">
+                            <p>You don't have any saved listings</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bookings__container">
+                    <h3 class="bookings-title">
+                        My bookings
+                    </h3>
+                    <p class="bookings-subtitle">This section highlights the bookings you've made at various collection points.</p>
+                    <div class="bookings__content__wrapper">
+                        <table class="listings__table">
+                            <tr>
+                                <th>Collection point</th>
+                                <th>Type</th>
+                                <th>Date</th>
+                                <th>Location</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="table-item"><img src="./imgs/booking-icon-1.svg" alt=""><a href="#" class="table-link"> Volunteer Center, accepting humanitarian aid for Ukraine</a></div>
+                                </td>
+                                <td>Industrial</td>
+                                <td>
+                                    <p class="table-date">Mon: 26/07/2022</p>
+                                </td>
+                                <td>
+                                    <p class="table-location">Warsaw, Poland, Cegielniana 72A</p>
+                                </td>
+                                <td>
+                                    <a href="#" class="table-bttn">Cancel booking</a></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="table-item"> <img src="./imgs/booking-icon-2.svg" alt=""> <a href="#" class="table-link"> 632 square meters to help Ukraine</a></div>
+                                </td>
+                                <td>Industrial</td>
+                                <td>
+                                    <p class="table-date">Fri: 16/07/2022</p>
+                                </td>
+                                <td>
+                                    <p class="table-location">Warsaw, Poland, Curie-Sklodowskiej Marii 93A</p>
+                                </td>
+                                <td><a href="#" class="table-bttn">Cancel booking</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+
+
+    <footer class="footer">
+        <p class="footer-title">© 2022. DropForUkraine</p>
+    </footer>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
