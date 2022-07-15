@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Button, Popover, Tabs } from "antd";
+import styled from "styled-components";
 
 interface Props {
   filters?: React.ReactNode;
@@ -23,19 +24,17 @@ const MapSideber: React.FC<Props> = ({ filters, results }) => {
 
   return (
     <>
-      <div className="map-filters-open">
+      <FilterOpenButton>
         <Popover content={<span>Show filters</span>} placement="right">
           <Button type="default" icon="filter" onClick={() => setVisible(true)}></Button>
         </Popover>
-      </div>
-      <div
+      </FilterOpenButton>
+      <Filters
         ref={sidebarNode}
-        className="map-filters"
         style={{ left: visible ? "0" : "-" + sidebarWidth }}
       >
-        <div className="map-filters-inner">
-          <Tabs
-            className="sidebar-tabs"
+        <FiltersInner>
+          <FilterTabs
             tabBarGutter={5}
             tabBarExtraContent={<Button type="default" icon="close"onClick={() => setVisible(false)}></Button>}
           >
@@ -45,12 +44,63 @@ const MapSideber: React.FC<Props> = ({ filters, results }) => {
             <Tabs.TabPane tab="Results" key="2">
               {results}
             </Tabs.TabPane>
-          </Tabs>
-        </div>
-      </div>
+          </FilterTabs>
+        </FiltersInner>
+      </Filters>
     </>
   );
 }
 
-
 export default MapSideber;
+
+const FilterOpenButton = styled.div`
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  background: #fff;
+  padding: 5px 8px;
+  z-index: 5;
+  box-shadow: 0px 0px 3px 0px #c1c1c1;
+  border-radius: 5px;
+`;
+
+const Filters = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 330px;
+  height: 100%;
+  z-index: 10;
+  transition: left 0.2s linear;
+  background-color: #fff;
+
+  @media screen and (max-width: 700px) {
+    width: 100%;
+  }
+
+`;
+
+const FiltersInner = styled.div`
+  width: 100%;
+  height: 100%;;
+`;
+
+const FilterTabs = styled<any>(Tabs)`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+
+  & .ant-tabs-content {
+    flex-grow: 1;
+    height: 1px;
+  }
+
+  & .ant-tabs-bar {
+    padding: 0 15px;
+    margin: 0;
+  }
+
+`;
+
+

@@ -3,7 +3,7 @@ import ReactDOM from "react-dom"
 import { useHistory } from "react-router-dom";
 import debounce from 'lodash.debounce';
 import mapboxgl from "mapbox-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
+import styled from "styled-components";
 import MapFilters from "sections/Home/components/MapBox/Sidebar/Filters";
 import Results from "sections/Home/components/MapBox/Sidebar/Results";
 import Sidebar from "sections/Home/components/MapBox/Sidebar";
@@ -15,6 +15,7 @@ import highlight from "sections/Home/components/MapBox/layers/highlight";
 import { renderAreaRadius } from "sections/Home/components/MapBox/layers/area";
 import { transformFilters } from "lib/utils/map";
 import { geocode } from "lib/api/map";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 (mapboxgl as any).workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
@@ -216,8 +217,8 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, itemsFilter, onMarkerPosC
   }, [map, history]); // eslint-disable-line
 
   return (
-    <div className="map-container">
-      <div ref={mapNode} className="map" />
+    <MapContainer>
+      <Map ref={mapNode} />
       {type === "main" && (
         <>
           <Sidebar
@@ -227,8 +228,81 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, itemsFilter, onMarkerPosC
           <BoundsFilter filterBoundsState={[filterBounds, setFilterBounds]} />
         </>
       )}
-    </div>
+    </MapContainer>
   );
 }
 
 export default MapboxMap;
+
+const MapContainer = styled.div`
+  width: 100%;
+  max-height: calc(100vh - 150px);
+  position: relative;
+  border: 1px solid #e8e8e8;
+  overflow: hidden;
+
+  &::before {
+    float: left;
+    padding-top: 100%;
+    content: "";
+  }
+
+  &::after {
+    display: block;
+    content: "";
+    clear: both;
+  }
+
+  & .mapboxgl-ctrl-bottom-left,
+  & .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
+    display: none;
+  }
+
+  & .mapboxgl-popup-content {
+    opacity: 0.9;
+    text-align: left;
+    box-shadow: 0 1px 3px 3px #a57f7f1a;
+    border-radius: 4px;
+    background: #f4f6f9;
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 20px;
+  }
+
+  & .mapboxgl-popup-tip {
+    opacity: 0.9;
+    position: relative;
+  }
+
+  & .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+    border-top-color: #f4f6f9 !important;
+    top: -1px;
+  }
+
+  & .mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
+    border-bottom-color: #f4f6f9 !important;
+    bottom: -1px;
+  }
+
+  & .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+    border-right-color: #f4f6f9 !important;
+    right: -1px;
+  }
+
+  & .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+    border-left-color: #f4f6f9 !important;
+    left: -1px;
+  }
+
+  & .mapboxgl-ctrl-geocoder {
+    display: none;
+  }
+
+`;
+
+const Map = styled.div`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+`;

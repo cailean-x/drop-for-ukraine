@@ -4,6 +4,7 @@ import { FormComponentProps } from 'antd/lib/form';
 import { getFilters, getFilterCities } from "lib/api/map";
 import AddressFilter from "sections/Home/components/MapBox/Sidebar/Filters/AddressFilter";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
+import styled from "styled-components";
 
 interface FiltersProps {
   map: mapboxgl.Map | null;
@@ -39,12 +40,9 @@ const MapFilters: React.FC<FiltersProps & FormComponentProps<Map.Filter>> = ({ m
   }, []); // eslint-disable-line
 
   return (
-    <OverlayScrollbarsComponent
-      options={{ scrollbars: { autoHide: "scroll" } }}
-      className="scrollview"
-    >
+    <ScrollView options={{ scrollbars: { autoHide: "scroll" } }}>
       {filters && (
-        <Form layout="vertical" className="map-filters-form">
+        <FiltersForm layout="vertical">
           <Form.Item label="Country">
             {form.getFieldDecorator('country', { initialValue: '' })(
               <Select
@@ -116,9 +114,9 @@ const MapFilters: React.FC<FiltersProps & FormComponentProps<Map.Filter>> = ({ m
               />
             )}
           </Form.Item>
-        </Form>
+        </FiltersForm>
       )}
-    </OverlayScrollbarsComponent>
+    </ScrollView>
   );
 }
 
@@ -126,5 +124,18 @@ const MapFiltersWrapper = Form.create<FiltersProps & FormComponentProps<Map.Filt
   name: "map_filters", 
   onValuesChange: props => props.onChange(props.form.getFieldsValue() as Map.Filter),
 })(MapFilters);
+
+const ScrollView = styled(OverlayScrollbarsComponent)`
+  height: 100%;
+  max-height: 100%;
+`;
+
+const FiltersForm = styled(Form)`
+  padding: 15px;
+
+  & .ant-form-item {
+    margin-bottom: 15px;
+  }
+`;
 
 export default React.memo(MapFiltersWrapper);
