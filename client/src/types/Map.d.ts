@@ -48,8 +48,8 @@ declare module Map {
 
   interface Layer {
     id: string;
-    sourceId: string;
-    source: mapboxgl.AnySourceData;
+    sourceId?: string;
+    source?: mapboxgl.AnySourceData;
     layer: mapboxgl. AnyLayer;
   }
 

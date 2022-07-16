@@ -1,7 +1,7 @@
-const highlight: Map.Layer = {
-  id: "drops-highlight-layer",
+const hover: Map.Layer = {
+  id: "drops-hover-layer",
   layer: {
-    "id": "drops-highlight-layer",
+    "id": "drops-hover-layer",
     "type": "symbol",
     "source": "drops-source",
     "source-layer": "provider",
@@ -9,11 +9,11 @@ const highlight: Map.Layer = {
     paint: {
       'icon-opacity': [
         "case",
-        ["boolean", ["feature-state", "hovered"], false], 0, 1
+        ["boolean", ["feature-state", "hovered"], false], 1, 0
       ],
     },
     layout: {
-      'icon-image': 'marker-yellow',
+      'icon-image': 'marker-green',
       'icon-size': 0.3,
       'icon-anchor': 'bottom',
       "icon-ignore-placement": true,
@@ -21,10 +21,10 @@ const highlight: Map.Layer = {
   }
 }
 
-const highlightPoint: Map.Layer = {
-  id: "drops-highlight-point-layer",
+const hoverPoint: Map.Layer = {
+  id: "drops-hover-point-layer",
   layer: {
-    "id": "drops-highlight-point-layer",
+    "id": "drops-hover-point-layer",
     "type": "symbol",
     "source": "drops-source",
     "source-layer": "provider",
@@ -32,16 +32,16 @@ const highlightPoint: Map.Layer = {
     paint: {
       'icon-opacity': [
         "case",
-        ["boolean", ["feature-state", "hovered"], false], 0, 1
+        ["boolean", ["feature-state", "hovered"], false], 1, 0
       ],
     },
     layout: {
-      'icon-image': 'marker-point-yellow',
+      'icon-image': 'marker-point-green',
       'icon-anchor': 'center',
       "icon-ignore-placement": true,
     },
   }
 }
 
-export default highlight;
-export { highlight, highlightPoint };
+export default hover;
+export { hover, hoverPoint };

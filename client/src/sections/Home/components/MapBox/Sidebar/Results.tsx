@@ -2,11 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
-import selection, { selectionId } from "sections/Home/components/MapBox/layers/selection";
 import drops from "sections/Home/components/MapBox/layers/drops";
 import CapacityIcon from "sections/Home/components/MapBox/icons/area.svg";
 import MarkerIcon from "sections/Home/components/MapBox/icons/marker.svg";
-import { isLayerExist } from "lib/utils/map";
 
 interface Props {
   results: Map.MapListing[] | null;
@@ -18,24 +16,13 @@ const MapResults: React.FC<Props> = ({ results, map }) => {
 
   const onHover = (id: number | string) => {
     if (map) {
-      if (isLayerExist(map, selectionId)) {
-        map.removeLayer(selectionId);
-        map.removeSource(selectionId);
-      }
-      const features = map.queryRenderedFeatures({ layers: [drops.id] } as any);
-      const feature = features.filter(f => f.id === id)[0] as any;
-      if (feature) {
-        map.addLayer(selection(feature));
-      }
+      map.setFeatureState({ source: drops.sourceId!, sourceLayer: "provider", id }, { hovered: true });
     }
   }
 
   const onLeave = () => {
     if (map) {
-      if (isLayerExist(map, selectionId)) {
-        map.removeLayer(selectionId);
-        map.removeSource(selectionId);
-      }
+      map.removeFeatureState({ source: drops.sourceId!, sourceLayer: "provider" });
     }
   }
 

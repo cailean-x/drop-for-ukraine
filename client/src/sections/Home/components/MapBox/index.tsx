@@ -10,13 +10,22 @@ import Sidebar from "sections/Home/components/MapBox/Sidebar";
 import BoundsFilter from "sections/Home/components/MapBox/Sidebar/Filters/BoundsFilter";
 import MapControls from "sections/Home/components/MapBox/Controls";
 import MapboxPopup from "sections/Home/components/MapBox/Popup";
-import drops from "sections/Home/components/MapBox/layers/drops";
-import highlight from "sections/Home/components/MapBox/layers/highlight";
+import Marker from "sections/Home/components/MapBox/Marker";
+import { drops, dropsPoint } from "sections/Home/components/MapBox/layers/drops";
+import { highlight, highlightPoint } from "sections/Home/components/MapBox/layers/highlight";
+import { hover, hoverPoint } from "sections/Home/components/MapBox/layers/hover";
 import { renderAreaRadius } from "sections/Home/components/MapBox/layers/area";
-import { transformFilters } from "lib/utils/map";
+import { transformFilters, loadImage } from "lib/utils/map";
 import { getListingIds, getListings } from "lib/api/map";
 import { geocode } from "lib/api/map";
 import "mapbox-gl/dist/mapbox-gl.css";
+import MarkerPointBluetIcon from "sections/Home/components/MapBox/icons/marker_point_blue.svg";
+import MarkerPointYellowtIcon from "sections/Home/components/MapBox/icons/marker_point_yellow.svg";
+import MarkerPointGreentIcon from "sections/Home/components/MapBox/icons/marker_point_green.svg";
+import MarkerBluetIcon from "sections/Home/components/MapBox/icons/marker_blue.svg";
+import MarkerYellowtIcon from "sections/Home/components/MapBox/icons/marker_yellow.svg";
+import MarkerGreentIcon from "sections/Home/components/MapBox/icons/marker_green.svg";
+
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 (mapboxgl as any).workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
@@ -73,20 +82,15 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, itemsFilter, onMarkerPosC
 
   useEffect(() => {
     if (map && styleLoaded && (type === "main" || type === "items")) {
-      const layer = { source: highlight.sourceId, sourceLayer: 'provider' };
+      const layer = { source: drops.sourceId!, sourceLayer: 'provider' };
       map.removeFeatureState(layer);
-      if (activeIds) {
-        map.setLayoutProperty(drops.id, "visibility", "visible");
-        map.setLayoutProperty(highlight.id, "visibility", "visible");
-        activeIds.forEach(id => map.setFeatureState({ ...layer, id }, { filtered: true }));
-        if (type === "items") {
-          const filters = activeIds.map(id => ['==', ['id'], id]);
-          map.setFilter(drops.id, ['any', ...filters]);
-        }
-      } else if (type === 'items') {
-        map.setLayoutProperty(drops.id, "visibility", "none");
-        map.setLayoutProperty(highlight.id, "visibility", "none");
-      }
+      const filter = (activeIds || []).map(id => ['==', ['id'], id]);
+      const negativeFilter = (activeIds || []).map(id => ['!=', ['id'], id]);
+
+      [drops.id, dropsPoint.id].forEach(id => map.setFilter(id, type === "items" ? false : ['all', ...negativeFilter]));
+      [hover.id, hoverPoint.id].forEach(id => map.setFilter(id, type === "items" ? ['any', ...filter] : true));
+      [highlight.id, highlightPoint.id].forEach(id => map.setFilter(id, ['any', ...filter]));
+
       (async () => {
         if (type === "items" && filtersRef.current) {
           const { country, city } = filtersRef.current;
@@ -97,7 +101,7 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, itemsFilter, onMarkerPosC
             if (result) {
               const b = result.geometry.viewport;
               const bounds = [b.southwest.lng, b.southwest.lat, b.northeast.lng, b.northeast.lat];
-              map.fitBounds(bounds as any);
+              map.fitBounds(bounds as any, { duration: 0 });
             }
           }
         }
@@ -152,10 +156,21 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, itemsFilter, onMarkerPosC
   useEffect(() => {
     if (!map) return;
     
-    map.on("style.load", () => {
+    map.on("style.load", async () => {  
 
+      const markerNode = document.createElement("div");
+      ReactDOM.render(<Marker />, markerNode);
       const popup = new mapboxgl.Popup({ closeButton: false, closeOnClick: false, maxWidth: "300px" });
-      const marker = new mapboxgl.Marker({ draggable: type === 'marker', color: "#40a9ff" })
+      const marker = new mapboxgl.Marker(markerNode, { draggable: type === 'marker', color: "#40a9ff" })
+      const layers = ["drops-layer", "drops-highlight-layer"];
+      const pointLayers = ["drops-point-layer", "drops-highlight-point-layer"];
+
+      await loadImage(map, "marker-point-blue", MarkerPointBluetIcon);
+      await loadImage(map, "marker-point-yellow", MarkerPointYellowtIcon);
+      await loadImage(map, "marker-point-green", MarkerPointGreentIcon);
+      await loadImage(map, "marker-blue", MarkerBluetIcon);
+      await loadImage(map, "marker-yellow", MarkerYellowtIcon);
+      await loadImage(map, "marker-green", MarkerGreentIcon);
 
       if (type === "main" || type === "items") {
 
@@ -166,12 +181,15 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, itemsFilter, onMarkerPosC
           }
         }
 
-        map.addSource(drops.sourceId, drops.source);
-        map.addSource(highlight.sourceId, highlight.source);
+        map.addSource(drops.sourceId!, drops.source!);
         map.addLayer(highlight.layer);
         map.addLayer(drops.layer);
+        map.addLayer(hover.layer);
+        map.addLayer(highlightPoint.layer);
+        map.addLayer(dropsPoint.layer);
+        map.addLayer(hoverPoint.layer);
 
-        map.on("mouseenter", "drops-layer", e => {
+        map.on("mouseenter", [...layers, ...pointLayers], e => {
           const feature = e.features && e.features[0];
           if (feature) {
             const coords = (feature.geometry as any).coordinates;
@@ -179,20 +197,20 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, itemsFilter, onMarkerPosC
             const popupNode = document.createElement("div");
             ReactDOM.render(<MapboxPopup properties={props}/>, popupNode);
             popup.setLngLat(coords).setDOMContent(popupNode).addTo(map);
-            map.setFeatureState({ source: drops.sourceId, sourceLayer: "provider", id: feature.id }, { hovered: true });
+            map.setFeatureState({ source: drops.sourceId!, sourceLayer: "provider", id: feature.id }, { hovered: true });
             map.getCanvas().style.cursor = "pointer";
             setActiveItem(props.object_id);
           }
         });
   
-        map.on("mouseleave", "drops-layer", () => {
+        map.on("mouseleave", [...layers, ...pointLayers], () => {
           setActiveItem(null);
           popup.remove();
-          map.removeFeatureState({ source: drops.sourceId, sourceLayer: "provider" });
+          map.removeFeatureState({ source: drops.sourceId!, sourceLayer: "provider" });
           map.getCanvas().style.cursor = "";
         });
   
-        map.on("click", "drops-layer", () => {
+        map.on("click", [...layers, ...pointLayers], () => {
           if(activeItemRef.current) {
             history.push(`/listing/${activeItemRef.current}`);
           }

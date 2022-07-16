@@ -1,3 +1,4 @@
+
 const drops: Map.Layer = {
   id: "drops-layer",
   sourceId: "drops-source",
@@ -7,20 +8,46 @@ const drops: Map.Layer = {
   },
   layer: {
     "id": "drops-layer",
-    "type": "circle",
+    "type": "symbol",
     "source": "drops-source",
     "source-layer": "provider",
-    "paint": {
-      "circle-stroke-width": 2,
-      "circle-stroke-color": "#fff",
-      "circle-radius": ["interpolate", ["linear"], ["zoom"], 1, 5, 16, 20],
-      "circle-opacity": ["interpolate", ["linear"], ["zoom"], 1, 0.7, 16, 1],
-      "circle-color": [
+    minzoom: 10,
+    paint: {
+      'icon-opacity': [
         "case",
-        ["boolean", ["feature-state", "hovered"], false], "green", "#40a9ff"
-      ]
+        ["boolean", ["feature-state", "hovered"], false], 0, 1
+      ],
+    },
+    layout: {
+      'icon-image': 'marker-blue',
+      'icon-size': 0.3,
+      'icon-anchor': 'bottom',
+      "icon-ignore-placement": true,
+    },
+  }
+}
+
+const dropsPoint: Map.Layer = {
+  id: "drops-point-layer",
+  layer: {
+    "id": "drops-point-layer",
+    "type": "symbol",
+    "source": "drops-source",
+    "source-layer": "provider",
+    "maxzoom": 10,
+    paint: {
+      'icon-opacity': [
+        "case",
+        ["boolean", ["feature-state", "hovered"], false], 0, 1
+      ],
+    },
+    layout: {
+      'icon-image': 'marker-point-blue',
+      'icon-anchor': 'center',
+      "icon-ignore-placement": true,
     },
   }
 }
 
 export default drops;
+export { drops, dropsPoint };

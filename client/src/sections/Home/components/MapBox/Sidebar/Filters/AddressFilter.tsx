@@ -112,7 +112,6 @@ const AddressFilter: React.FC<Props> = ({ map, country, city, disabled = false, 
         setDataSource(results);
       }
     });
-    (window as any).geocoder = geocoder;
     map.addControl(geocoder);
     setGeocoder(geocoder);
   }, [map, defaultBounds]);

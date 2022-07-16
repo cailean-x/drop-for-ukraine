@@ -29,3 +29,12 @@ export const formatNumber = (n: number) => {
   if (n / 10e2 >= 1) return ((n / 10e2) % 1 === 0 ? (n / 10e2) : (n / 10e2).toFixed(1)) + "k";
   return n + "";
 }
+
+export const loadImage = async (map: mapboxgl.Map, id: string, source: string): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(map.addImage(id, img));
+    img.onerror = e => reject(e);
+    img.src = source;
+  });
+}
