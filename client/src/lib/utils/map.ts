@@ -18,3 +18,14 @@ export const transformFilters = (filters: Map.Filter, filterBounds: boolean): Re
     return true;
   }).map(transform));
 }
+
+export const getRoundedCapacity = (n: number, type: "min" | "max") => {
+  if (type === "min") return Math.floor(n / 10 ** ((n + '').length - 1)) * 10 ** ((n + '').length - 1);
+  return Math.ceil(n / 10 ** ((n + '').length - 1)) * 10 ** ((n + '').length - 1);
+}
+
+export const formatNumber = (n: number) => {
+  if (n / 10e5 >= 1) return ((n / 10e5) % 1 === 0 ? (n / 10e5) : (n / 10e5).toFixed(1)) + "m";
+  if (n / 10e2 >= 1) return ((n / 10e2) % 1 === 0 ? (n / 10e2) : (n / 10e2).toFixed(1)) + "k";
+  return n + "";
+}

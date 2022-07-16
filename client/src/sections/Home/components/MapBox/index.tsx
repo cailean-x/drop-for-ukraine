@@ -3,17 +3,18 @@ import ReactDOM from "react-dom"
 import { useHistory } from "react-router-dom";
 import debounce from 'lodash.debounce';
 import mapboxgl from "mapbox-gl";
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 import MapFilters from "sections/Home/components/MapBox/Sidebar/Filters";
 import Results from "sections/Home/components/MapBox/Sidebar/Results";
 import Sidebar from "sections/Home/components/MapBox/Sidebar";
 import BoundsFilter from "sections/Home/components/MapBox/Sidebar/Filters/BoundsFilter";
+import MapControls from "sections/Home/components/MapBox/Controls";
 import MapboxPopup from "sections/Home/components/MapBox/Popup";
-import { getListingIds, getListings } from "lib/api/map";
 import drops from "sections/Home/components/MapBox/layers/drops";
 import highlight from "sections/Home/components/MapBox/layers/highlight";
 import { renderAreaRadius } from "sections/Home/components/MapBox/layers/area";
 import { transformFilters } from "lib/utils/map";
+import { getListingIds, getListings } from "lib/api/map";
 import { geocode } from "lib/api/map";
 import "mapbox-gl/dist/mapbox-gl.css";
 
@@ -132,13 +133,14 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, itemsFilter, onMarkerPosC
     const mapboxMap = new mapboxgl.Map({
       container: mapNode.current,
       accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
-      style: "mapbox://styles/mapbox/light-v10",
+      style: "mapbox://styles/mokiienko/cl4pb8ays000i14sim6vj5zkd/draft",
       minZoom: 2,
+      maxZoom: 22,
+      projection: { name: "mercator" },
       zoom: 3.6,
       center,
     });
 
-    mapboxMap.addControl(new mapboxgl.NavigationControl(), "bottom-right");
     setMap(mapboxMap);
     (window as any).map = mapboxMap;
 
@@ -218,28 +220,34 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, itemsFilter, onMarkerPosC
 
   return (
     <MapContainer>
-      <Map ref={mapNode} />
-      {type === "main" && (
-        <>
-          <Sidebar
-            filters={<MapFilters map={map} onChange={onFiltersChange} filterBounds={filterBounds} />}
-            results={<Results map={map} results={results} />}
-          />
-          <BoundsFilter filterBoundsState={[filterBounds, setFilterBounds]} />
-        </>
-      )}
+      <PopoverStyles />
+      <SelectStyles />
+      <MapWrapper>
+        {type === "main" && (
+          <>
+            <Sidebar
+              filters={<MapFilters map={map} onChange={onFiltersChange} filterBounds={filterBounds} />}
+              results={<Results map={map} results={results} />}
+              />
+            <BoundsFilter filterBoundsState={[filterBounds, setFilterBounds]} />
+          </>
+        )}
+        <Map ref={mapNode} />
+        {map && <MapControls map={map} />}
+      </MapWrapper>
     </MapContainer>
   );
 }
-
-export default MapboxMap;
 
 const MapContainer = styled.div`
   width: 100%;
   max-height: calc(100vh - 150px);
   position: relative;
-  border: 1px solid #e8e8e8;
   overflow: hidden;
+  background: #FFFFFF;
+  border: 1px solid #F2F2F2;
+  border-radius: 20px;
+  font-family: 'Rubik';
 
   &::before {
     float: left;
@@ -259,50 +267,173 @@ const MapContainer = styled.div`
   }
 
   & .mapboxgl-popup-content {
-    opacity: 0.9;
-    text-align: left;
-    box-shadow: 0 1px 3px 3px #a57f7f1a;
-    border-radius: 4px;
-    background: #f4f6f9;
-    font-family: 'Roboto', sans-serif;
     padding: 0;
+    background: transparent;
+    border-radius: 10px;
     overflow: hidden;
-    border-radius: 20px;
   }
 
   & .mapboxgl-popup-tip {
-    opacity: 0.9;
     position: relative;
+    border-color: transparent;
+
+    &:before, &::after {
+      content: '';
+      display: none;
+      position: absolute;
+      background-color: #f4f4f4;
+    }
+
+    &:before {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgb(122 181 232 / 69%);
+      transform: rotate(45deg);
+    }
+
+  }
+
+  & .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip,
+  & .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+    &::before, &::after {
+      display: block;
+    }
   }
 
   & .mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
-    border-top-color: #f4f6f9 !important;
-    top: -1px;
+    border-top-color: #f4f4f4 !important;
+    top: -2px;
+
+    &:before {
+      top: -18px;
+      left: -8px;
+    }
+
+    &:after {
+      width: 25px;
+      height: 11px;
+      top: -21px;
+      left: -12px;
+    }
+
   }
 
   & .mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
-    border-bottom-color: #f4f6f9 !important;
-    bottom: -1px;
+    border-bottom-color: #f4f4f4 !important;
+    bottom: -2px;
   }
 
   & .mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
-    border-right-color: #f4f6f9 !important;
-    right: -1px;
+    border-right-color: #f4f4f4 !important;
+    right: -2px;
   }
 
   & .mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
-    border-left-color: #f4f6f9 !important;
-    left: -1px;
+    border-left-color: #f4f4f4 !important;
+    left: -2px;
+
+    &:before {
+      top: -8px;
+      left: -18px;
+    }
+
+    &:after {
+      width: 11px;
+      height: 25px;
+      top: -12px;
+      left: -21px;
+    }
   }
 
   & .mapboxgl-ctrl-geocoder {
     display: none;
   }
 
+  & .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle {
+    background: #e2e2e2;
+  }
+
+  & .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle:hover:not(.active) {
+    background: #d3d3d3 !important;
+  }
+
+  & .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle.active {
+    background: #c9c9c9 !important;
+  }
+
+`;
+
+const MapWrapper = styled.div`
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  overflow: hidden;
+  position: absolute;
+  border-radius: 20px;
+  display: flex;
 `;
 
 const Map = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
+  flex-grow: 1;
 `;
+
+const PopoverStyles = createGlobalStyle`
+  .map-popover {
+    .ant-popover-inner-content {
+      background: #757575;
+      border-radius: 4px;
+      padding: 6px 15px;
+      font-family: 'Rubik';
+      font-weight: 500;
+      font-size: 14px;
+      color: #FFFFFF;
+    }
+    &.ant-popover-placement-left .ant-popover-arrow {
+      border-top-color: #757575;
+      border-right-color: #757575;
+    }
+    &.ant-popover-placement-right .ant-popover-arrow {
+      border-bottom-color: #757575;
+      border-left-color: #757575;
+    }
+  }
+`;
+
+const SelectStyles = createGlobalStyle`
+  .map-dropdown .os-content .ant-select-dropdown-menu,
+  .map-dropdown .os-content > div {
+    overflow: inherit !important;
+  }
+
+  .map-dropdown {
+    box-shadow: 0px 13px 10px rgb(50 50 71 / 5%), 0px 22px 28px rgb(50 50 71 / 5%);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+
+  .map-dropdown .ant-select-dropdown-menu {
+    max-height: 300px;
+    font-family: 'Rubik';
+    font-weight: 400;
+    font-size: 14px;
+    color: #757575;
+  }
+
+  .map-dropdown .ant-select-dropdown-menu-item {
+    border-radius: 10px;
+    margin: 2px 4px;
+  }
+
+  .map-dropdown .ant-select-dropdown-menu-item:hover:not(.ant-select-dropdown-menu-item-disabled) {
+    background-color: #EDF5FC;
+    
+  }
+
+  .ant-select-dropdown-menu-item-active:not(.ant-select-dropdown-menu-item-disabled) {
+    background-color: #EDF5FC;
+    color: #4095DA;
+  }
+`;
+
+export default MapboxMap;

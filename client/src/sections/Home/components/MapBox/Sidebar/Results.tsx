@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLocationDot, faTableCellsLarge } from "@fortawesome/free-solid-svg-icons";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import selection, { selectionId } from "sections/Home/components/MapBox/layers/selection";
 import drops from "sections/Home/components/MapBox/layers/drops";
+import CapacityIcon from "sections/Home/components/MapBox/icons/area.svg";
+import MarkerIcon from "sections/Home/components/MapBox/icons/marker.svg";
 import { isLayerExist } from "lib/utils/map";
 
 interface Props {
@@ -60,11 +60,11 @@ const MapResults: React.FC<Props> = ({ results, map }) => {
               <ResultBody>
                 <ResultTitle>{result.title}</ResultTitle>
                 <ResultBodyItem>
-                  <ResultIcon><FontAwesomeIcon icon={faTableCellsLarge} /></ResultIcon>
+                  <ResultIcon><img src={CapacityIcon} alt="" /></ResultIcon>
                   <div>{result.capacity} <span>m<sup>2</sup></span></div>
                 </ResultBodyItem>
                 <ResultBodyItem>
-                  <ResultIcon><FontAwesomeIcon icon={faLocationDot} /></ResultIcon>
+                  <ResultIcon><img src={MarkerIcon} alt="" /></ResultIcon>
                   <div>
                     {[result.city, result.country, result.address.split(",")[0]].join(", ")}
                   </div>
@@ -86,19 +86,19 @@ const ScrollView = styled(OverlayScrollbarsComponent)`
 `;
 
 const ResultsWrapper = styled.div`
-  padding: 15px;
+  padding: 20px;
 `;
 
 const ResultItem = styled.div`
-  border-radius: 8px;
-  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  border: 1px solid #F2F2F2;
   display: flex;
   overflow: hidden;
-  cursor: default;
+  cursor: pointer;
 
   &:hover {
-    background-color: #f9f9f9;
-    box-shadow: 3px 3px 14px 5px #e2e2e2;
+    background-color: #f4f4f4;
+    box-shadow: 0px 4px 4px rgba(50, 50, 71, 0.08), 0px 4px 8px rgba(50, 50, 71, 0.06);
   }
 
   &:not(:last-child) {
@@ -114,13 +114,17 @@ const ResultBody = styled.div`
 const ResultBodyItem = styled.div`
   display: flex;
   margin-bottom: 5px;
-  line-height: 21px;
+  line-height: 20px;
+  font-family: 'Rubik';
+  font-weight: 400; 
+  font-size: 12px;
+  color: #757575;
 `;
 
 const ResultImg = styled.div`
   height: auto;
-  width: 20%;
-  background: rgb(196 196 196);
+  width: 25%;
+  background: #e2e2e2;
   flex-shrink: 0;
 
   & img {
@@ -131,14 +135,17 @@ const ResultImg = styled.div`
 `;
 
 const ResultTitle = styled(ResultBodyItem)`
+  font-family: 'Rubik';
+  font-weight: 500;
+  font-size: 12px;
   color: #02020B;
 `;
 
 const ResultIcon = styled.div`
-  height: 21px;
+  height: 19px;
+  width: 19px;
   display: flex;
   align-items: center;
-  width: 25px;
   flex-shrink: 0;
 `;
 
