@@ -116,6 +116,21 @@ declare module Map {
     geojson: Required<mapboxgl.GeoJSONSourceOptions>["data"];
   }[];
 
+  interface MapContext {
+    setOnToggleClick?: (handler: () => void) => void;
+    onToggleClick?: () => void;
+    setSidebarOpened?: (state: boolean) => void;
+    isSidebarOpened?: boolean;
+    syncAddress?: (value: string) => void;
+    address?: string;
+    syncCenter?: (value: [number, number] | null) => void;
+    center?: [number, number] | null;
+    syncCountry?: (value: string) => void;
+    country?: string;
+    syncCity?: (value: string) => void;
+    city?: string;
+  }
+
   namespace Response {
 
     interface Filter {

@@ -1,25 +1,40 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState, useContext } from "react";
 import { Form, Select, Slider } from 'antd';
 import { FormComponentProps } from 'antd/lib/form';
-import { getFilters, getFilterCities } from "lib/api/map";
-import AddressFilter from "sections/Home/components/MapBox/Sidebar/Filters/AddressFilter";
-import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import styled, { css } from "styled-components";
+import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
+import { getFilters, getFilterCities } from "lib/api/map";
 import { getRoundedCapacity, formatNumber } from "lib/utils/map";
+import AddressFilter from "sections/Home/components/MapBox/Sidebar/Filters/AddressFilter";
+import { MapContext } from "sections/Home/components/MapBox/Context";
 import MarkerIcon from "sections/Home/components/MapBox/icons/marker.svg";
 
 interface FiltersProps {
   map: mapboxgl.Map | null;
   filterBounds: boolean;
   onChange: (filters: Map.Filter) => void;
+  showBorder: boolean;
 }
 
-const MapFilters: React.FC<FiltersProps & FormComponentProps<Map.Filter>> = ({ map, filterBounds, form, onChange }) => {
+const MapFilters: React.FC<FiltersProps & FormComponentProps<Map.Filter>> = ({ map, filterBounds, form, onChange, showBorder }) => {
+  const { syncCountry, syncCity, center: syncCenter } = useContext(MapContext);
   const [filters, setFilters] = useState<Map.Response.Filter | null>(null);
   const [cities, setCities] = useState<string[] | null>(null);
   const country = useMemo(() => form.getFieldValue('country'), [form]);
   const city = useMemo(() => form.getFieldValue('city'), [form]);
   const center = useMemo(() => form.getFieldValue('center'), [form]);
+
+  useEffect(() => {
+    form.setFieldsValue({ center: syncCenter })
+  }, [syncCenter]); // eslint-disable-line
+
+  useEffect(() => {
+    if (syncCountry && country) syncCountry(country);
+  }, [syncCountry, country]);
+
+  useEffect(() => {
+    if (syncCity && city) syncCity(city);
+  }, [syncCity, city]);
 
   useEffect(() => {
     (async () => {
@@ -42,118 +57,122 @@ const MapFilters: React.FC<FiltersProps & FormComponentProps<Map.Filter>> = ({ m
   }, []); // eslint-disable-line
 
   return (
-    <ScrollView options={{ scrollbars: { autoHide: "scroll" } }}>
-      {filters && (
-        <FiltersWrapper>
-          <Title>Search collection points</Title>
-          <Form layout="vertical">
-            <FIltersItem label="Filter by country" disabled={filterBounds}>
-              {form.getFieldDecorator('country', { initialValue: '' })(
-                <FilterSelect
-                  dropdownClassName="map-dropdown"
-                  placeholder="Choose a country"
-                  disabled={filterBounds}
-                  onChange={(value: any) => form.setFieldsValue({ country: value })}
-                  dropdownRender={(menu: any) => (
-                    <OverlayScrollbarsComponent
-                      style={{ maxHeight: 300 }}
-                      options={{ scrollbars: { autoHide: 'scroll' } }}
+    <>
+      <Title showBorder={showBorder}>Search collection points</Title>
+      <ScrollViewWrapper>
+        <ScrollView options={{ scrollbars: { autoHide: "scroll" }, overflowBehavior: { x: "hidden" } }}>
+          {filters && (
+            <FiltersWrapper showBorder={showBorder}>
+              <Form layout="vertical">
+                <FIltersItem label="Filter by country" disabled={filterBounds}>
+                  {form.getFieldDecorator('country', { initialValue: '' })(
+                    <FilterSelect
+                      dropdownClassName="map-dropdown"
+                      placeholder="Choose a country"
+                      disabled={filterBounds}
+                      onChange={(value: any) => form.setFieldsValue({ country: value })}
+                      dropdownRender={(menu: any) => (
+                        <OverlayScrollbarsComponent
+                          style={{ maxHeight: 300 }}
+                          options={{ scrollbars: { autoHide: 'scroll' } }}
+                        >
+                          {menu}
+                        </OverlayScrollbarsComponent>
+                      )}
                     >
-                      {menu}
-                    </OverlayScrollbarsComponent>
+                      {['', ...filters.countries].map(value => (
+                        <Select.Option key={value} value={value}>{value ? value : 'All'}</Select.Option>
+                      ))}
+                    </FilterSelect>
                   )}
-                >
-                  {['', ...filters.countries].map(value => (
-                    <Select.Option key={value} value={value}>{value ? value : 'All'}</Select.Option>
-                  ))}
-                </FilterSelect>
-              )}
-            </FIltersItem>
-            <FIltersItem label="Select city" disabled={!country || filterBounds}>  
-              {form.getFieldDecorator('city', { initialValue: '' })(
-                <FilterSelect
-                  dropdownClassName="map-dropdown"
-                  placeholder="Choose a city"
-                  onChange={(value: any) => form.setFieldsValue({ city: value })}
-                  disabled={!country || filterBounds}
-                  dropdownRender={(menu: any) => (
-                    <OverlayScrollbarsComponent
-                      style={{ maxHeight: 300 }}
-                      options={{ scrollbars: { autoHide: 'scroll' } }}
+                </FIltersItem>
+                <FIltersItem label="Select city" disabled={!country || filterBounds}>  
+                  {form.getFieldDecorator('city', { initialValue: '' })(
+                    <FilterSelect
+                      dropdownClassName="map-dropdown"
+                      placeholder="Choose a city"
+                      onChange={(value: any) => form.setFieldsValue({ city: value })}
+                      disabled={!country || filterBounds}
+                      dropdownRender={(menu: any) => (
+                        <OverlayScrollbarsComponent
+                          style={{ maxHeight: 300 }}
+                          options={{ scrollbars: { autoHide: 'scroll' } }}
+                        >
+                          {menu}
+                        </OverlayScrollbarsComponent>
+                      )}
                     >
-                      {menu}
-                    </OverlayScrollbarsComponent>
+                      {['', ...(cities ? cities : [])].map(value => (
+                        <Select.Option key={value} value={value}>{value ? value : 'All'}</Select.Option>
+                      ))}
+                    </FilterSelect>
                   )}
-                >
-                  {['', ...(cities ? cities : [])].map(value => (
-                    <Select.Option key={value} value={value}>{value ? value : 'All'}</Select.Option>
-                  ))}
-                </FilterSelect>
-              )}
-            </FIltersItem>
-            <FIltersItem label="Enter your address" disabled={filterBounds}>
-              {form.getFieldDecorator('center', { initialValue: null })(
-                <>
-                  <AddressFilter 
-                    map={map}
-                    country={country}
-                    city={city}
-                    disabled={filterBounds}
-                    onChange={center => form.setFieldsValue({ center })}
-                  />
-                </>
-              )}
-            </FIltersItem>
-            <FIltersItem label="Type">
-              {form.getFieldDecorator('type', { initialValue: '' })(
-                <FilterSelect
-                  dropdownClassName="map-dropdown"
-                  placeholder="Choose a type"
-                  onChange={(value: any) => form.setFieldsValue({ type: value })}
-                  dropdownRender={(menu: any) => (
-                    <OverlayScrollbarsComponent
-                      style={{ maxHeight: 300 }}
-                      options={{ scrollbars: { autoHide: 'scroll' } }}
+                </FIltersItem>
+                <AddressItem label="Enter your address" disabled={filterBounds}>
+                  {form.getFieldDecorator('center', { initialValue: null })(
+                    <>
+                      <AddressFilter 
+                        map={map}
+                        country={country}
+                        city={city}
+                        disabled={filterBounds}
+                        onChange={center => form.setFieldsValue({ center })}
+                      />
+                    </>
+                  )}
+                </AddressItem>
+                <FIltersItem label="Type">
+                  {form.getFieldDecorator('type', { initialValue: '' })(
+                    <FilterSelect
+                      dropdownClassName="map-dropdown"
+                      placeholder="Choose a type"
+                      onChange={(value: any) => form.setFieldsValue({ type: value })}
+                      dropdownRender={(menu: any) => (
+                        <OverlayScrollbarsComponent
+                          style={{ maxHeight: 300 }}
+                          options={{ scrollbars: { autoHide: 'scroll' } }}
+                        >
+                          {menu}
+                        </OverlayScrollbarsComponent>
+                      )}
                     >
-                      {menu}
-                    </OverlayScrollbarsComponent>
+                      {['', ...filters.types].map(value => (
+                        <Select.Option key={value} value={value}>{value ? value : 'All'}</Select.Option>
+                      ))}
+                    </FilterSelect>
                   )}
-                >
-                  {['', ...filters.types].map(value => (
-                    <Select.Option key={value} value={value}>{value ? value : 'All'}</Select.Option>
-                  ))}
-                </FilterSelect>
-              )}
-            </FIltersItem>
-            <FIltersItem label="Capacity (m²)">
-              {form.getFieldDecorator('capacity', { initialValue: [filters.capacity.min, filters.capacity.max] })(
-                <FilterSlider
-                  range
-                  marks={{
-                    [getRoundedCapacity(filters.capacity.min, "min")]: formatNumber(getRoundedCapacity(filters.capacity.min, "min")),
-                    [getRoundedCapacity(filters.capacity.max, "max")]: formatNumber(getRoundedCapacity(filters.capacity.max, "max")),
-                  }}
-                  min={getRoundedCapacity(filters.capacity.min, "min")}
-                  max={getRoundedCapacity(filters.capacity.max, "max")}
-                  onChange={value => form.setFieldsValue({ capacity: value })}
-                />
-              )}
-            </FIltersItem>
-            <FIltersItem label="Distance (km)" disabled={!center || filterBounds}>
-              {form.getFieldDecorator('radius', { initialValue: 30 })(
-                <FilterSlider
-                  min={1}
-                  max={50}
-                  marks={{ 1: '1', 50: '50' }}
-                  disabled={!center || filterBounds}
-                  onChange={value => form.setFieldsValue({ radius: value })}
-                />
-              )}
-            </FIltersItem>
-          </Form>
-        </FiltersWrapper>
-      )}
-    </ScrollView>
+                </FIltersItem>
+                <FIltersItem label="Capacity (m²)">
+                  {form.getFieldDecorator('capacity', { initialValue: [filters.capacity.min, filters.capacity.max] })(
+                    <FilterSlider
+                      range
+                      marks={{
+                        [getRoundedCapacity(filters.capacity.min, "min")]: formatNumber(getRoundedCapacity(filters.capacity.min, "min")),
+                        [getRoundedCapacity(filters.capacity.max, "max")]: formatNumber(getRoundedCapacity(filters.capacity.max, "max")),
+                      }}
+                      min={getRoundedCapacity(filters.capacity.min, "min")}
+                      max={getRoundedCapacity(filters.capacity.max, "max")}
+                      onChange={value => form.setFieldsValue({ capacity: value })}
+                    />
+                  )}
+                </FIltersItem>
+                <FIltersItem label="Distance (km)" disabled={!center || filterBounds}>
+                  {form.getFieldDecorator('radius', { initialValue: 30 })(
+                    <FilterSlider
+                      min={1}
+                      max={50}
+                      marks={{ 1: '1', 50: '50' }}
+                      disabled={!center || filterBounds}
+                      onChange={value => form.setFieldsValue({ radius: value })}
+                    />
+                  )}
+                </FIltersItem>
+              </Form>
+            </FiltersWrapper>
+          )}
+        </ScrollView>
+      </ScrollViewWrapper>
+    </>
   );
 }
 
@@ -162,16 +181,32 @@ const MapFiltersWrapper = Form.create<FiltersProps & FormComponentProps<Map.Filt
   onValuesChange: props => props.onChange(props.form.getFieldsValue() as Map.Filter),
 })(MapFilters);
 
-const FiltersWrapper = styled.div`
-  padding: 20px;
+const FiltersWrapper = styled.div<{ showBorder: boolean }>`
+  padding: ${(props: { showBorder: boolean }) => props.showBorder ? '0 20px 0 2px' : '0 20px'};
+
+  @media screen and (max-width: 750px) {
+    padding: 0 20px !important;
+  }
 `;
 
-const Title = styled.div`
+const Title = styled.div<{ showBorder: boolean }>`
   font-family: 'Rubik';
   font-weight: 500;
   font-size: 16px;
   color: #02020B;
-  margin-bottom: 20px;
+  padding: ${(props: { showBorder: boolean }) => props.showBorder ? '0 20px 0 2px' : '0 20px'};
+  margin: 0px 0 15px 0;
+
+  @media screen and (max-width: 750px) {
+    padding: 0 20px !important;
+  }
+`;
+
+const ScrollViewWrapper = styled.div`
+  height: 1px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 `;
 
 const ScrollView = styled(OverlayScrollbarsComponent)`
@@ -189,6 +224,12 @@ const FIltersItem = styled<any>(Form.Item)`
     ${(props: { disabled?: boolean }) => props.disabled && css`
       color: #757575;
     `}
+  }
+`;
+
+const AddressItem = styled(FIltersItem)`
+  @media screen and (max-width: 750px) {
+    display: none;
   }
 `;
 
@@ -235,7 +276,7 @@ const FilterSelect = styled<any>(Select)`
       top: calc(100% - 20px);
       background: #FFFFFF;
       border: 1px solid #F2F2F2;
-      box-shadow: 0px 13px 10px rgb(50 50 71 / 5%), 0px 22px 28px rgb(50 50 71 / 5%);
+      box-shadow: -1px -6px 10px rgb(50 50 71 / 5%), 1px -6px 28px rgb(50 50 71 / 5%);
       border-bottom-left-radius: 20px;
       border-bottom-right-radius: 20px;
     }

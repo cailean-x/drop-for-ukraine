@@ -52,6 +52,10 @@ const ZoomWrapper = styled.div`
     }
   }
 
+  @media screen and (max-width: 750px) {
+    display: none;
+  }
+
 `;
 
 export default MapControls;

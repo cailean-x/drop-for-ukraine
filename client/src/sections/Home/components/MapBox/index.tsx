@@ -1,13 +1,17 @@
-﻿import React, { useEffect, useRef, useState, useMemo } from "react";
+﻿import React, { useEffect, useRef, useState, useMemo, useCallback } from "react";
 import ReactDOM from "react-dom"
 import { useHistory } from "react-router-dom";
 import debounce from 'lodash.debounce';
 import mapboxgl from "mapbox-gl";
 import styled, { createGlobalStyle } from "styled-components";
+import { geocode } from "lib/api/map";
+import { transformFilters, loadImage } from "lib/utils/map";
+import { getListingIds, getListings } from "lib/api/map";
 import MapFilters from "sections/Home/components/MapBox/Sidebar/Filters";
 import Results from "sections/Home/components/MapBox/Sidebar/Results";
 import Sidebar from "sections/Home/components/MapBox/Sidebar";
 import BoundsFilter from "sections/Home/components/MapBox/Sidebar/Filters/BoundsFilter";
+import Search from "sections/Home/components/MapBox/Sidebar/Filters/Search";
 import MapControls from "sections/Home/components/MapBox/Controls";
 import MapboxPopup from "sections/Home/components/MapBox/Popup";
 import Marker from "sections/Home/components/MapBox/Marker";
@@ -15,17 +19,14 @@ import { drops, dropsPoint } from "sections/Home/components/MapBox/layers/drops"
 import { highlight, highlightPoint } from "sections/Home/components/MapBox/layers/highlight";
 import { hover, hoverPoint } from "sections/Home/components/MapBox/layers/hover";
 import { renderAreaRadius } from "sections/Home/components/MapBox/layers/area";
-import { transformFilters, loadImage } from "lib/utils/map";
-import { getListingIds, getListings } from "lib/api/map";
-import { geocode } from "lib/api/map";
-import "mapbox-gl/dist/mapbox-gl.css";
 import MarkerPointBluetIcon from "sections/Home/components/MapBox/icons/marker_point_blue.svg";
 import MarkerPointYellowtIcon from "sections/Home/components/MapBox/icons/marker_point_yellow.svg";
 import MarkerPointGreentIcon from "sections/Home/components/MapBox/icons/marker_point_green.svg";
 import MarkerBluetIcon from "sections/Home/components/MapBox/icons/marker_blue.svg";
 import MarkerYellowtIcon from "sections/Home/components/MapBox/icons/marker_yellow.svg";
 import MarkerGreentIcon from "sections/Home/components/MapBox/icons/marker_green.svg";
-
+import { MapContext } from "sections/Home/components/MapBox/Context";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 (mapboxgl as any).workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
@@ -35,9 +36,10 @@ interface Props {
   markerPos?: Pick<mapboxgl.LngLat, "lng" | "lat"> | null;
   itemsFilter?: Map.ItemsFilter; 
   onMarkerPosChange?: (pos: mapboxgl.LngLat) => void;
+  showBorder?: boolean;
 }
 
-const MapboxMap: React.FC<Props> = ({ type, markerPos, itemsFilter, onMarkerPosChange }) => {
+const MapboxMap: React.FC<Props> = ({ type, markerPos, itemsFilter, onMarkerPosChange, showBorder = true }) => {
   const history = useHistory();
   const [map, setMap] = useState<mapboxgl.Map | null>(null);
   const [styleLoaded, setStyleLoaded] = useState(false);
@@ -46,10 +48,22 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, itemsFilter, onMarkerPosC
   const [results, setResults] = useState<Map.MapListing[] | null>(null);
   const [marker, setMarker] = useState<mapboxgl.Marker | null>(null);
   const [filterBounds, setFilterBounds] = useState(false);
+  const [context, setContext] = useState<Map.MapContext>({});
   const activeItemRef = useRef(activeItem);
   const filtersRef = useRef<Map.Filter | null>();
   const filterBoundsRef = useRef(false);
   const mapNode = useRef<HTMLDivElement>(null);
+
+  const setOnToggleClick = useCallback((onToggleClick: () => void) => setContext(prev => ({ ...prev, onToggleClick })), []);
+  const setSidebarOpened = useCallback((isSidebarOpened: boolean) => setContext(prev => ({ ...prev, isSidebarOpened })), []);
+  const syncAddress = useCallback((address: string) => setContext(prev => ({ ...prev, address })), []);
+  const syncCenter = useCallback((center: [number, number] | null) => setContext(prev => ({ ...prev, center })), []);
+  const syncCountry = useCallback((country: string) => setContext(prev => ({ ...prev, country })), []);
+  const syncCity = useCallback((city: string) => setContext(prev => ({ ...prev, city })), []);
+
+  useEffect(() => { 
+    setContext({ setOnToggleClick, setSidebarOpened, syncAddress, syncCenter, syncCountry, syncCity }) 
+  }, []); // eslint-disable-line
 
   useEffect(() => { activeItemRef.current = activeItem }, [activeItem]);
   useEffect(() => { filterBoundsRef.current = filterBounds }, [filterBounds]);
@@ -159,11 +173,12 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, itemsFilter, onMarkerPosC
     map.on("style.load", async () => {  
 
       const markerNode = document.createElement("div");
-      ReactDOM.render(<Marker />, markerNode);
       const popup = new mapboxgl.Popup({ closeButton: false, closeOnClick: false, maxWidth: "300px" });
       const marker = new mapboxgl.Marker(markerNode, { draggable: type === 'marker', color: "#40a9ff" })
       const layers = ["drops-layer", "drops-highlight-layer"];
       const pointLayers = ["drops-point-layer", "drops-highlight-point-layer"];
+
+      ReactDOM.render(<Marker />, markerNode);
 
       await loadImage(map, "marker-point-blue", MarkerPointBluetIcon);
       await loadImage(map, "marker-point-yellow", MarkerPointYellowtIcon);
@@ -237,23 +252,27 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, itemsFilter, onMarkerPosC
   }, [map, history]); // eslint-disable-line
 
   return (
-    <MapContainer>
-      <PopoverStyles />
-      <SelectStyles />
-      <MapWrapper>
-        {type === "main" && (
-          <>
-            <Sidebar
-              filters={<MapFilters map={map} onChange={onFiltersChange} filterBounds={filterBounds} />}
-              results={<Results map={map} results={results} />}
-              />
-            <BoundsFilter filterBoundsState={[filterBounds, setFilterBounds]} />
-          </>
-        )}
-        <Map ref={mapNode} />
-        {map && <MapControls map={map} />}
-      </MapWrapper>
-    </MapContainer>
+    <MapContext.Provider value={context}>
+      <MapContainer>
+        <PopoverStyles />
+        <SelectStyles />
+        <MapWrapper showBorder={showBorder}>
+          {type === "main" && (
+            <>
+              <Sidebar
+                filters={<MapFilters map={map} onChange={onFiltersChange} filterBounds={filterBounds} showBorder={showBorder} />}
+                results={<Results map={map} results={results} showBorder={showBorder} />}
+                showBorder={showBorder}
+                />
+              <BoundsFilter filterBoundsState={[filterBounds, setFilterBounds]} />
+              <Search map={map} />
+            </>
+          )}
+          <Map ref={mapNode} />
+          {map && <MapControls map={map} />}
+        </MapWrapper>
+      </MapContainer>
+    </MapContext.Provider>
   );
 }
 
@@ -266,6 +285,12 @@ const MapContainer = styled.div`
   border: 1px solid #F2F2F2;
   border-radius: 20px;
   font-family: 'Rubik';
+
+  @media screen and (max-width: 750px) {
+    &::before {
+      padding-top: 177.77% !important;
+    }
+  }
 
   &::before {
     float: left;
@@ -381,15 +406,22 @@ const MapContainer = styled.div`
 
 `;
 
-const MapWrapper = styled.div`
-  top: 20px;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
+const MapWrapper = styled.div<{ showBorder: boolean }>`
+  top: ${(props: { showBorder: boolean }) => props.showBorder ? '20px' : 0};
+  left: ${(props: { showBorder: boolean }) => props.showBorder ? '20px' : 0};
+  right: ${(props: { showBorder: boolean }) => props.showBorder ? '20px' : 0};
+  bottom: ${(props: { showBorder: boolean }) => props.showBorder ? '20px' : 0};
   overflow: hidden;
   position: absolute;
   border-radius: 20px;
   display: flex;
+
+  @media screen and (max-width: 750px) {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 `;
 
 const Map = styled.div`
@@ -428,6 +460,7 @@ const SelectStyles = createGlobalStyle`
     box-shadow: 0px 13px 10px rgb(50 50 71 / 5%), 0px 22px 28px rgb(50 50 71 / 5%);
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    animation-duration: 0s !important;
   }
 
   .map-dropdown .ant-select-dropdown-menu {
@@ -448,9 +481,21 @@ const SelectStyles = createGlobalStyle`
     
   }
 
-  .ant-select-dropdown-menu-item-active:not(.ant-select-dropdown-menu-item-disabled) {
+  .map-dropdown .ant-select-dropdown-menu-item-active:not(.ant-select-dropdown-menu-item-disabled) {
     background-color: #EDF5FC;
     color: #4095DA;
+  }
+
+  .map-dropdown .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle {
+    background: #e2e2e2;
+  }
+
+  .map-dropdown .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle:hover:not(.active) {
+    background: #d3d3d3 !important;
+  }
+
+  .map-dropdown .os-scrollbar > .os-scrollbar-track > .os-scrollbar-handle.active {
+    background: #c9c9c9 !important;
   }
 `;
 

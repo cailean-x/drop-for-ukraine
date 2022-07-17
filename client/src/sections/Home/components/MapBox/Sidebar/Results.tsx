@@ -9,9 +9,10 @@ import MarkerIcon from "sections/Home/components/MapBox/icons/marker.svg";
 interface Props {
   results: Map.MapListing[] | null;
   map: mapboxgl.Map | null;
+  showBorder: boolean;
 }
 
-const MapResults: React.FC<Props> = ({ results, map }) => {
+const MapResults: React.FC<Props> = ({ results, map, showBorder }) => {
   const history = useHistory();
 
   const onHover = (id: number | string) => {
@@ -34,7 +35,7 @@ const MapResults: React.FC<Props> = ({ results, map }) => {
 
   return (
     <ScrollView options={{ scrollbars: { autoHide: "scroll" } }}>
-      <ResultsWrapper>
+      <ResultsWrapper showBorder={showBorder}>
         {results && results.length > 0 ? (
           results.map(result => (
             <ResultItem
@@ -72,8 +73,12 @@ const ScrollView = styled(OverlayScrollbarsComponent)`
   max-height: 100%;
 `;
 
-const ResultsWrapper = styled.div`
-  padding: 20px;
+const ResultsWrapper = styled.div<{ showBorder: boolean }>`
+  padding: ${(props: { showBorder: boolean }) => props.showBorder ? '0 20px 20px 2px' : '0 20px 20px 20px'};
+
+  @media screen and (max-width: 750px) {
+    padding: 0 20px !important;
+  }
 `;
 
 const ResultItem = styled.div`

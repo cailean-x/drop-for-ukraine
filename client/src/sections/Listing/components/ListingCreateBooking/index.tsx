@@ -214,7 +214,7 @@ export const ListingCreateBooking = ({
             {buttonMessage}
           </Text>
           <Divider />
-          <MapboxMap type="item" markerPos={marker} />
+          <MapboxMap type="item" markerPos={marker} showBorder={false} />
         </Card>
       </div>
     </>

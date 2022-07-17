@@ -26,8 +26,8 @@ export const renderTerritory = (() => {
         data: polygon,
       },
       paint: {
-        'fill-color': 'red',
-        'fill-outline-color': 'red',
+        'fill-color': '#FFD548',
+        'fill-outline-color': '#FFD548',
         'fill-opacity': 0.05,
       }
     }, highlight.id);
