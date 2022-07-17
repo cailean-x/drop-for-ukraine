@@ -14,7 +14,7 @@ const hover: Map.Layer = {
     },
     layout: {
       'icon-image': 'marker-green',
-      'icon-size': 0.3,
+      'icon-size': 1,
       'icon-anchor': 'bottom',
       "icon-ignore-placement": true,
     },
