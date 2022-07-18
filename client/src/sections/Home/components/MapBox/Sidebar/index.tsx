@@ -63,7 +63,7 @@ const MapSideber: React.FC<Props> = ({ filters, results, showBorder }) => {
     }
     if (e.propertyName === 'top') {
       const top = parseInt(getComputedStyle(e.currentTarget)[e.propertyName as any]);
-      setSidebarState(top === 115 ? "opened" : "closed");
+      setSidebarState(top === 90 ? "opened" : "closed");
     }
   };
 
@@ -73,7 +73,7 @@ const MapSideber: React.FC<Props> = ({ filters, results, showBorder }) => {
         ref={sidebarNode}
         style={{ 
           left: visible ? "0" : "-" + sidebarWidth,
-          top: visible ? "115px" : parseInt(sidebarHeight) + 115 + 'px',
+          top: visible ? "90px" : parseInt(sidebarHeight) + 90 + 'px',
         }}
         onTransitionEnd={onSidebarTransitionEnd}
         animate={animate}
@@ -207,7 +207,7 @@ const Sidebar = styled.div<any>`
   @media screen and (max-width: 750px) {
     left: 0 !important;
     width: 100%;
-    height: calc(100% - 115px);
+    height: calc(100% - 90px);
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
   }

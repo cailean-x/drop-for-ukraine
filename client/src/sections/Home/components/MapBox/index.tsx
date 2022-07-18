@@ -451,6 +451,11 @@ const PopoverStyles = createGlobalStyle`
 `;
 
 const SelectStyles = createGlobalStyle`
+
+  .map-dropdown {
+    z-index: 101;
+  }
+
   .map-dropdown .os-content .ant-select-dropdown-menu,
   .map-dropdown .os-content > div {
     overflow: inherit !important;
@@ -469,6 +474,10 @@ const SelectStyles = createGlobalStyle`
     font-weight: 400;
     font-size: 14px;
     color: #757575;
+
+    @media screen and (max-width: 750px) {
+      max-height: 150px;
+    }
   }
 
   .map-dropdown .ant-select-dropdown-menu-item {

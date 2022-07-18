@@ -155,6 +155,7 @@ const AddressFilter: React.FC<Props> = ({ map, country, city, disabled = false, 
         onChange={onInput}
         disabled={disabled}
         allowClear
+        getPopupContainer={(trigger: any) => trigger.parentNode}
       />
       <FilterButtonWrapper>
         <FilterButton onClick={() => onToggleClick && onToggleClick()} >
@@ -198,7 +199,7 @@ const Input = styled(AutoComplete)`
     
     .ant-select-selection__clear {
       right: 56px;
-      z-index: 101;
+      z-index: 100;
     }
 
   }
@@ -229,7 +230,7 @@ const Input = styled(AutoComplete)`
       border-bottom-right-radius: 20px;
       border-top-right-radius: 20px;
       width: calc(100% - 40px);
-      z-index: 101;
+      z-index: 100;
       border-color: transparent;
     }
   }
@@ -246,7 +247,7 @@ const Input = styled(AutoComplete)`
     left: 22px;
     top: 50%;
     transform: translateY(-50%);
-    z-index: 101;
+    z-index: 100;
   }
 
   & .ant-select-auto-complete.ant-select .ant-input[disabled] {
@@ -319,6 +320,7 @@ const FilterButton = styled.button`
   border-bottom-left-radius: 20px;
   cursor: pointer;
   z-index: 100;
+  outline: none;
 
   &:hover {
     background-color: #F2F2F2;

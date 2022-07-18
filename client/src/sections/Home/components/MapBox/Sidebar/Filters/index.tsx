@@ -71,6 +71,8 @@ const MapFilters: React.FC<FiltersProps & FormComponentProps<Map.Filter>> = ({ m
                       placeholder="Choose a country"
                       disabled={filterBounds}
                       onChange={(value: any) => form.setFieldsValue({ country: value })}
+                      onFocus={console.log}
+                      getPopupContainer={(trigger: any) => trigger.parentNode}
                       dropdownRender={(menu: any) => (
                         <OverlayScrollbarsComponent
                           style={{ maxHeight: 300 }}
@@ -92,6 +94,7 @@ const MapFilters: React.FC<FiltersProps & FormComponentProps<Map.Filter>> = ({ m
                       dropdownClassName="map-dropdown"
                       placeholder="Choose a city"
                       onChange={(value: any) => form.setFieldsValue({ city: value })}
+                      getPopupContainer={(trigger: any) => trigger.parentNode}
                       disabled={!country || filterBounds}
                       dropdownRender={(menu: any) => (
                         <OverlayScrollbarsComponent
@@ -127,6 +130,7 @@ const MapFilters: React.FC<FiltersProps & FormComponentProps<Map.Filter>> = ({ m
                       dropdownClassName="map-dropdown"
                       placeholder="Choose a type"
                       onChange={(value: any) => form.setFieldsValue({ type: value })}
+                      getPopupContainer={(trigger: any) => trigger.parentNode}
                       dropdownRender={(menu: any) => (
                         <OverlayScrollbarsComponent
                           style={{ maxHeight: 300 }}

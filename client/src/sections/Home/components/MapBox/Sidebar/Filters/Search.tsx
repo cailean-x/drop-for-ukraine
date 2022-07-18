@@ -23,10 +23,10 @@ const MapSearch: React.FC<Props> = ({ map }) => {
 
 const Search = styled.div`
   position: absolute;
-  top: 52px;
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 100;
+  z-index: 98;
   width: 320px;
   max-width: calc(100% - 30px);
   display: none;
