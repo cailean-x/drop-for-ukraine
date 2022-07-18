@@ -348,7 +348,7 @@ i {
 
 .collection__cards__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
     grid-row-gap: 20px;
     grid-column-gap: 22px;
@@ -372,7 +372,7 @@ i {
 
 .cards-icon {
     position: absolute;
-    top: 80px;
+    top: 20%;
     left: 20px;
 }
 
@@ -653,4 +653,45 @@ i {
     flex-direction: column;
     height: 100%;
     justify-content: center;
+}
+
+@media screen and (min-width: 769px) and (max-width:1024px) {}
+
+@media screen and (min-width: 481px) and (max-width:768px) {
+    .collection__cards__grid {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width:480px) {
+    .collection__cards__grid {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+    .top__bttn-text {
+        font-size: 12px;
+        text-align: center;
+        width: 100%;
+    }
+    .top__bttn-text::before {
+        margin: auto 0;
+        left: 10px;
+    }
+}
+
+@media screen and (max-width:320px) {
+    .collection__cards__grid {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+    .top__bttn-text {
+        font-size: 12px;
+        text-align: center;
+        width: 100%;
+    }
+    .top__bttn-text::before {
+        margin: auto 0;
+        left: 10px;
+    }
 }

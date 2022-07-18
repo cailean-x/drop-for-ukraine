@@ -649,3 +649,202 @@ input:checked+.slider:before {
     height: 0px;
     border-top: 1px groove #000;
 }
+
+@media screen and (min-width:320px) and (max-width: 768px) {
+    .description {
+        text-align: center;
+    }
+    .container {
+        padding: 0;
+    }
+    .top__bttn-text {
+        font-size: 12px;
+        text-align: center;
+        width: 100%;
+    }
+    .top__bttn-text::before {
+        margin: auto 0;
+        left: 10px;
+    }
+    .hero__container__steps {
+        justify-items: center;
+        max-width: 400px;
+        gap: 10px;
+        margin: 40px auto;
+    }
+    .textarea {
+        width: 100%;
+        max-width: 560px;
+    }
+    .description-textarea {
+        width: 100%;
+        max-width: 560px;
+        margin-left: 0;
+    }
+    .step-item-text {
+        font-size: 12px;
+    }
+    .step-icon {
+        width: 20px;
+        height: 20px;
+    }
+    .step-icon__wrapper {
+        width: 20px;
+        height: 20px;
+    }
+    .number {
+        width: 10px;
+        height: 10px;
+        top: 4px;
+        left: 6px;
+    }
+    .language {
+        display: none;
+    }
+    .header__buttons {
+        max-width: 140px;
+    }
+    .profile__container {
+        padding-right: 10px;
+    }
+    .avatar-window {
+        width: 100px;
+        height: 100px;
+    }
+    .details,
+    .nickname-profile {
+        font-size: 14px;
+    }
+    .contact {
+        font-size: 14px;
+    }
+    p {
+        font-size: 14px;
+    }
+    .select-city,
+    .select-state,
+    .zip-textarea {
+        width: 100%;
+        max-width: 200px;
+        padding: 15px 30px 15px 10px;
+    }
+    .hero__container__address-title {
+        text-align: center;
+    }
+    .hero__container__address {
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .address-textarea {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+    .column {
+        margin: 0 auto;
+        text-align: center;
+        align-items: center;
+    }
+    .page-bttns {
+        margin-top: 100px;
+    }
+    .working-hours__container-title {
+        text-align: center;
+    }
+    .switch-bttn {
+        justify-content: center;
+    }
+    .time__container {
+        justify-content: center;
+    }
+    .row {
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .container {
+        padding: 0;
+    }
+    .top__bttn-text {
+        font-size: 12px;
+        text-align: center;
+        width: 100%;
+    }
+    .top__bttn-text::before {
+        display: none;
+    }
+    .hero__container__steps {
+        justify-items: center;
+        max-width: 400px;
+        gap: 10px;
+        margin: 20px auto;
+        flex-direction: column;
+    }
+    .step-item-text {
+        font-size: 12px;
+    }
+    .step-icon {
+        width: 20px;
+        height: 20px;
+    }
+    .step-icon__wrapper {
+        width: 20px;
+        height: 20px;
+    }
+    .number {
+        width: 10px;
+        height: 10px;
+        top: 4px;
+        left: 6px;
+    }
+    .language {
+        display: none;
+    }
+    .header__buttons {
+        max-width: 140px;
+    }
+    .profile__container {
+        padding-right: 10px;
+    }
+    .avatar-window {
+        width: 100px;
+        height: 100px;
+    }
+    .details,
+    .nickname-profile {
+        font-size: 14px;
+    }
+    .contact {
+        font-size: 14px;
+    }
+    p {
+        font-size: 14px;
+    }
+    .hero__container__address {
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .address-textarea {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+    .column {
+        text-align: center;
+        margin: 0 auto;
+    }
+    .page-bttns {
+        margin-top: 100px;
+    }
+    .working-hours__container-title {
+        text-align: center;
+    }
+    .switch-bttn {
+        justify-content: center;
+    }
+}

@@ -734,7 +734,7 @@ th {
 
 .table-date::before {
     content: "";
-    background-image: url(./imgs/vector\ icon.calendar\ \(1\).svg);
+    background-image: url(./imgs/vector\ icon.calendar\ \.svg);
     background-size: 100% 100%;
     width: 15px;
     height: 15px;
@@ -744,4 +744,68 @@ th {
     right: 0;
     margin: auto 0 auto 40px;
     bottom: 0;
+}
+
+.resp-tab {
+    width: 100%;
+    /* Ширина таблицы */
+    background: white;
+    /* Цвет фона таблицы */
+    color: #02020B;
+    /* Цвет текста */
+    border-spacing: 30px;
+    /* Расстояние между ячейками */
+}
+
+.resp-tab th,
+.resp-tab td {
+    text-align: left;
+    background: #fff;
+    /* Цвет фона ячеек */
+    /* Поля вокруг текста */
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 14px;
+    /* identical to box height, or 100% */
+    letter-spacing: 0.01em;
+    color: #757575;
+}
+
+.resp-tab th {
+    color: #757575;
+    text-align: center;
+}
+
+.resp-tab tr:nth-child(even) {
+    align-items: center;
+}
+
+@media(max-width: 768px) {
+    .resp-tab thead {
+        display: none;
+    }
+    .resp-tab tr {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+    .resp-tab td {
+        margin: 0 -1px -1px 0;
+        padding-top: 35px;
+        position: relative;
+        width: 50%;
+    }
+    .resp-tab td span {
+        display: block;
+    }
+}
+
+@media(max-width: 480px) {
+    .resp-tab td {
+        width: 100%;
+    }
+    .table-date {
+        margin-left: 0;
+    }
 }

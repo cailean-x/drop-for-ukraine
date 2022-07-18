@@ -170,6 +170,10 @@
         font-weight: 400;
     }
     
+    .sing-in-icon {
+        display: none;
+    }
+    
     .breadcrumb {
         margin: 30px 0;
         list-style: none;
@@ -857,6 +861,7 @@
         margin-top: 30px;
         width: 100%;
         max-width: 1140px;
+        position: relative;
     }
     
     .right {
@@ -872,9 +877,12 @@
     .date__calendar__btn {
         max-width: 190px;
         margin-right: 30px;
+        margin-left: 30px;
         background-color: #F2F2F2;
         border-radius: 100px;
         transition: 0.4s linear;
+        position: absolute;
+        right: 0;
     }
     
     .date__calendar__btn:hover {
@@ -909,12 +917,12 @@
         display: flex;
         max-width: 600px;
         align-items: center;
-        margin: 0 0 0 500px;
     }
     
     .top__date__wrapper {
         display: flex;
-        justify-content: space-between;
+        flex-direction: row;
+        justify-content: center;
         align-items: center;
         padding-top: 35px;
         margin-bottom: 40px;
@@ -968,4 +976,377 @@
         color: #757575;
         font-size: 14px;
         font-weight: 400;
+    }
+    
+    @media screen and (min-width: 769px) and (max-width:1024px) {
+        .container {
+            max-width: 760px;
+        }
+        .hero__title-title {
+            font-size: 18px;
+        }
+        .reviews__container {
+            width: 100%;
+            margin: auto;
+        }
+        .hero__right-bottom {
+            margin-top: 10px;
+        }
+        .about__title p {
+            max-width: 500px;
+            font-size: 14px;
+        }
+    }
+    
+    @media screen and (min-width: 481px) and (max-width:768px) {
+        .header__buttons {
+            max-width: 300px;
+        }
+        .collection__button {
+            width: 60%;
+        }
+        .collection__button-text {
+            font-size: 12px;
+        }
+        .collection__button-text::before {
+            margin: auto 0 12px 20px;
+        }
+        .container {
+            max-width: 760px;
+        }
+        .hero__title__container {
+            flex-direction: column-reverse;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .hero__title-title {
+            font-size: 18px;
+            margin-right: 0;
+        }
+        .hero__title__buttons {
+            margin-left: 25px;
+        }
+        .reviews__container {
+            width: 100%;
+            margin: auto;
+        }
+        .hero__right-bottom {
+            margin-top: 10px;
+        }
+        .hero__liked {
+            justify-content: center;
+        }
+        .about__title p {
+            max-width: 500px;
+            font-size: 14px;
+        }
+        .second,
+        .third {
+            margin-left: 0px;
+        }
+        .millitary-second,
+        .millitary-third {
+            margin-left: 0px;
+        }
+        .priority-item-text {
+            font-size: 12px;
+        }
+        .millitary-item-text {
+            font-size: 12px;
+        }
+        .humanitarian-item-text {
+            font-size: 12px;
+        }
+        .hours__title {
+            display: none;
+        }
+        .date__calendar {
+            padding-bottom: 150px;
+        }
+        .date__calendar__btn {
+            width: 100%;
+            margin-top: 15px;
+            bottom: 0;
+            right: 0;
+            left: 50%;
+            transform: translate(-50%, 0);
+        }
+    }
+    
+    @media screen and (min-width: 320px) and (max-width:480px) {
+        .top__bttn-text {
+            font-size: 12px;
+            text-align: center;
+            width: 100%;
+        }
+        .top__bttn-text::before {
+            margin: auto 0;
+            left: 10px;
+        }
+        .header__container {
+            width: 100%;
+        }
+        .header__buttons {
+            max-width: 140px;
+        }
+        .collection__button {
+            display: none;
+        }
+        .collection__button-text {
+            font-size: 12px;
+        }
+        .collection__button-text::before {
+            margin: auto 0 12px 20px;
+        }
+        .container {
+            max-width: 500px;
+        }
+        .sing-in__button {
+            display: none;
+        }
+        .sing-in-icon {
+            display: block;
+            fill: #4095DA;
+            width: 20px;
+            height: 20px;
+        }
+        .hero__title__container {
+            flex-direction: column-reverse;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .hero__title-title {
+            font-size: 18px;
+            margin-right: 0;
+        }
+        .hero__title__buttons {
+            margin-left: 25px;
+        }
+        .hero__subtitle {
+            flex-direction: column;
+        }
+        .hero__subtitle-area {
+            margin-left: 16px;
+        }
+        .reviews__container {
+            width: 100%;
+            margin: auto;
+        }
+        .row {
+            flex-direction: column;
+        }
+        .list__things__priority .column {
+            width: 100%;
+            gap: 40px;
+        }
+        .hero__right-bottom {
+            margin-top: 10px;
+        }
+        .hero__right-imgs {
+            margin-top: 10px;
+        }
+        .hero__liked {
+            justify-content: center;
+        }
+        .about__title p {
+            max-width: 500px;
+            font-size: 14px;
+        }
+        .rating-area:not(:checked)>label {
+            width: 30px;
+        }
+        .reviews__area {
+            max-width: 300px;
+        }
+        .avg-result {
+            font-size: 14px;
+        }
+        .rating-area {
+            margin-left: -50px;
+        }
+        .second,
+        .third {
+            margin-left: 0px;
+            margin-top: 40px;
+        }
+        .millitary-second,
+        .millitary-third {
+            margin-left: 0px;
+            margin-top: 40px;
+        }
+        .priority-item-text {
+            font-size: 12px;
+        }
+        .millitary-item-text {
+            font-size: 12px;
+        }
+        .humanitarian-item-text {
+            font-size: 12px;
+        }
+        .hours__title {
+            display: none;
+        }
+        .posted-time {
+            font-size: 14px;
+        }
+        .username {
+            font-size: 15px;
+        }
+        .date__calendar {
+            padding-bottom: 150px;
+            width: 100%;
+        }
+        .date__calendar__btn {
+            width: 100%;
+            margin-top: 15px;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: 0 auto;
+        }
+        .date__container__grid {
+            grid-gap: 5px;
+        }
+        .grid_item {
+            height: 46px;
+        }
+    }
+    
+    @media screen and (max-width:320px) {
+        .top__bttn-text {
+            font-size: 12px;
+            text-align: center;
+            width: 100%;
+        }
+        .top__bttn-text::before {
+            margin: auto 0;
+            left: 10px;
+        }
+        .header__container {
+            width: 100%;
+        }
+        .header__buttons {
+            max-width: 140px;
+        }
+        .collection__button {
+            display: none;
+        }
+        .collection__button-text {
+            font-size: 12px;
+        }
+        .collection__button-text::before {
+            margin: auto 0 12px 20px;
+        }
+        .container {
+            max-width: 500px;
+        }
+        .sing-in__button {
+            display: none;
+        }
+        .sing-in-icon {
+            display: block;
+            fill: #4095DA;
+            width: 20px;
+            height: 20px;
+        }
+        .hero__title__container {
+            flex-direction: column-reverse;
+            align-items: flex-start;
+            gap: 20px;
+        }
+        .hero__title-title {
+            font-size: 18px;
+            margin-right: 0;
+        }
+        .hero__title__buttons {
+            margin-left: 25px;
+        }
+        .hero__subtitle {
+            flex-direction: column;
+        }
+        .hero__subtitle-area {
+            margin-left: 16px;
+        }
+        .reviews__container {
+            width: 100%;
+            margin: auto;
+        }
+        .row {
+            flex-direction: column;
+        }
+        .list__things__priority .column {
+            width: 100%;
+            gap: 40px;
+        }
+        .hero__right-bottom {
+            margin-top: 10px;
+        }
+        .hero__right-imgs {
+            margin-top: 10px;
+        }
+        .hero__liked {
+            justify-content: center;
+        }
+        .about__title p {
+            max-width: 500px;
+            font-size: 14px;
+        }
+        .rating-area:not(:checked)>label {
+            width: 30px;
+        }
+        .reviews__area {
+            max-width: 300px;
+        }
+        .avg-result {
+            font-size: 14px;
+        }
+        .rating-area {
+            margin-left: -50px;
+        }
+        .second,
+        .third {
+            margin-left: 0px;
+            margin-top: 40px;
+        }
+        .millitary-second,
+        .millitary-third {
+            margin-left: 0px;
+            margin-top: 40px;
+        }
+        .priority-item-text {
+            font-size: 12px;
+        }
+        .millitary-item-text {
+            font-size: 12px;
+        }
+        .humanitarian-item-text {
+            font-size: 12px;
+        }
+        .hours__title {
+            display: none;
+        }
+        .posted-time {
+            font-size: 14px;
+        }
+        .username {
+            font-size: 15px;
+        }
+        .date__calendar {
+            padding-bottom: 150px;
+            width: 100%;
+        }
+        .date__calendar__btn {
+            width: 100%;
+            margin-top: 15px;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: 0 auto;
+        }
+        .date__container__grid {
+            grid-gap: 5px;
+        }
+        .grid_item {
+            height: 46px;
+        }
     }
