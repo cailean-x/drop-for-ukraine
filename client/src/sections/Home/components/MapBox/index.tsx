@@ -476,7 +476,7 @@ const SelectStyles = createGlobalStyle`
     color: #757575;
 
     @media screen and (max-width: 750px) {
-      max-height: 150px;
+      max-height: 200px;
     }
   }
 

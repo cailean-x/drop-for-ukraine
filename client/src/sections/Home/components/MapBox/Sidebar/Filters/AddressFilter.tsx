@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState, useContext, useCallback } 
 import { AutoComplete } from 'antd';
 import debounce from 'lodash.debounce';
 import styled from "styled-components";
+import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import { geocode } from "lib/api/map";
 import { getTerritory } from "lib/api/map";
@@ -156,6 +157,14 @@ const AddressFilter: React.FC<Props> = ({ map, country, city, disabled = false, 
         disabled={disabled}
         allowClear
         getPopupContainer={(trigger: any) => trigger.parentNode}
+        dropdownRender={(menu: any) => (
+          <OverlayScrollbarsComponent
+            style={{ maxHeight: 300 }}
+            options={{ scrollbars: { autoHide: 'scroll' } }}
+          >
+            {menu}
+          </OverlayScrollbarsComponent>
+        )}
       />
       <FilterButtonWrapper>
         <FilterButton onClick={() => onToggleClick && onToggleClick()} >
@@ -208,7 +217,6 @@ const Input = styled(AutoComplete)`
     padding-left: 38px;
 
     @media screen and (max-width: 750px) {
-      padding-left: 32px;
       margin-right: 66px !important;
       z-index: 102;
       cursor: text;
@@ -226,7 +234,7 @@ const Input = styled(AutoComplete)`
     position: relative;
     
     @media screen and (max-width: 750px) {
-      padding-left: 36px;
+      padding-left: 42px;
       border-bottom-right-radius: 20px;
       border-top-right-radius: 20px;
       width: calc(100% - 40px);
