@@ -803,3 +803,131 @@ a:hover {
   margin: auto 0 auto -20px;
   position: absolute;
 }
+header {
+  width: 100%;
+  margin-top: 20px;
+}
+
+header::after {
+  content: '';
+  background-color: #F2F2F2;
+  height: 2px;
+  display: block;
+}
+
+.header__container {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  align-items: center;
+}
+
+.header__buttons {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.header-logo {
+  max-height: 54px;
+  max-width: 107px;
+}
+
+.language {
+  font-size: 15px;
+  font-weight: 400;
+  color: #757575;
+  position: relative;
+}
+
+.language::before {
+  content: "";
+  background-image: url(./imgs/world-map.svg);
+  background-size: 100% 100%;
+  display: block;
+  width: 16px;
+  height: 16px;
+  max-height: 16px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto 0 auto -20px;
+}
+
+.language::after {
+  content: "";
+  background-image: url(./imgs/vector-arrow.svg);
+  background-size: 100% 100%;
+  display: block;
+  width: 11px;
+  height: 6px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto 0 auto 25px;
+}
+
+.collection__button {
+  width: 100%;
+  max-width: 215px;
+  max-height: 40px;
+  border-radius: 100px;
+  background-color: #4095DA;
+  margin-left: 15px;
+}
+
+.collection__button:hover {
+  background-color: #000;
+  transition: 0.3s linear;
+}
+
+.collection__button-link {
+  width: 100%;
+}
+
+.collection__button-text {
+  padding: 10px 20px 10px 40px;
+  text-align: center;
+  color: #fff;
+  position: relative;
+}
+
+.collection__button-text::before {
+  content: "";
+  background-image: url(./imgs/plus-icon.svg);
+  background-size: 100% 100%;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto 0 15px 20px;
+}
+
+.sing-in__button-link {
+  color: #4095DA;
+}
+
+.sing-in__button-link:hover {
+  color: #000;
+  text-decoration: underline;
+  transition: 0.5s ease;
+}
+
+.sing-in__button-text {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.sing-in-icon {
+  display: none;
+}
