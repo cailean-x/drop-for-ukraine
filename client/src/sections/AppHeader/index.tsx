@@ -4,7 +4,8 @@ import { Input, Layout } from "antd";
 import { displayErrorMessage } from "../../lib/utils";
 import { Viewer } from "../../lib/types";
 import { MenuItems } from "./components";
-
+import styled from "styled-components";
+import SearchIcon from "assets/search.svg";
 import logo from "./assets/javelina-logo.jpg";
 
 interface Props {
@@ -54,15 +55,13 @@ export const AppHeader = ({ viewer, setViewer }: Props) => {
             <img src={logo} alt="App logo" />
           </Link>
         </div>
-        <div className="app-header__search-input">
-          <Search
-            placeholder="Search 'United Kingdom'"
-            enterButton
-            value={search}
-            onChange={(evt) => setSearch(evt.target.value)}
-            onSearch={onSearch}
-          />
-        </div>
+        <StyledSearch
+          placeholder="Search city"
+          value={search}
+          onChange={(evt) => setSearch(evt.target.value)}
+          onSearch={onSearch}
+          allowClear
+        />
       </div>
       <div className="app-header__menu-section">
         <MenuItems viewer={viewer} setViewer={setViewer} />
@@ -70,3 +69,71 @@ export const AppHeader = ({ viewer, setViewer }: Props) => {
     </Header>
   );
 };
+
+const StyledSearch = styled(Search)`
+  position: relative;
+  width: 386px;
+  max-width: 100%;
+
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+
+  .ant-input {
+    height: auto;
+    padding: 10px 48px;
+    color: #02020B;
+    position: relative;
+    background: #FFFFFF !important;
+    border: 1px solid #F2F2F2;
+    box-shadow: 0px 13px 10px rgba(50, 50, 71, 0.05), 0px 22px 28px rgba(50, 50, 71, 0.05);
+    border-radius: 500px;
+
+    &::placeholder {
+      color: #757575;
+    }
+
+    &:focus + .ant-input-suffix {
+      display: flex;
+    }
+
+    &:hover {
+      border-color: #D2E6F7 !important;
+    }
+
+    &:focus {
+      border-color: #4095DA !important;
+    }
+
+  }
+
+  .ant-input-suffix {
+    right: 20px;
+    display: none;
+
+    &:active {
+      display: flex !important;
+    }
+  }
+
+  .ant-input-search-icon {
+    display: none;
+  }
+
+  &::after {
+    content: '';
+    display: inline-flex;
+    width: 13px;
+    height: 13px;
+    background-image: url(${SearchIcon});
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    left: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+  }
+
+`;
