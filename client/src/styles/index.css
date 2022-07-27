@@ -816,22 +816,25 @@ header::after {
 }
 
 .header__container {
+  padding-right: 80px;
   display: flex;
   justify-content: space-between;
-  padding-top: 20px;
+  padding-top: 5px;
   padding-bottom: 30px;
   align-items: center;
 }
 
 .header__buttons {
+  padding-right: 70px;
   width: 100%;
-  max-width: 400px;
+  max-width: 420px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
 .header-logo {
+  padding-left: 100px;
   max-height: 54px;
   max-width: 107px;
 }
@@ -841,6 +844,11 @@ header::after {
   font-weight: 400;
   color: #757575;
   position: relative;
+}
+
+.divider {
+  position: relative;
+  margin: auto 0 auto 30px;
 }
 
 .language::before {
@@ -881,6 +889,7 @@ header::after {
   border-radius: 100px;
   background-color: #4095DA;
   margin-left: 15px;
+  margin-right: 15px
 }
 
 .collection__button:hover {
@@ -915,6 +924,7 @@ header::after {
 
 .sing-in__button-link {
   color: #4095DA;
+  display: inline;
 }
 
 .sing-in__button-link:hover {
@@ -923,9 +933,12 @@ header::after {
   transition: 0.5s ease;
 }
 
-.sing-in__button-text {
+.sing-in__button-text { 
+  padding-left: 15px;
+  padding-top: 15px;
   font-size: 15px;
   font-weight: 400;
+  position: relative;
 }
 
 .sing-in-icon {
