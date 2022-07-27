@@ -8,6 +8,8 @@ import styled from "styled-components";
 import SearchIcon from "assets/search.svg";
 import logo from "./imgs/header-logo.svg";
 import divider from "./imgs/divider vertical.svg";
+import vertical_line from "./imgs/vertical line.svg";
+import mappitall_logo from "./imgs/logo mappitall.svg"
 
 interface Props {
   viewer: Viewer;
@@ -60,10 +62,24 @@ export const AppHeader = ({ viewer, setViewer }: Props) => {
       <header className="header">
         <div className="container">
           <div className="header__container">
+            <div className="collection__logo">
             <div className="header-logo">
+            <Link to={`/`}>
               <img src={logo} alt="" />
+            </Link>
+            </div>           
+            <div className="vertical">
+              <img src={vertical_line} alt="" />
+            </div>
+            
+            <div className="mappitall-logo">
+            <a href="#">
+            <img src={mappitall_logo} alt="" />
+            </a>
+            </div>
             </div>
             <div className="header__buttons">
+          
               <div className="language__button">
                 <a href="#" className="language">
                   EN

@@ -833,10 +833,22 @@ header::after {
   align-items: center;
 }
 
+.collection__logo {
+  width: 100%;
+  max-width: 225px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+}
+
 .header-logo {
   padding-left: 100px;
   max-height: 54px;
   max-width: 107px;
+}
+
+.mappitall-logo {
+  margin-left: 20px;
 }
 
 .language {
@@ -849,6 +861,11 @@ header::after {
 .divider {
   position: relative;
   margin: auto 0 auto 30px;
+}
+
+.vertical {
+  margin-left: 120px;
+  position: relative;
 }
 
 .language::before {
