@@ -771,3 +771,35 @@ a:hover {
 .body-scrollbars {
   height: 100vh;
 }
+
+.top__bttn {
+  width: 100%;
+  background-color: #000;
+}
+
+.top__bttn-text {
+  margin: 0 auto;
+  color: #fff;
+  font-size: 16px;
+  display: block;
+  max-width: 370px;
+  font-weight: 400;
+  line-height: 1em;
+  padding: 12px 0 12px 0;
+  position: relative;
+}
+
+.top__bttn-text::before {
+  content: "";
+  background-image: url(./imgs/🇺🇦.svg);
+  background-size: 100% 100%;
+  display: block;
+  width: 16px;
+  height: 16px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto 0 auto -20px;
+  position: absolute;
+}

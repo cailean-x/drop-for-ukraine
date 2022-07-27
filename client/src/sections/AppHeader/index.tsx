@@ -48,7 +48,13 @@ export const AppHeader = ({ viewer, setViewer }: Props) => {
   };
 
   return (
-    <Header className="app-header">
+    <body>
+    <div className="top__bttn">
+        <a href="#" className="donation-link">
+            <p className="top__bttn-text">Support Ukraine - donate to buy a Bayraktar dron</p>
+        </a>
+    </div>
+    {/* <Header className="app-header">
       <div className="app-header__logo-search-section">
         <div className="app-header__logo">
           <Link to="/">
@@ -66,7 +72,8 @@ export const AppHeader = ({ viewer, setViewer }: Props) => {
       <div className="app-header__menu-section">
         <MenuItems viewer={viewer} setViewer={setViewer} />
       </div>
-    </Header>
+    </Header> */}
+    </body>
   );
 };
 
