@@ -825,9 +825,9 @@ header::after {
 }
 
 .header__buttons {
-  padding-right: 70px;
+  margin-right: 10px;
   width: 100%;
-  max-width: 420px;
+  max-width: 350px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -849,6 +849,7 @@ header::after {
 
 .mappitall-logo {
   margin-left: 20px;
+  margin-right: 50px;
 }
 
 .language {
@@ -901,7 +902,7 @@ header::after {
 
 .collection__button {
   width: 100%;
-  max-width: 215px;
+  max-width: 195px;
   max-height: 40px;
   border-radius: 100px;
   background-color: #4095DA;

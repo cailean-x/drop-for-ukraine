@@ -5,11 +5,13 @@ import { displayErrorMessage } from "../../lib/utils";
 import { Viewer } from "../../lib/types";
 import { MenuItems } from "./components";
 import styled from "styled-components";
+
 import SearchIcon from "assets/search.svg";
 import logo from "./imgs/header-logo.svg";
 import divider from "./imgs/divider vertical.svg";
 import vertical_line from "./imgs/vertical line.svg";
 import mappitall_logo from "./imgs/logo mappitall.svg"
+import sign_in_bttn from "./imgs/bttn.sign in.svg"
 
 interface Props {
   viewer: Viewer;
@@ -95,8 +97,9 @@ export const AppHeader = ({ viewer, setViewer }: Props) => {
                 </a>
               </div>
               <span className="sing-in__button">
+              <img src={sign_in_bttn} alt="" />
                 <a href="#" className="sing-in__button-link">
-                  Sign in
+                  {" "}Sign in
                 </a>
               </span>
               <a href="#" className="sing-in__button-link">
