@@ -1065,11 +1065,13 @@ header::after {
 }
 
 .city__bar-item-title {
+  
   font-size: 16px;
   font-weight: 500;
 }
 
 .city__bar-item-points {
+  margin-bottom: -2px;
   color: #757575;
   font-size: 14px;
   font-weight: 400;
@@ -1092,7 +1094,7 @@ header::after {
 .most-visited-places {
   text-align: center;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .collection__cards__grid {

@@ -196,23 +196,7 @@ export const Home = () => {
               Most visited collection points
             </h3>
             <div className="collection__cards__grid">
-              <div className="collection__cards__item add">
-                <div className="collection__cards__wrapper">
-                  <p className="collection__cards-text">
-                    Here you can place your own collection point
-                  </p>
-                  <a href="">
-                    <img
-                      src="./imgs/bttn add.svg"
-                      alt=""
-                      className="bttn-add"
-                    />
-                  </a>
-                  <p className="collection__cards-text">
-                    Add a collection point
-                  </p>
-                </div>
-              </div>
+              
               <div className="collection__cards__item">
                 <div className="collection__cards__img__wrapper">
                   <img src="./imgs/grid-card-2.png" alt="" />
@@ -282,6 +266,23 @@ export const Home = () => {
                   <p className="cards__item-text square">788 m2</p>
                   <p className="cards__item-text location">
                     Warsaw, Poland, Dabrowszczakow 83A
+                  </p>
+                </div>
+              </div>
+              <div className="collection__cards__item add">
+                <div className="collection__cards__wrapper">
+                  <p className="collection__cards-text">
+                    Here you can place your own collection point
+                  </p>
+                  <a href="">
+                    <img
+                      src="./imgs/bttn add.svg"
+                      alt=""
+                      className="bttn-add"
+                    />
+                  </a>
+                  <p className="collection__cards-text">
+                    Add a collection point
                   </p>
                 </div>
               </div>
