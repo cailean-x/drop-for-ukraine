@@ -19,6 +19,13 @@ import smallTownImage from "./assets/small-town.jpg";
 import MapboxMap from "./components/MapBox";
 import SearchIcon from "./assets/icon.search.svg";
 
+import parisLogo from "./imgs/paris.svg";
+import lublinLogo from"./imgs/lublin.svg";
+import berlinLogo from "./imgs/berlin.svg"
+import londonLogo from "./imgs/london.svg"
+import vilnusLogo from "./imgs/vilnus.svg";
+import romeLogo from "./imgs/rome.svg"
+
 const { Content } = Layout;
 const { Paragraph, Title } = Typography;
 const { Search } = Input;
@@ -120,7 +127,7 @@ export const Home = () => {
             <a href="#" className="city__bar-item-link">
               <div className="city__bar-item">
                 <div className="city__bar-item-img">
-                  <img src="./imgs/paris.svg" alt="" />
+                  <img src={parisLogo} alt="" />
                 </div>
                 <div className="city__bar-item-text">
                   <h5 className="city__bar-item-title">Paris</h5>
@@ -131,7 +138,7 @@ export const Home = () => {
             <a href="#" className="city__bar-item-link">
               <div className="city__bar-item">
                 <div className="city__bar-item-img">
-                  <img src="./imgs/lublin.svg" alt="" />
+                  <img src={lublinLogo} alt="" />
                 </div>
                 <div className="city__bar-item-text">
                   <h5 className="city__bar-item-title">Lublin</h5>
@@ -142,7 +149,7 @@ export const Home = () => {
             <a href="#" className="city__bar-item-link">
               <div className="city__bar-item">
                 <div className="city__bar-item-img">
-                  <img src="./imgs/berlin.svg" alt="" />
+                  <img src={berlinLogo} alt="" />
                 </div>
                 <div className="city__bar-item-text">
                   <h5 className="city__bar-item-title">Berlin</h5>
@@ -153,7 +160,7 @@ export const Home = () => {
             <a href="#" className="city__bar-item-link">
               <div className="city__bar-item">
                 <div className="city__bar-item-img">
-                  <img src="./imgs/london.svg" alt="" />
+                  <img src={londonLogo} alt="" />
                 </div>
                 <div className="city__bar-item-text">
                   <h5 className="city__bar-item-title">London </h5>
@@ -164,7 +171,7 @@ export const Home = () => {
             <a href="#" className="city__bar-item-link">
               <div className="city__bar-item">
                 <div className="city__bar-item-img">
-                  <img src="./imgs/vilnus.svg" alt="" />
+                  <img src={vilnusLogo} alt="" />
                 </div>
                 <div className="city__bar-item-text">
                   <h5 className="city__bar-item-title">Vilnius</h5>
@@ -175,7 +182,7 @@ export const Home = () => {
             <a href="#" className="city__bar-item-link">
               <div className="city__bar-item">
                 <div className="city__bar-item-img">
-                  <img src="./imgs/rome.svg" alt="" />
+                  <img src={romeLogo} alt="" />
                 </div>
                 <div className="city__bar-item-text">
                   <h5 className="city__bar-item-title">Rome</h5>
