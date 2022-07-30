@@ -976,7 +976,7 @@ header::after {
 .search__container {
   display: flex;
   justify-content: center;
-  background: url(./imgs/bg.ill\ map.png) no-repeat 3px 1px;
+  background: url(./imgs/bg.ill\ map.png) no-repeat 3px -80px;
   align-items: center;
   flex-direction: column;
   margin-top: 0px;
