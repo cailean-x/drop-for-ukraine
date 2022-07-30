@@ -804,6 +804,7 @@ a:hover {
   position: absolute;
 }
 header {
+  background-color: #EDF5FC;
   width: 100%;
 }
 
@@ -814,12 +815,13 @@ header {
 
 header::after {
   content: '';
-  background-color: #FFFF;
+  background-color: #EDF5FC;
   height: 2px;
   display: block;
 }
 
 .header__container {
+  
   padding-right: 80px;
   display: flex;
   justify-content: space-between;
@@ -967,16 +969,22 @@ header::after {
   display: none;
 }
 
+.home-page__body {
+  background-color: #EDF5FC;
+}
+
 .search__container {
   display: flex;
   justify-content: center;
+  background: url(./imgs/bg.ill\ map.png) no-repeat 3px 1px;
   align-items: center;
   flex-direction: column;
-  margin-top: 30px;
+  margin-top: 0px;
   padding-bottom: 60px;
 }
 
 .search__container-title {
+  padding-bottom: 5px;
   font-size: 24px;
   font-weight: 500;
 }
@@ -1026,4 +1034,52 @@ header::after {
   font-weight: 500;
   padding-top: 40px;
   text-align: center;
+}
+
+.cities__bar {
+  width: 100%;
+  max-width: 1140px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+.city__bar-item {
+  width: 100%;
+  max-width: 175px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #F2F2F2;
+  border-radius: 100px;
+  transition: 0.3s linear;
+}
+
+.city__bar-item-text {
+  margin-left: 10px;
+}
+
+.city__bar-item h5 {
+  margin: 0;
+}
+
+.city__bar-item-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.city__bar-item-points {
+  color: #757575;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.city__bar-item-link {
+  width: 100%;
+  max-width: 173px;
+}
+
+.city__bar-item:hover {
+  box-shadow: 0px 16px 16px rgba(50, 50, 71, 0.08), 0px 24px 32px rgba(50, 50, 71, 0.08);
 }

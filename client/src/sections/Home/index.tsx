@@ -71,7 +71,7 @@ export const Home = () => {
   };
 
   return (
-    <body>
+    <body className="home-page__body">
       <div className="search__container">
         <h3 className="search__container-title">
           The easy way to drop off humanitarian aid for Ukraine
