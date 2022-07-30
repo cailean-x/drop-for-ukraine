@@ -814,7 +814,7 @@ header {
 
 header::after {
   content: '';
-  background-color: #F2F2F2;
+  background-color: #FFFF;
   height: 2px;
   display: block;
 }
@@ -998,6 +998,7 @@ header::after {
 }
 
 .search__container-tip {
+  padding-top: 10px;
   font-size: 12px;
   font-weight: 400;
   color: #757575;
