@@ -38,6 +38,8 @@ import grid2 from "./imgs/grid-icon-2.svg"
 import grid3 from "./imgs/grid-card-3.png"
 import grid4 from "./imgs/grid-card-4.png"
 import addbttn from "./imgs/bttn add.svg"
+import areaIcon from "./imgs/icon.area.svg"
+import markerIcon from "./imgs/icon.marker.svg"
 
 const { Content } = Layout;
 const { Paragraph, Title } = Typography;
@@ -228,9 +230,11 @@ export const Home = () => {
                   <h3 className="cards__item-title">
                   Amazon opens second humanitarian aid hub
                   </h3>
-                  <p className="cards__item-text square">3,050 m2</p>
+                
+                  <p className="cards__item-text square">  <img src={areaIcon} alt="" /> 3,050 m²</p>
                   <p className="cards__item-text location">
-                    Warsaw, Poland, Partyzantow 98A
+                  <img src={markerIcon} alt="" /> 
+                    {" "}Warsaw, Poland, Partyzantow 98A
                   </p>
                 </div>
               </div>
@@ -252,9 +256,10 @@ export const Home = () => {
                   <h3 className="cards__item-title">
                   DHL opens a warehouse for humanitarian aid
                   </h3>
-                  <p className="cards__item-text square">1,120 m2</p>
+                  <p className="cards__item-text square">  <img src={areaIcon} alt="" /> 1,120 m²</p>
                   <p className="cards__item-text location">
-                    Warsaw, Poland, Mickiewicza Adama 78
+                    <img src={markerIcon} alt="" />
+                    {" "}Warsaw, Poland, Mickiewicza Adama 78
                   </p>
                 </div>
               </div>
@@ -274,12 +279,12 @@ export const Home = () => {
                     className="cards-icon"
                   />
                   <h3 className="cards__item-title">
-                  BMW shares it's space 
-to help Ukraine
+                  BMW shares it's space to help Ukraine
                   </h3>
-                  <p className="cards__item-text square">788 m2</p>
+                  <p className="cards__item-text square">  <img src={areaIcon} alt="" /> 788 m²</p>
                   <p className="cards__item-text location">
-                    Warsaw, Poland, Dabrowszczakow 83A
+                  <img src={markerIcon} alt="" />
+                  {" "}Warsaw, Poland, Dabrowszczakow 83A
                   </p>
                 </div>
               </div>
@@ -303,6 +308,14 @@ to help Ukraine
             </div>
           </div>
         </div>
+        <div className="map__container">
+        <h3 className="map__container-title">
+          Collection points on DropForUkraine maps
+        </h3>
+        <div className="map__container-map">
+          {/* <!---Место для добавления карты--> */}
+        </div>
+      </div>
       </main>
     </body>
     // <Content
