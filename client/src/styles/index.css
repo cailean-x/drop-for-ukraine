@@ -1140,6 +1140,8 @@ header::after {
 }
 
 .count__info-text {
+  margin-top: 3px;
+  margin-bottom: 2px;
   margin-left: 10px;
 }
 

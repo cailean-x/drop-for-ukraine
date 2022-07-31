@@ -26,6 +26,19 @@ import londonLogo from "./imgs/london.svg"
 import vilnusLogo from "./imgs/vilnus.svg";
 import romeLogo from "./imgs/rome.svg"
 
+import amazonLogo from "./imgs/avatar.svg"
+import bmwLogo from "./imgs/img.avatar1.svg"
+import dhlLogo from "./imgs/img.avatar.svg"
+import amazonPlace from "./imgs/img.place.svg"
+import dhlPlace from "./imgs/img.place1.svg"
+import bmwPlace from "./imgs/img.place2.svg"
+import ellipse63 from "./imgs/Ellipse 63.svg"
+import vector from "./imgs/Vector (6).svg"
+import grid2 from "./imgs/grid-icon-2.svg"
+import grid3 from "./imgs/grid-card-3.png"
+import grid4 from "./imgs/grid-card-4.png"
+import addbttn from "./imgs/bttn add.svg"
+
 const { Content } = Layout;
 const { Paragraph, Title } = Typography;
 const { Search } = Input;
@@ -193,29 +206,29 @@ export const Home = () => {
           </div>
           <div className="cards__container">
             <h3 className="most-visited-places">
-              Most visited collection points
+              Most visited collecting points
             </h3>
             <div className="collection__cards__grid">
               
               <div className="collection__cards__item">
                 <div className="collection__cards__img__wrapper">
-                  <img src="./imgs/grid-card-2.png" alt="" />
+                  <img src={amazonPlace} alt="" />
                 </div>
                 <div className="collection__cards__text__wrapper">
                   <div className="count-info">
-                    <img src="./imgs/Ellipse 63.svg" alt="" />
-                    <img src="./imgs/Vector (6).svg" className="person-icon" />
-                    <p className="count__info-text">32</p>
+                    <img src={ellipse63} alt="" />
+                    <img src={vector} className="person-icon" />
+                    <p className="count__info-text">502</p>
                   </div>
                   <img
-                    src="./imgs/img.avatar.svg"
+                    src={amazonLogo}
                     alt=""
                     className="cards-icon"
                   />
                   <h3 className="cards__item-title">
-                    FACRO accepts humanitarian aid for Ukraine
+                  Amazon opens second humanitarian aid hub
                   </h3>
-                  <p className="cards__item-text square">1,050 m2</p>
+                  <p className="cards__item-text square">3,050 m2</p>
                   <p className="cards__item-text location">
                     Warsaw, Poland, Partyzantow 98A
                   </p>
@@ -223,21 +236,21 @@ export const Home = () => {
               </div>
               <div className="collection__cards__item">
                 <div className="collection__cards__img__wrapper">
-                  <img src="./imgs/grid-card-3.png" alt="" />
+                  <img src={dhlPlace} alt="" />
                 </div>
                 <div className="collection__cards__text__wrapper">
                   <div className="count-info">
-                    <img src="./imgs/Ellipse 63.svg" alt="" />
-                    <img src="./imgs/Vector (6).svg" className="person-icon" />
-                    <p className="count__info-text">78</p>
+                    <img src={ellipse63} alt="" />
+                    <img src={vector} className="person-icon" />
+                    <p className="count__info-text">411</p>
                   </div>
                   <img
-                    src="./imgs/grid-icon-2.svg"
+                    src={dhlLogo}
                     alt=""
                     className="cards-icon"
                   />
                   <h3 className="cards__item-title">
-                    FACRO accepts humanitarian aid for Ukraine
+                  DHL opens a warehouse for humanitarian aid
                   </h3>
                   <p className="cards__item-text square">1,120 m2</p>
                   <p className="cards__item-text location">
@@ -247,21 +260,22 @@ export const Home = () => {
               </div>
               <div className="collection__cards__item">
                 <div className="collection__cards__img__wrapper">
-                  <img src="./imgs/grid-card-4.png" alt="" />
+                  <img src={bmwPlace} alt="" />
                 </div>
                 <div className="collection__cards__text__wrapper">
                   <div className="count-info">
-                    <img src="./imgs/Ellipse 63.svg" alt="" />
-                    <img src="./imgs/Vector (6).svg" className="person-icon" />
-                    <p className="count__info-text">51</p>
+                    <img src={ellipse63} alt="" />
+                    <img src={vector} className="person-icon" />
+                    <p className="count__info-text">402</p>
                   </div>
                   <img
-                    src="./imgs/grid-icon-3.svg"
+                    src={bmwLogo}
                     alt=""
                     className="cards-icon"
                   />
                   <h3 className="cards__item-title">
-                    FACRO accepts humanitarian aid for Ukraine
+                  BMW shares it's space 
+to help Ukraine
                   </h3>
                   <p className="cards__item-text square">788 m2</p>
                   <p className="cards__item-text location">
@@ -276,7 +290,7 @@ export const Home = () => {
                   </p>
                   <a href="">
                     <img
-                      src="./imgs/bttn add.svg"
+                      src={addbttn}
                       alt=""
                       className="bttn-add"
                     />
