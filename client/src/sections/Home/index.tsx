@@ -312,9 +312,7 @@ export const Home = () => {
         <h3 className="map__container-title">
           Collection points on DropForUkraine maps
         </h3>
-        <div className="map__container-map">
-          {/* <!---Место для добавления карты--> */}
-        </div>
+        <MapboxMap type="main" />
       </div>
       </main>
     </body>

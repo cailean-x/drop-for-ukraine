@@ -151,7 +151,7 @@ const MapboxMap: React.FC<Props> = ({ type, markerPos, itemsFilter, onMarkerPosC
     const mapboxMap = new mapboxgl.Map({
       container: mapNode.current,
       accessToken: process.env.REACT_APP_MAPBOX_TOKEN,
-      style: "mapbox://styles/mokiienko/cl4pb8ays000i14sim6vj5zkd/draft",
+      style: "mapbox://styles/mapbox/light-v10",
       minZoom: 2,
       maxZoom: 22,
       projection: { name: "mercator" },
